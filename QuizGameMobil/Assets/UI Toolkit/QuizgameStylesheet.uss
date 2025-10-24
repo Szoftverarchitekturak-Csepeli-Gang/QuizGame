@@ -1,3 +1,7 @@
+:root {
+    --icon-color: rgb(114, 114, 114);
+}
+
 .main-container {
     flex-grow: 1;
     justify-content: center;
@@ -66,4 +70,13 @@ Button {
     flex-grow: 1;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.header-container {
+    flex-direction: row;
+    background-color: rgb(130, 130, 130);
+}
+
+.hide {
+    display: none;
 }

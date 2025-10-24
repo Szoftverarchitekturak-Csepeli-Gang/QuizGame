@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1978217302831351187}
   - component: {fileID: 1138444681461903008}
+  - component: {fileID: 3720744647385766198}
   m_Layer: 0
   m_Name: MainScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1978217302831351187
 Transform:
   m_ObjectHideFlags: 0
@@ -55,3 +56,18 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &3720744647385766198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6581578929401970505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d589aca05caf53d4ab384fd6ed61c082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _roomID: 0
+  _roomPassword: 
+  _errorMessage: 

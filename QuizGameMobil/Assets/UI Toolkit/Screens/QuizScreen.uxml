@@ -2,21 +2,41 @@
     <Style src="project://database/Assets/UI%20Toolkit/QuizgameStylesheet.uss?fileID=7433441132597879392&amp;guid=b3fc00a12efea744bad7708d177617e2&amp;type=3#QuizgameStylesheet" />
     <ui:VisualElement name="VisualElement" style="flex-grow: 1; justify-content: center; align-items: stretch; align-content: center;">
         <ui:VisualElement name="Header" style="background-color: rgb(147, 147, 147); padding-top: 5px; padding-bottom: 10px;">
-            <ui:VisualElement name="HeaderButtons" template="HeaderButtons">
-                <ui:VisualElement name="HeaderButtons" style="flex-direction: row;">
-                    <ui:Button text="&lt;" name="BackButton" class="icon-button" />
-                    <ui:Button class="icon-button" />
-                </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:ProgressBar value="22" name="TimeLeft" />
+            <HeaderElement back-icon-color="#656565FF" />
+            <ui:ProgressBar value="22" name="TimeLeft" data-source-type="QuizScreenController, Assembly-CSharp">
+                <Bindings>
+                    <ui:DataBinding property="highValue" data-source-path="_maxTime" binding-mode="ToTarget" />
+                    <ui:DataBinding property="value" data-source-path="_currentTime" binding-mode="ToTarget" />
+                </Bindings>
+            </ui:ProgressBar>
         </ui:VisualElement>
         <ui:VisualElement class="main-container" style="flex-grow: 1; padding-right: 80px; padding-left: 80px; padding-bottom: 80px;">
-            <ui:Label text="Question" name="Question" style="-unity-text-align: middle-center; height: 300px;" />
-            <ui:VisualElement name="AnswerButtons" style="flex-grow: 1; justify-content: space-evenly;">
-                <ui:Button text="Answer1" name="Answer1" />
-                <ui:Button text="Answer2" name="Answer2" />
-                <ui:Button text="Answer3" name="Answer3" />
-                <ui:Button text="Answer4" name="Answer4" />
+            <ui:Label text="Question" name="Question" data-source-type="QuizScreenController, Assembly-CSharp" style="-unity-text-align: middle-center; height: 300px;">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="_question" binding-mode="ToTarget" />
+                </Bindings>
+            </ui:Label>
+            <ui:VisualElement name="AnswerButtons" data-source-type="QuizScreenController, Assembly-CSharp" data-source-path="_answers" style="flex-grow: 1; justify-content: space-evenly;">
+                <ui:Button text="Answer1" name="Answer1">
+                    <Bindings>
+                        <ui:DataBinding property="text" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Button>
+                <ui:Button text="Answer2" name="Answer2">
+                    <Bindings>
+                        <ui:DataBinding property="text" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Button>
+                <ui:Button text="Answer3" name="Answer3">
+                    <Bindings>
+                        <ui:DataBinding property="text" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Button>
+                <ui:Button text="Answer4" name="Answer4">
+                    <Bindings>
+                        <ui:DataBinding property="text" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

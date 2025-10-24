@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public enum AppScreen
 {
@@ -19,7 +20,7 @@ public class ScreenManager : MonoBehaviour
     [SerializeField] GameObject WaitroomScreenPrefab;
     [SerializeField] GameObject FinishScreenPrefab;
 
-    private readonly Dictionary<AppScreen, GameObject> _screens = new();
+    private readonly Dictionary<AppScreen, UIDocument> _screens = new();
     private AppScreen _currentScreen;
 
     public static ScreenManager Instance { get; private set; }
@@ -38,10 +39,10 @@ public class ScreenManager : MonoBehaviour
 
     void Start()
     {
-        _screens.Add(AppScreen.MAIN, Instantiate(MainScreenPrefab, ScreenParent));
-        _screens.Add(AppScreen.QUIZ, Instantiate(QuizScreenPrefab, ScreenParent));
-        _screens.Add(AppScreen.WAITROOM, Instantiate(WaitroomScreenPrefab, ScreenParent));
-        _screens.Add(AppScreen.FINISH, Instantiate(FinishScreenPrefab, ScreenParent));
+        _screens.Add(AppScreen.MAIN, Instantiate(MainScreenPrefab, ScreenParent).GetComponent<UIDocument>());
+        _screens.Add(AppScreen.QUIZ, Instantiate(QuizScreenPrefab, ScreenParent).GetComponent<UIDocument>());
+        _screens.Add(AppScreen.WAITROOM, Instantiate(WaitroomScreenPrefab, ScreenParent).GetComponent<UIDocument>());
+        _screens.Add(AppScreen.FINISH, Instantiate(FinishScreenPrefab, ScreenParent).GetComponent<UIDocument>());
 
         HideAllScreens();
         ShowScreen(AppScreen.MAIN);
@@ -49,9 +50,9 @@ public class ScreenManager : MonoBehaviour
 
     private void HideAllScreens()
     {
-        foreach ((_, GameObject obj) in _screens)
+        foreach ((_, UIDocument obj) in _screens)
         {
-            obj.SetActive(false);
+            obj.rootVisualElement.AddToClassList("hide");
         }
     }
 
@@ -59,10 +60,10 @@ public class ScreenManager : MonoBehaviour
     {
         if (_currentScreen != screen)
         {
-            _screens[_currentScreen].SetActive(false);
+            _screens[_currentScreen].rootVisualElement.AddToClassList("hide");
         }
 
-        _screens[screen].SetActive(true);
+        _screens[screen].rootVisualElement.RemoveFromClassList("hide");
         _currentScreen = screen;
     }
 }
