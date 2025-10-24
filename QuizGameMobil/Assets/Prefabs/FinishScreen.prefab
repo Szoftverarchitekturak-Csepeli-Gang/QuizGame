@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8891238928101928702
+--- !u!1001 &2955892424258331331
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 1138444681461903008, guid: 65fd6a78d0c9ac348aa5cce3621be206, type: 3}
       propertyPath: sourceAsset
       value: 
-      objectReference: {fileID: 9197481963319205126, guid: d04184ff8a72c2746a4dc0a3097ad83b, type: 3}
+      objectReference: {fileID: 9197481963319205126, guid: bcef349996c45294d9e5b1ee97e4cfc5, type: 3}
     - target: {fileID: 1978217302831351187, guid: 65fd6a78d0c9ac348aa5cce3621be206, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6581578929401970505, guid: 65fd6a78d0c9ac348aa5cce3621be206, type: 3}
       propertyPath: m_Name
-      value: QuizScreen
+      value: FinishScreen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

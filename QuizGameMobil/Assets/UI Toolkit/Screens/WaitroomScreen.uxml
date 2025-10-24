@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/QuizgameStylesheet.uss?fileID=7433441132597879392&amp;guid=b3fc00a12efea744bad7708d177617e2&amp;type=3#QuizgameStylesheet" />
+    <ui:VisualElement class="main-container" style="flex-grow: 1;">
+        <ui:Label text="Waiting for the host to start the game..." name="Label" style="white-space: pre-wrap; -unity-text-align: upper-center; font-size: 58px;" />
+        <ui:Label text="Connected players: 0" name="ConnectedPlayers" style="-unity-text-align: upper-center;" />
+    </ui:VisualElement>
+</ui:UXML>
