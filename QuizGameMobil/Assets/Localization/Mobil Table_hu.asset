@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Mobil Table_hu
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: hu
+  m_SharedData: {fileID: 11400000, guid: ca5fcf7e0d0f0d349acb0419a1deb995, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 5564545359597797764
+  m_TableData:
+  - m_Id: 1467428155392
+    m_Localized: "Szoba azonos\xEDt\xF3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1854008766464
+    m_Localized: "Jelsz\xF3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2087610527744
+    m_Localized: "Csatlakoz\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2598493532160
+    m_Localized: "A kv\xEDz befejez\u0151d\xF6tt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2819264917504
+    m_Localized: Vissza
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3136706621440
+    m_Localized: "V\xE1rakoz\xE1s a j\xE1t\xE9k indul\xE1s\xE1ra..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3968856535040
+    m_Localized: "Csatlakozott j\xE1t\xE9kosok: {playerNum}"
+    m_Metadata:
+      m_Items:
+      - rid: 5564545359597797764
+  references:
+    version: 2
+    RefIds:
+    - rid: 5564545359597797764
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 3968856535040

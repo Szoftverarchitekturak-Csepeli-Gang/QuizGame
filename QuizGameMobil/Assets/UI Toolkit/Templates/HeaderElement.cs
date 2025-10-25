@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UIElements;
 
 [UxmlElement]
@@ -32,20 +33,12 @@ public partial class HeaderElement : VisualElement
 
         _backButton.Add(_backIcon);
 
-        Button langButton = new();
-        langButton.AddToClassList("icon-button");
-        langButton.RegisterCallback<ClickEvent>(OnLangButtonClicked);
+        LangButtonElement langButton = new();
 
         baseElement.Add(_backButton);
         baseElement.Add(langButton);
 
         Add(baseElement);
-    }
-
-    private void OnLangButtonClicked(ClickEvent evt)
-    {
-        // TODO: switch between HUN and ENG localization
-        throw new NotImplementedException();
     }
 
     private void OnBackButtonClicked(ClickEvent evt)

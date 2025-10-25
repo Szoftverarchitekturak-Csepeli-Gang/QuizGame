@@ -60,6 +60,7 @@ Button {
     margin-right: 8px;
     margin-bottom: 8px;
     margin-left: 8px;
+    background-size: 85% 125%;
 }
 
 .unity-progress-bar__container {
