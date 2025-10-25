@@ -1,22 +1,29 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI%20Toolkit/QuizgameStylesheet.uss?fileID=7433441132597879392&amp;guid=b3fc00a12efea744bad7708d177617e2&amp;type=3" />
-    <ui:VisualElement name="ScreenContainer" class="main-container">
+    <Style src="project://database/Assets/UI%20Toolkit/QuizgameStylesheet.uss?fileID=7433441132597879392&amp;guid=b3fc00a12efea744bad7708d177617e2&amp;type=3#QuizgameStylesheet" />
+    <ui:VisualElement name="ScreenContainer" data-source-type="MainScreenController, Assembly-CSharp" class="main-container">
         <ui:Label text="Title" name="Title" style="font-size: 140px; -unity-text-align: upper-center; align-self: center;" />
         <ui:IntegerField label="Room ID" placeholder-text="123456" keyboard-type="NumberPad" name="RoomID" style="flex-direction: column;">
             <Bindings>
                 <ui:DataBinding property="value" data-source-path="_roomID" data-source-type="MainScreenController, Assembly-CSharp" binding-mode="ToSource" />
+                <UnityEngine.Localization.LocalizedString property="label" table="GUID:ca5fcf7e0d0f0d349acb0419a1deb995" entry="Id(1467428155392)" />
             </Bindings>
         </ui:IntegerField>
-        <ui:TextField label="Password" placeholder-text="Input text..." password="true" hide-placeholder-on-focus="true" name="RoomPassword" style="flex-direction: column;">
+        <ui:TextField label="Password" password="true" hide-placeholder-on-focus="true" name="RoomPassword" style="flex-direction: column;">
             <Bindings>
                 <ui:DataBinding property="value" data-source-path="_roomPassword" data-source-type="MainScreenController, Assembly-CSharp" binding-mode="ToSource" />
+                <UnityEngine.Localization.LocalizedString property="label" table="GUID:ca5fcf7e0d0f0d349acb0419a1deb995" entry="Id(1854008766464)" />
             </Bindings>
         </ui:TextField>
-        <ui:Button text="Join" name="JoinButton" />
+        <ui:Button text="Join" name="JoinButton">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:ca5fcf7e0d0f0d349acb0419a1deb995" entry="Id(2087610527744)" />
+            </Bindings>
+        </ui:Button>
         <ui:Label text="Error message" name="InputError" class="error-message" style="visibility: visible;">
             <Bindings>
                 <ui:DataBinding property="text" data-source-path="_errorMessage" data-source-type="MainScreenController, Assembly-CSharp" binding-mode="ToTarget" />
             </Bindings>
         </ui:Label>
+        <LangButtonElement style="right: 100px; position: absolute; bottom: 60px;" />
     </ui:VisualElement>
 </ui:UXML>

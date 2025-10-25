@@ -1,23 +1,27 @@
 using System;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
+using UnityEngine.UIElements;
 
 public class WaitroomScreenController : ScreenController
 {
     private int _connectedPlayers;
-    [SerializeField, HideInInspector] private string _connectedPlayersText;
+    private LocalizedString _connectedPlayersText;
 
     public int ConnectedPlayers
     {
         set
         {
             _connectedPlayers = value;
-            _connectedPlayersText = $"Connected players: {_connectedPlayers}";
+            IntVariable playerNum = _connectedPlayersText["playerNum"] as IntVariable;
+            playerNum.Value = _connectedPlayers;
         }
         get => _connectedPlayers;
     }
 
     void OnEnable()
     {
-        ConnectedPlayers = 1;
+        _connectedPlayersText = _ui.Q<Label>("ConnectedPlayers").GetBinding("text") as LocalizedString;
     }
 }
