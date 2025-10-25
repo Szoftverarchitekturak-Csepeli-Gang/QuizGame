@@ -2,37 +2,30 @@ using UnityEngine;
 
 public class WaterAnimation : MonoBehaviour
 {
-    public MeshRenderer meshRenderer;
-    public float scrollSpeedX = 0.1f;
-    public float scrollSpeedY = 0.0f;
+    public MeshRenderer _meshRenderer;
+    [SerializeField] private float _scrollSpeedX = 0.1f;
+    [SerializeField] private float _scrollSpeedY = 0.0f;
 
-    public string textureProperty = "_BaseMap";
-    private Material mat;
-    private Vector2 offset;
+    public string _textureProperty = "_BaseMap";
+    private Material _mat;
+    private Vector2 _offset;
 
     void Start()
     {
-        if (meshRenderer == null)
-        {
-            meshRenderer = GetComponent<MeshRenderer>();
-        }
+        if (_meshRenderer == null)
+            _meshRenderer = GetComponent<MeshRenderer>();
 
-        // Get a unique material instance (so you don’t modify the shared one)
-        mat = meshRenderer.material;
-        offset = mat.GetTextureOffset(textureProperty);
+        _mat = _meshRenderer.material;
+        _offset = _mat.GetTextureOffset(_textureProperty);
     }
 
     void Update()
     {
-        // Animate texture offset over time
-        offset.x += scrollSpeedX * Time.deltaTime;
-        offset.y += scrollSpeedY * Time.deltaTime;
+        _offset += new Vector2(_scrollSpeedX, _scrollSpeedY) * Time.deltaTime;
 
-        // Prevent large values
-        offset.x = Mathf.Repeat(offset.x, 1f);
-        offset.y = Mathf.Repeat(offset.y, 1f);
+        _offset.x = Mathf.Repeat(_offset.x, 1f);
+        _offset.y = Mathf.Repeat(_offset.y, 1f);
 
-        // Apply to the texture property
-        mat.SetTextureOffset(textureProperty, offset);
+        _mat.SetTextureOffset(_textureProperty, _offset);
     }
 }
