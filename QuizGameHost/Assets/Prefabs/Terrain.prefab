@@ -1424,6 +1424,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4819448713516207489, guid: de2f6753b1b84f041b1064687bbc65f6, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 32f8757da8d4e0b4d99be0ddff70f839, type: 2}
     - target: {fileID: 5799968518440784569, guid: de2f6753b1b84f041b1064687bbc65f6, type: 3}
       propertyPath: m_Name
       value: Village
