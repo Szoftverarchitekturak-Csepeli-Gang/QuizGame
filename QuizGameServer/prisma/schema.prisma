@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL") 
+  //DATABASE URL comes from the .env file.
+  //For MySQL databases the connection string looks like this: "mysql://user:password@localhost:3306/db_name"
+}
+
+model Question_Banks {
+  id            Int       @id @default(autoincrement())
+  owner_user_id Int       // No auth for now
+  title         String
+  public        Boolean   // Whether the bank could be used by users other than the owner
+  questions     Questions[]
+  rooms         Rooms[]
+}
+
+model Questions {
+  id                Int       @id @default(autoincrement()) // Auto-incrementing ID
+  question_bank_id  Int       // Foreign key linking to Question_Banks
+  text              String
+  optionA           String
+  optionB           String
+  optionC           String
+  optionD           String
+  correctAnswer     Int       // Correct answer (1-4 -> have to be restricted outside of the scheme)
+  bank              Question_Banks @relation(fields: [question_bank_id], references: [id]) // Relation to Question_Banks
+}
+
+model Rooms {
+  id                String    @id
+  host_id           Int
+  question_bank_id  Int
+  bank              Question_Banks @relation(fields: [question_bank_id], references: [id])
+}
