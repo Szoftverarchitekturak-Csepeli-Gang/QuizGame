@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2547269626553537128
 Transform:
@@ -31,7 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6137886693963079743}
+  m_Father: {fileID: 3278740737211657362}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &4780450172415703843
 Light:
@@ -195,6 +195,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Resource_Gold_2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 272c29dc4ca5f4a4da6d99a23961b240, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -272,6 +276,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: eb4ef518e05993b40a461be6311e36a7, type: 3}
       propertyPath: m_Name
       value: Houses_FirstAge_1_Level2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eb4ef518e05993b40a461be6311e36a7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -351,6 +359,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Resource_Tree_Group_Cut
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 06bf9e52164e9cc409e6aff0370001f7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -428,6 +440,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 38764f17106b1e247a1c863261fce339, type: 3}
       propertyPath: m_Name
       value: Windmill_FirstAge (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38764f17106b1e247a1c863261fce339, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -507,6 +523,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Houses_FirstAge_2_Level2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ecb64e21b2c84c741973d0c399f42867, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -584,6 +604,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 272c29dc4ca5f4a4da6d99a23961b240, type: 3}
       propertyPath: m_Name
       value: Resource_Gold_2 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 272c29dc4ca5f4a4da6d99a23961b240, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -663,6 +687,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Houses_FirstAge_1_Level2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eb4ef518e05993b40a461be6311e36a7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -740,6 +768,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 85feff9bd21231d4fa21f30fa891fe72, type: 3}
       propertyPath: m_Name
       value: Resource_PineTree_Group_Cut
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 85feff9bd21231d4fa21f30fa891fe72, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -819,6 +851,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Resource_PineTree_Group_Cut (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 85feff9bd21231d4fa21f30fa891fe72, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -896,6 +932,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 103f46149ce26a24a98ef78f7d1db83e, type: 3}
       propertyPath: m_Name
       value: WatchTower_FirstAge_Level3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 103f46149ce26a24a98ef78f7d1db83e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -975,6 +1015,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Resource_PineTree_Group_Cut (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 85feff9bd21231d4fa21f30fa891fe72, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1052,6 +1096,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b8fab2c9a6a68404b8679f0982126dae, type: 3}
       propertyPath: m_Name
       value: Storage_FirstAge_Level2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b8fab2c9a6a68404b8679f0982126dae, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1131,6 +1179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archery_FirstAge_Level3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 78ed528f8fab1744d8b6e1c3ea1b5423, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1208,6 +1260,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b6ee2322607ac69499568c85b750a0b3, type: 3}
       propertyPath: m_Name
       value: TownCenter_FirstAge_Level3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b6ee2322607ac69499568c85b750a0b3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1287,6 +1343,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Windmill_FirstAge
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38764f17106b1e247a1c863261fce339, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1364,6 +1424,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b8fab2c9a6a68404b8679f0982126dae, type: 3}
       propertyPath: m_Name
       value: Storage_FirstAge_Level2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b8fab2c9a6a68404b8679f0982126dae, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1443,6 +1507,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Houses_FirstAge_2_Level2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ecb64e21b2c84c741973d0c399f42867, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1520,6 +1588,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 272c29dc4ca5f4a4da6d99a23961b240, type: 3}
       propertyPath: m_Name
       value: Resource_Gold_2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 272c29dc4ca5f4a4da6d99a23961b240, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1599,6 +1671,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Resource_Gold_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 272c29dc4ca5f4a4da6d99a23961b240, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1617,9 +1693,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198834484377710384, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 817478718897779240, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 963795066658751161, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
       propertyPath: m_Name
-      value: VillageWood Variant
+      value: VillageWood
+      objectReference: {fileID: 0}
+    - target: {fileID: 963795066658751161, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 966942185238257163, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153980969994658370, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2016875249892690488, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804878269031835905, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3226772219020252315, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3278122726702141711, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1661,12 +1769,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3327329121390001359, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487697534301977045, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5683164680677344178, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381752138587073347, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6668946969164808345, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7411794535505337612, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7807229255914552158, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8080238845732478734, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638742843656031397, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9150199819834997780, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3278122726702141711, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2547269626553537128}
     - targetCorrespondingSourceObject: {fileID: 6183567057018756514, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6871545192335669683}
@@ -1727,16 +1872,14 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6183567057018756514, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1208210031329930994}
+    - targetCorrespondingSourceObject: {fileID: 6183567057018756514, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2547269626553537128}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
 --- !u!4 &3278740737211657362 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6183567057018756514, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
-  m_PrefabInstance: {fileID: 8669460265750982960}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6137886693963079743 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3278122726702141711, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
   m_PrefabInstance: {fileID: 8669460265750982960}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8749098185374229222
@@ -1806,6 +1949,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 85feff9bd21231d4fa21f30fa891fe72, type: 3}
       propertyPath: m_Name
       value: Resource_PineTree_Group_Cut (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 85feff9bd21231d4fa21f30fa891fe72, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
