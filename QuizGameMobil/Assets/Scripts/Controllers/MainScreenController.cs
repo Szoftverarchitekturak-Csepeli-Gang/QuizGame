@@ -32,7 +32,7 @@ public class MainScreenController : ScreenController
         {
             _inputErrorLabel.style.visibility = Visibility.Hidden;
             // TODO: join room
-            ScreenManager.Instance.ShowScreen(AppScreen.WAITROOM);
+            ScreenManagerMobil.Instance.ShowScreen(AppScreen.WAITROOM);
         }
         else
         {

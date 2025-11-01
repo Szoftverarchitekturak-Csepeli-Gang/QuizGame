@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 050e56730f96d3b4da2c016e21234744
+guid: 631afd620c2c8824991be92f3c4d3e4e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6168554466073824356
-    second: hungary_0
+      213: -4571828015118065507
+    second: back_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hungary_0
+      name: back_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 84
+        y: 31
         width: 512
-        height: 344
+        height: 450
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c9335004564e46aa0800000000000000
-      internalID: -6168554466073824356
+      spriteID: d9065b094aa9d80c0800000000000000
+      internalID: -4571828015118065507
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      hungary_0: -6168554466073824356
+      back_0: -4571828015118065507
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
