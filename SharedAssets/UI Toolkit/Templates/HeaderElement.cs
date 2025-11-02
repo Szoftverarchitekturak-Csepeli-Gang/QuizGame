@@ -8,6 +8,9 @@ public partial class HeaderElement : VisualElement
 {
     private Button _backButton;
     private Image _backIcon;
+    private VisualElement _baseElement;
+
+    [UxmlAttribute] public string TableReference { get; set; }
 
     [UxmlAttribute]
     public Color BackIconColor
@@ -18,8 +21,8 @@ public partial class HeaderElement : VisualElement
 
     public HeaderElement()
     {
-        VisualElement baseElement = new();
-        baseElement.AddToClassList("header-container");
+        _baseElement = new();
+        _baseElement.AddToClassList("header-container");
 
         _backButton = new();
         _backButton.AddToClassList("icon-button");
@@ -33,12 +36,20 @@ public partial class HeaderElement : VisualElement
 
         _backButton.Add(_backIcon);
 
-        LangButtonElement langButton = new();
+        // LangButtonElement langButton = new();
+        RegisterCallbackOnce<GeometryChangedEvent>(OnGeometryChanged);
 
-        baseElement.Add(_backButton);
-        baseElement.Add(langButton);
+        _baseElement.Add(_backButton);
+        // _baseElement.Add(langButton);
 
-        Add(baseElement);
+        Add(_baseElement);
+    }
+
+    private void OnGeometryChanged(GeometryChangedEvent evt)
+    {
+        if (TableReference == null) return;
+        LangButtonElement langButton = new(TableReference);
+        _baseElement.Add(langButton);
     }
 
     private void OnBackButtonClicked(ClickEvent evt)

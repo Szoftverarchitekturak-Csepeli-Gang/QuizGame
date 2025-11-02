@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Localization-String-Tables-English (en)
   m_GUID: 5912089fb478b1642ae68d37464e56df
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 8ef8d94ecb9272348bc2e6bb3ea945c8
+    m_Address: Host String Table_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 058da3b4bdf59314eb21fd31b33f0c57, type: 2}
   m_SchemaSet:

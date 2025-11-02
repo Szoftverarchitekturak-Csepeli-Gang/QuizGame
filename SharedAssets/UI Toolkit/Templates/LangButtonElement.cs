@@ -5,23 +5,35 @@ using UnityEngine.UIElements;
 [UxmlElement]
 public partial class LangButtonElement : VisualElement
 {
+    Button _langButton;
+
     public LangButtonElement()
     {
-        Button langButton = new();
-        langButton.AddToClassList("icon-button");
-        langButton.RegisterCallback<ClickEvent>(OnLangButtonClicked);
+        _langButton = new();
+        _langButton.AddToClassList("icon-button");
+        _langButton.RegisterCallback<ClickEvent>(OnLangButtonClicked);
+
+        Add(_langButton);
+    }
+
+    public LangButtonElement(string tableReference) : this()
+    {
+        LoadAssetReference(tableReference);
+    }
+
+    public void LoadAssetReference(string tableReference)
+    {
         var localizedTexture = new LocalizedTexture
         {
-            TableReference = "Mobil Assets Table",
+            TableReference = tableReference,
             TableEntryReference = "langFlag"
         };
-        langButton.SetBinding("style.backgroundImage", localizedTexture);
-
-        Add(langButton);
+        _langButton.SetBinding("style.backgroundImage", localizedTexture);
     }
 
     private void OnLangButtonClicked(ClickEvent evt)
     {
         LocaleManager.Instance.SwitchLocale();
     }
+
 }

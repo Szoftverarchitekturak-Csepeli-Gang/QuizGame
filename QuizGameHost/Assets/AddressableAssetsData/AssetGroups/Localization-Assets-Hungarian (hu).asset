@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Localization-Asset-Tables-Hungarian (hu)
+  m_Name: Localization-Assets-Hungarian (hu)
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
-  m_GroupName: Localization-Asset-Tables-Hungarian (hu)
-  m_GUID: 86021247ebfefac47aba11468228fbae
+  m_GroupName: Localization-Assets-Hungarian (hu)
+  m_GUID: 901544c0b5294594d9f21f0b5d9fdcde
   m_SerializeEntries:
-  - m_GUID: 5194e9eed6c2e254ab1fabf34203f42c
-    m_Address: Host Asset Table_hu
+  - m_GUID: c8d07b543c49a9b488d61122f7cbd884
+    m_Address: hu-flag
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-hu
@@ -25,5 +25,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 058da3b4bdf59314eb21fd31b33f0c57, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 5c9176e32cde78c4ba1df72362fa1a47, type: 2}
-    - {fileID: 11400000, guid: 27bdd22149ab50148914110be5258be6, type: 2}
+    - {fileID: 11400000, guid: f65a953103dd56b40ab5b3a7a64dceaf, type: 2}
+    - {fileID: 11400000, guid: 7f6031f567ed2554fa8dd549705b634a, type: 2}

@@ -1,5 +1,32 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/QuizgameStylesheet.uss?fileID=7433441132597879392&amp;guid=624c7b45126eb5947ad048550da1304f&amp;type=3#QuizgameStylesheet" />
-    <HeaderElement class="header-container" />
-    <ui:VisualElement name="MainContainer" class="main-container" style="flex-grow: 1;" />
+    <ui:VisualElement name="MainContainer" data-source-type="MainScreenController, Assembly-CSharp" class="main-container" style="flex-grow: 1;">
+        <ui:Label text="QuizGame" style="-unity-text-align: upper-center; font-size: 100px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+        <ui:VisualElement name="InputContainer" style="flex-grow: 1; padding-top: 0; padding-right: 30px; padding-bottom: 60px; padding-left: 30px;">
+            <ui:TextField label="Username" name="UsernameField">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="_username" binding-mode="ToSource" />
+                    <UnityEngine.Localization.LocalizedString property="label" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(94355632128)" />
+                </Bindings>
+            </ui:TextField>
+            <ui:TextField label="Password" password="true" name="PasswordField">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="_password" binding-mode="ToSource" />
+                    <UnityEngine.Localization.LocalizedString property="label" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(210227474432)" />
+                </Bindings>
+            </ui:TextField>
+            <ui:TextField label="Confirm Password" password="true" name="ConfirmField" class="hide">
+                <Bindings>
+                    <ui:DataBinding property="value" data-source-path="_confirmPassword" binding-mode="ToSource" />
+                    <UnityEngine.Localization.LocalizedString property="label" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(334127214592)" />
+                </Bindings>
+            </ui:TextField>
+            <ui:Button text="Login" name="SendButton" />
+            <ui:VisualElement name="MessageContainer" style="flex-grow: 0; flex-direction: row; align-items: center; justify-content: center;">
+                <ui:Label name="AccountMessage" text="Already have an account?" />
+                <ui:Label name="AccountOperation" text="Register" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <LangButtonElement table-reference="Host Asset Table" name="LangButton" style="position: absolute; bottom: 100px; right: 100px;" />
 </ui:UXML>

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 640865371804779253}
   - component: {fileID: 5566888195440224609}
+  - component: {fileID: 1909979589904808981}
   m_Layer: 5
   m_Name: MainScreenPrefab
   m_TagString: Untagged
@@ -55,3 +56,15 @@ MonoBehaviour:
   m_PivotReferenceSize: 0
   m_Pivot: 0
   m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &1909979589904808981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5201903086852009245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25af4fa16142bba46997e52aa182ad0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainScreenController
