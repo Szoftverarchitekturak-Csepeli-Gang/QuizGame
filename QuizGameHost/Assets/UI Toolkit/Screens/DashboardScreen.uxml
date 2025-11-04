@@ -1,0 +1,44 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/QuizgameStylesheet.uss?fileID=7433441132597879392&amp;guid=624c7b45126eb5947ad048550da1304f&amp;type=3#QuizgameStylesheet" />
+    <Style src="project://database/Assets/UI%20Toolkit/DashboardStylesheet.uss?fileID=7433441132597879392&amp;guid=9bba14834c82f084ca6b2e36508584d0&amp;type=3#DashboardStylesheet" />
+    <ui:VisualElement class="main-container" style="flex-grow: 1; padding-top: 60px; flex-direction: row; justify-content: space-evenly;">
+        <ui:VisualElement name="Sidebar" style="flex-grow: 1; height: 100%; margin-top: 0; max-width: 360px; justify-content: flex-start; padding-top: 20px; padding-bottom: 20px; margin-right: 20px;">
+            <ui:Label text="Welcome,&#10;User" style="font-size: 48px; -unity-text-align: middle-center;" />
+            <ui:Button text="Question banks" name="QuestionBankBtn" />
+            <ui:Button text="Create room" name="CreateRoomBtn" />
+            <ui:Button text="Log out" name="LogoutBtn" />
+            <LangButtonElement name="LangButton" style="flex-direction: row-reverse;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Content" style="flex-grow: 1; height: 100%; margin-top: 0;">
+            <ui:VisualElement name="QuestionBankPage" style="flex-grow: 1;">
+                <ui:VisualElement name="BankSelectorContainer" style="flex-grow: 0; flex-direction: row; align-items: flex-end; justify-content: space-evenly; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
+                    <ui:DropdownField label="Question Bank" name="ChooseBankDropdown" style="flex-grow: 1;" />
+                    <ui:Button text="New" name="NewBankBtn" style="flex-grow: 1;" />
+                    <ui:Button text="Delete" name="DeleteBankBtn" style="flex-grow: 1;" />
+                </ui:VisualElement>
+                <ui:Label text="Click on &quot;New&quot; to create your first Question Bank." style="-unity-text-align: upper-center;" />
+                <ui:VisualElement style="flex-grow: 0; flex-direction: row; align-items: flex-end; justify-content: space-around;">
+                    <ui:TextField label="Question Bank Name" placeholder-text="filler text" name="BankNameField" style="width: 50%; flex-direction: column;" />
+                    <ui:Button text="Save" name="SaveBtn" style="width: 20%;" />
+                </ui:VisualElement>
+                <ui:ScrollView name="BankEditList" horizontal-scroller-visibility="Hidden" style="height: 60%; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="CreateRoomPage" class="hide" style="flex-grow: 1; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;">
+                <ui:VisualElement style="flex-grow: 2;">
+                    <ui:DropdownField label="My question banks" style="flex-grow: 0;" />
+                    <ui:VisualElement name="SearchContainer" style="flex-grow: 2;">
+                        <ui:TextField label="Search other users&apos; question banks" placeholder-text="filler text" />
+                        <ui:ListView name="QuestionBankSearchList" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 0.5; align-items: center; justify-content: center; flex-direction: row; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;">
+                    <ui:VisualElement name="VisualElement" style="flex-grow: 2; align-items: center;">
+                        <ui:Label text="Selected Question Bank" />
+                        <ui:Label text="QuestionBankName" style="-unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:Button text="Create Room" style="flex-grow: 1;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

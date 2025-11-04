@@ -97,3 +97,11 @@ Button {
 #AccountOperation:hover {
     color: rgb(83, 199, 255);
 }
+
+#Sidebar > * {
+    height: 160px;
+    margin-bottom: 30px;
+}
+
+RadioButtonGroup > Label {
+}
