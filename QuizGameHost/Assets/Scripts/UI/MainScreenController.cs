@@ -80,7 +80,8 @@ public class MainScreenController : ScreenController
         {
             // TODO: send data to backend
         }
-        throw new NotImplementedException();
+
+        ScreenManagerBase.Instance.ShowScreen(AppScreen.DASHBOARD);
     }
 
     private bool ValidateInputs()

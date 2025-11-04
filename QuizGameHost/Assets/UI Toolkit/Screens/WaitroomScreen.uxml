@@ -1,0 +1,40 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/QuizgameStylesheet.uss?fileID=7433441132597879392&amp;guid=624c7b45126eb5947ad048550da1304f&amp;type=3#QuizgameStylesheet" />
+    <ui:VisualElement data-source-type="WaitroomScreenController, Assembly-CSharp" class="main-container" style="flex-grow: 1; justify-content: center;">
+        <ui:Label text="Waiting for users to join..." style="font-size: 70px; white-space: pre; -unity-text-align: middle-center;">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(748080010407936)" />
+            </Bindings>
+        </ui:Label>
+        <ui:VisualElement style="flex-grow: 0; align-items: center; margin-bottom: 30px; margin-top: 60px;">
+            <ui:Label text="Room ID">
+                <Bindings>
+                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(748465290784768)" />
+                </Bindings>
+            </ui:Label>
+            <ui:Label text="123456" name="RoomID" style="-unity-font-style: bold; font-size: 40px;">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="_roomID" binding-mode="ToTarget" />
+                </Bindings>
+            </ui:Label>
+        </ui:VisualElement>
+        <ui:Button text="Start game" name="StartGameBtn" style="margin-top: 60px;">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(748583691792384)" />
+            </Bindings>
+        </ui:Button>
+        <ui:VisualElement style="flex-grow: 0; flex-direction: row; justify-content: space-around; align-items: center;">
+            <ui:Label text="Connected users">
+                <Bindings>
+                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(748749014478848)" />
+                </Bindings>
+            </ui:Label>
+            <ui:Label text="23">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="_connectedUsers" binding-mode="ToTarget" />
+                </Bindings>
+            </ui:Label>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <LangButtonElement name="LangButton" style="position: absolute; bottom: 100px; right: 100px;" />
+</ui:UXML>

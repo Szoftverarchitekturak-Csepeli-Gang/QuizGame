@@ -11,7 +11,7 @@ public abstract class ScreenManagerBase : MonoBehaviour
 {
     [SerializeField] protected Transform ScreenParent;
 
-    protected readonly Dictionary<AppScreen, UIDocument> _screens = new();
+    protected readonly Dictionary<AppScreen, ScreenController> _screens = new();
     protected AppScreen _currentScreen;
 
     public static ScreenManagerBase Instance { get; private set; }
@@ -36,32 +36,32 @@ public abstract class ScreenManagerBase : MonoBehaviour
 
     protected void HideAllScreens()
     {
-        foreach ((_, UIDocument obj) in _screens)
+        foreach ((_, ScreenController obj) in _screens)
         {
-            obj.rootVisualElement.AddToClassList("hide");
+            obj.IsVisible = false;
         }
     }
 
     public void ShowScreen(AppScreen screen)
     {
-        if (_currentScreen != screen && _screens.TryGetValue(_currentScreen, out UIDocument curScreen))
+        if (_currentScreen != screen && _screens.TryGetValue(_currentScreen, out ScreenController curScreen))
         {
-            curScreen.rootVisualElement.AddToClassList("hide");
+            curScreen.IsVisible = false;
         }
 
-        if (_screens.TryGetValue(screen, out UIDocument newScreen))
+        if (_screens.TryGetValue(screen, out ScreenController newScreen))
         {
-            newScreen.rootVisualElement.RemoveFromClassList("hide");
+            newScreen.IsVisible = true;
             _currentScreen = screen;
         }
     }
 
-    protected void RegisterScreen(AppScreen screen, UIDocument document) => _screens[screen] = document;
+    protected void RegisterScreen(AppScreen screen, ScreenController screenController) => _screens[screen] = screenController;
 
     abstract protected void LoadScreens();
 
-    protected UIDocument LoadPrefab(GameObject prefab)
+    protected ScreenController LoadPrefab(GameObject prefab)
     {
-        return Instantiate(prefab, ScreenParent).GetComponent<UIDocument>();
+        return Instantiate(prefab, ScreenParent).GetComponent<ScreenController>();
     }
 }

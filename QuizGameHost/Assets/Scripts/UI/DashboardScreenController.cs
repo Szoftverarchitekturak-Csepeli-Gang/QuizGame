@@ -27,6 +27,19 @@ public class DashboardScreenController : ScreenController
 
         SetupTabs();
         SetupQuestionBankTab();
+        SetupCreateRoomTab();
+    }
+
+    private void SetupCreateRoomTab()
+    {
+        Button waitingRoomButton = _ui.Q<Button>("WaitingRoomBtn");
+        waitingRoomButton.clicked += OnCreateRoomClicked;
+    }
+
+    private void OnCreateRoomClicked()
+    {
+        // TODO: send request to create game room
+        ScreenManagerBase.Instance.ShowScreen(AppScreen.WAITROOM);
     }
 
     private void SetupTabs()

@@ -5,7 +5,7 @@
 .main-container {
     flex-grow: 1;
     align-content: center;
-    padding-top: 120px;
+    padding-top: 60px;
     padding-right: 120px;
     padding-bottom: 60px;
     padding-left: 120px;

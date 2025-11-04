@@ -198,6 +198,7 @@ MonoBehaviour:
   ScreenParent: {fileID: 1968217577}
   MainScreenPrefab: {fileID: 5201903086852009245, guid: 92f005544e973af47ae5c3113820c3c0, type: 3}
   DashboardScreenPrefab: {fileID: 7085477311505717039, guid: 0fbab2da40d667b4391e041f235beb85, type: 3}
+  WaitroomScreenPrefab: {fileID: 3673353613652142557, guid: 3828f2591c32cb9419a4d78ba206acbc, type: 3}
 --- !u!1 &492261260
 GameObject:
   m_ObjectHideFlags: 0
