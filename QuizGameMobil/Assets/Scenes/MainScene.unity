@@ -293,7 +293,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 352246894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db5574cfb7fdf5c4bb23097d18c2dd69, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ccf68cd7bec9564599c17cda5970a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocaleManager
 --- !u!1 &514855785

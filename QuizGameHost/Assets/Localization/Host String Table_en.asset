@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Host String Table_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: f0a78c96488a0b74ebad8fcd8b85143c, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 5799881061286019439
+  m_TableData:
+  - m_Id: 94355632128
+    m_Localized: Username
+    m_Metadata:
+      m_Items: []
+  - m_Id: 210227474432
+    m_Localized: Password
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334127214592
+    m_Localized: Confirm Password
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23582328008704
+    m_Localized: Don't have an account?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23689777688576
+    m_Localized: Already have an account?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23760736923648
+    m_Localized: Login
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23810003218432
+    m_Localized: Register
+    m_Metadata:
+      m_Items: []
+  - m_Id: 748080010407936
+    m_Localized: Waiting for users to join...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 748465290784768
+    m_Localized: Room ID
+    m_Metadata:
+      m_Items: []
+  - m_Id: 748583691792384
+    m_Localized: Start game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 748749014478848
+    m_Localized: Connected users
+    m_Metadata:
+      m_Items: []
+  - m_Id: 749078640635904
+    m_Localized: Welcome,
+    m_Metadata:
+      m_Items:
+      - rid: 5799881061286019439
+  - m_Id: 750622714933248
+    m_Localized: Question Banks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 750810858827776
+    m_Localized: Create Room
+    m_Metadata:
+      m_Items: []
+  - m_Id: 750962159955968
+    m_Localized: Logout
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751099087204352
+    m_Localized: New
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751354620981248
+    m_Localized: Delete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751529179525120
+    m_Localized: Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751631268884480
+    m_Localized: Question Bank Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751859615182848
+    m_Localized: Click on "New" to create your first Question Bank.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 756840514760704
+    m_Localized: My Question Banks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 757029166166016
+    m_Localized: Search other users' Question Banks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 757364018425856
+    m_Localized: Selected Question Bank
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 5799881061286019439
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 749078640635904

@@ -12,4 +12,5 @@
             </Bindings>
         </ui:Button>
     </ui:VisualElement>
+    <LangButtonElement name="LangButton" style="position: absolute; right: 100px; bottom: 100px;" />
 </ui:UXML>

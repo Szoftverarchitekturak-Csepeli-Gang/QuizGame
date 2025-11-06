@@ -16,12 +16,12 @@ MonoBehaviour:
   m_GUID: e4c771c4bd2dfad42bac40184a52a077
   m_SerializeEntries:
   - m_GUID: 51201b41fe6ade94093a42eca120c292
-    m_Address: Assets/Localization/Mobil Assets Table Shared Data.asset
+    m_Address: Assets/SharedAssets/Localization/Mobil Assets Table Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ca5fcf7e0d0f0d349acb0419a1deb995
-    m_Address: Assets/Localization/Mobil Table Shared Data.asset
+    m_Address: Assets/SharedAssets/Localization/Mobil Table Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

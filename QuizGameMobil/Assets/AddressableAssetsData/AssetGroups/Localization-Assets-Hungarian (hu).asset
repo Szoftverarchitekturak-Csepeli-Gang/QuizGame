@@ -15,7 +15,7 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Hungarian (hu)
   m_GUID: d4933bd3ccc4234448520fe43d65583d
   m_SerializeEntries:
-  - m_GUID: 050e56730f96d3b4da2c016e21234744
+  - m_GUID: c8d07b543c49a9b488d61122f7cbd884
     m_Address: hu-flag
     m_ReadOnly: 1
     m_SerializedLabels:

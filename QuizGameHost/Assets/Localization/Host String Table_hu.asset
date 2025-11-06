@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Host String Table_hu
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: hu
+  m_SharedData: {fileID: 11400000, guid: f0a78c96488a0b74ebad8fcd8b85143c, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 94355632128
+    m_Localized: "Felhaszn\xE1l\xF3n\xE9v"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 210227474432
+    m_Localized: "Jelsz\xF3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334127214592
+    m_Localized: "Jelsz\xF3 \xFAjra"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23760736923648
+    m_Localized: "Bejelentkez\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23810003218432
+    m_Localized: "Regisztr\xE1ci\xF3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23582328008704
+    m_Localized: "Nincsen m\xE9g fi\xF3kja?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23689777688576
+    m_Localized: "Van m\xE1r fi\xF3kja?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 748080010407936
+    m_Localized: "V\xE1rakoz\xE1s a felhaszn\xE1l\xF3k csatlakoz\xE1s\xE1ra..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 748465290784768
+    m_Localized: "Szoba azonos\xEDt\xF3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 748583691792384
+    m_Localized: "J\xE1t\xE9k ind\xEDt\xE1sa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 748749014478848
+    m_Localized: "Csatlakozott felhaszn\xE1l\xF3k"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 749078640635904
+    m_Localized: "\xDCdv,"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 750622714933248
+    m_Localized: "K\xE9rd\xE9s Bankok"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 750810858827776
+    m_Localized: "Szoba l\xE9trehoz\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 750962159955968
+    m_Localized: "Kil\xE9p\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751099087204352
+    m_Localized: "\xDAj"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751354620981248
+    m_Localized: "T\xF6rl\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751529179525120
+    m_Localized: "Ment\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751631268884480
+    m_Localized: "K\xE9rd\xE9s Bank Neve"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 751859615182848
+    m_Localized: "Az \"\xDAj\" gombra kattintva l\xE9trehozhatod az els\u0151 K\xE9rd\xE9s
+      Bankod."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 756840514760704
+    m_Localized: "Saj\xE1t K\xE9rd\xE9s Bankok"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 757029166166016
+    m_Localized: "Keres\xE9s m\xE1s felhaszn\xE1l\xF3k K\xE9rd\xE9s Bankjai k\xF6z\xF6tt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 757364018425856
+    m_Localized: "Kiv\xE1lasztott K\xE9rd\xE9s Bank"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -22,6 +22,7 @@ public class WaitroomScreenController : ScreenController
 
     void OnEnable()
     {
+        _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Mobil Assets Table");
         _connectedPlayersText = _ui.Q<Label>("ConnectedPlayers").GetBinding("text") as LocalizedString;
     }
 }

@@ -13,6 +13,8 @@ public class MainScreenController : ScreenController
 
     void OnEnable()
     {
+        _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Mobil Assets Table");
+
         _joinButton = _ui.Q<Button>("JoinButton");
         _joinButton.clicked += OnJoinButtonClick;
 
@@ -32,7 +34,7 @@ public class MainScreenController : ScreenController
         {
             _inputErrorLabel.style.visibility = Visibility.Hidden;
             // TODO: join room
-            ScreenManager.Instance.ShowScreen(AppScreen.WAITROOM);
+            ScreenManagerMobil.Instance.ShowScreen(AppScreen.WAITROOM);
         }
         else
         {

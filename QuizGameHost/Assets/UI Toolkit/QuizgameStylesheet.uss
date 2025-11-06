@@ -1,0 +1,104 @@
+:root {
+    --icon-color: rgb(114, 114, 114);
+}
+
+.main-container {
+    flex-grow: 1;
+    align-content: center;
+    padding-top: 60px;
+    padding-right: 120px;
+    padding-bottom: 60px;
+    padding-left: 120px;
+    background-color: rgb(238, 238, 238);
+}
+
+.main-container > * {
+    margin-top: 30px;
+    margin-bottom: 0;
+    width: 38%;
+    align-self: center;
+    justify-content: center;
+}
+
+.unity-text-element {
+    font-size: 32px;
+}
+
+.unity-base-field {
+    height: 140px;
+    flex-direction: column;
+}
+
+.unity-base-text-field__input {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+}
+
+Button {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    height: 80px;
+}
+
+.error-message {
+    color: rgb(178, 34, 34);
+    -unity-text-align: upper-center;
+}
+
+.icon-button {
+    width: 90px;
+    margin-top: 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+    background-size: 85% 125%;
+    height: 90px;
+}
+
+.unity-progress-bar__container {
+    min-height: 80px;
+}
+
+#AnswerButtons > Button {
+    flex-grow: 1;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.header-container {
+    flex-direction: row;
+    background-color: rgb(130, 130, 130);
+}
+
+.hide {
+    display: none;
+}
+
+#InputContainer > * {
+    margin-bottom: 12px;
+}
+
+#AccountOperation {
+    color: rgb(0, 0, 255);
+}
+
+#AccountOperation:hover {
+    color: rgb(83, 199, 255);
+}
+
+#Sidebar > * {
+    height: 160px;
+    margin-bottom: 30px;
+}
