@@ -27,6 +27,7 @@ QuestionEditElement {
 
 .question-header > TextField {
     flex-grow: 1;
+    max-width: 89%;
 }
 
 .answer-field {
@@ -51,5 +52,11 @@ QuestionEditElement {
 }
 
 .answer-group {
-    flex-grow: 1;
+    flex-grow: 2;
+}
+
+.unity-radio-button {
+    height: 50px;
+    width: 50px;
+    align-items: center;
 }

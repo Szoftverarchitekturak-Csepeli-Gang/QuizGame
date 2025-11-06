@@ -8,6 +8,6 @@ A real-time strategic quiz game where players conquer territories by answering q
 2. Open command line as admin
 3. Create symbolic link to SharedAssets (Windows)
    ```
-   mklink /D "QuizGameHost\Assets\SharedAssets" "SharedAssets"
-   mklink /D "QuizGameMobil\Assets\SharedAssets" "SharedAssets"
+   mklink /D "C:\absoulte\path\to\QuizGame\QuizGameHost\Assets\SharedAssets" "C:\absolute\path\to\QuizGame\SharedAssets"
+   mklink /D "C:\absoulte\path\to\QuizGame\QuizGameMobil\Assets\SharedAssets" "C:\absolute\path\to\QuizGame\SharedAssets"
    ```

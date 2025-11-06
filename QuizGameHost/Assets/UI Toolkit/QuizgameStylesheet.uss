@@ -102,6 +102,3 @@ Button {
     height: 160px;
     margin-bottom: 30px;
 }
-
-RadioButtonGroup > Label {
-}
