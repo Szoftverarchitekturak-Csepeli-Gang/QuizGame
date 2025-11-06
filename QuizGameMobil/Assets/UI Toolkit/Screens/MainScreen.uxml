@@ -24,6 +24,6 @@
                 <ui:DataBinding property="text" data-source-path="_errorMessage" data-source-type="MainScreenController, Assembly-CSharp" binding-mode="ToTarget" />
             </Bindings>
         </ui:Label>
-        <LangButtonElement style="right: 100px; position: absolute; bottom: 60px;" />
+        <LangButtonElement name="LangButton" style="right: 100px; position: absolute; bottom: 60px;" />
     </ui:VisualElement>
 </ui:UXML>

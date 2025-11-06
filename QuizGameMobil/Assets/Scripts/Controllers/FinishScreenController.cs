@@ -6,6 +6,7 @@ public class FinishScreenController : ScreenController
 {
     void OnEnable()
     {
+        _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Mobil Assets Table");
         _ui.Q<Button>("ReturnButton").clicked += OnReturnButtonClicked;
     }
 

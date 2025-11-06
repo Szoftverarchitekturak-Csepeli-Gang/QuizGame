@@ -13,6 +13,8 @@ public class MainScreenController : ScreenController
 
     void OnEnable()
     {
+        _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Mobil Assets Table");
+
         _joinButton = _ui.Q<Button>("JoinButton");
         _joinButton.clicked += OnJoinButtonClick;
 
