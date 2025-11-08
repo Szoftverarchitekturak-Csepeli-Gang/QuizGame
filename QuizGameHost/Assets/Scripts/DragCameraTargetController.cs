@@ -7,7 +7,7 @@ public class DragCameraTargetController : MonoBehaviour
     [Header("Movement")]
     public float _moveSpeed = 20f;
     public float _zoomSpeed = 10f;
-    public float _minHeight = 20f;
+    public float _minHeight = 0f;
     public float _maxHeight = 500f;
 
     private bool _isDragging;
@@ -49,7 +49,8 @@ public class DragCameraTargetController : MonoBehaviour
 
         if (Mathf.Abs(_zoomDelta) > 0.01f)
         {
-            Vector3 newPosition = -1 * transform.position + transform.up * _zoomDelta * _zoomSpeed * Time.deltaTime;
+            Vector3 upMovement = -1 * transform.up * _zoomDelta * _zoomSpeed * Time.deltaTime;
+            Vector3 newPosition = transform.position + upMovement;
             newPosition.y = Mathf.Clamp(newPosition.y, _minHeight, _maxHeight);
             transform.position = newPosition;
 
