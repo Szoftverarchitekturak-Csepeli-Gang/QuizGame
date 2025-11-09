@@ -1,26 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `question_banks` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `questions` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `rooms` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE `questions` DROP FOREIGN KEY `Questions_question_bank_id_fkey`;
-
--- DropForeignKey
-ALTER TABLE `rooms` DROP FOREIGN KEY `Rooms_question_bank_id_fkey`;
-
--- DropTable
-DROP TABLE `question_banks`;
-
--- DropTable
-DROP TABLE `questions`;
-
--- DropTable
-DROP TABLE `rooms`;
-
 -- CreateTable
 CREATE TABLE `Question_Bank` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
@@ -47,10 +24,12 @@ CREATE TABLE `Question` (
 
 -- CreateTable
 CREATE TABLE `Room` (
-    `id` VARCHAR(191) NOT NULL,
+    `id` INTEGER NOT NULL,
     `host_id` INTEGER NOT NULL,
     `question_bank_id` INTEGER NOT NULL,
+    `isOpen` BOOLEAN NOT NULL,
 
+    UNIQUE INDEX `Room_host_id_key`(`host_id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
