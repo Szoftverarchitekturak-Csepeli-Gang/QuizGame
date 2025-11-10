@@ -19,5 +19,8 @@ public class ParticleEffectPlayer_Test : MonoBehaviour
 
         var cinemachineCamera = village.transform.Find("Camera").GetChild(0);
         cinemachineCamera.gameObject.SetActive(true);
+
+        //village.GetComponent<VillageController>().SpawnDefenders(5);
+        village.GetComponent<VillageController>().SpawnAttackers(10);
     }
 }

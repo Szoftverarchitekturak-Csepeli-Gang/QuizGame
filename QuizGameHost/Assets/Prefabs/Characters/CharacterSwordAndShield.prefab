@@ -795,11 +795,10 @@ GameObject:
   - component: {fileID: 9192178370345835334}
   - component: {fileID: 6059295382897139793}
   - component: {fileID: 966276019568069538}
-  - component: {fileID: 2723889023526303228}
   - component: {fileID: 8135348431492538568}
   m_Layer: 0
   m_Name: CharacterSwordAndShield
-  m_TagString: Untagged
+  m_TagString: Attacker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -813,7 +812,7 @@ Transform:
   m_GameObject: {fileID: 1104924181397806359}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 564.708, y: 40.7, z: 408.15}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.3999999, y: 3.3999999, z: 3.3999999}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -900,18 +899,6 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1104924181397806359}
---- !u!114 &2723889023526303228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104924181397806359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b456d67b3aad5e4482b7ac3ec59bfad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SoliderController
 --- !u!136 &8135348431492538568
 CapsuleCollider:
   m_ObjectHideFlags: 0
