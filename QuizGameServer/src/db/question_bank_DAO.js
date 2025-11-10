@@ -8,7 +8,7 @@ module.exports = {
   getUserQuestionBanks,
   getAllQuestionBanks,
   getQuestionBankWithId,
-  getQuestionBankWithTitle,
+  filterQuestionBanksByTitle,
 };
 
 async function createQuestionBank(owner_id, title, public = false) {
@@ -81,8 +81,16 @@ async function getQuestionBankWithId(id) {
   });
 }
 
-async function getQuestionBankWithTitle(title) {
+async function filterQuestionBanksByTitle(title_filter) {
+  if (!title_filter || typeof title_filter !== 'string') {
+    return [];
+  }
+
   return await prisma.question_Bank.findMany({
-    where: { title: title },
+    where: {
+      title: {
+        contains: title_filter
+      },
+    },
   });
 }

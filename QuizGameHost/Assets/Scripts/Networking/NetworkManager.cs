@@ -1,7 +1,10 @@
 using Assets.Scripts.Networking.Data;
 using Assets.Scripts.Networking.Http;
 using Assets.Scripts.Networking.Websocket;
+using UnityEngine.Networking;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 using UnityEngine;
 
 public class NetworkManager : MonoBehaviour
@@ -69,6 +72,24 @@ public class NetworkManager : MonoBehaviour
     {
         var players = await HttpClient.GetAsync<string[]>($"/rooms/players");
         Debug.Log($"[Network] Room players: {string.Join(", ", players)}");
+    }
+
+    public async Task<List<QuestionBankDto>> GetAllQuestionBanks()
+    {
+        var questionBanks = await HttpClient.GetAsync<List<QuestionBankDto>>($"/questionbanks");
+        return questionBanks;
+    }
+
+    public async Task<QuestionBankDto> GetQuestionBankWithId(int id)
+    {
+        var questionBank = await HttpClient.GetAsync<QuestionBankDto>($"/questionbanks/{id}");
+        return questionBank;
+    }
+
+    public async Task<List<QuestionBankDto>> GetFilteredQuestionBanks(string title_filter)
+    {
+        var questionBanks = await HttpClient.GetAsync<List<QuestionBankDto>>($"/questionbanks/filter/{title_filter}");
+        return questionBanks;
     }
 
     public void QuestionReceiveHandler(QuestionDto question)
