@@ -1,30 +1,34 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public enum AppScreen
 {
-    MAIN, WAITROOM, QUIZ, FINISH, REGISTER, DASHBOARD
+    MAIN, WAITROOM, QUIZ, FINISH, DASHBOARD, GAME
 }
 
-public abstract class ScreenManagerBase : MonoBehaviour
+public abstract class ScreenManagerBase : SingletonBase<ScreenManagerBase>
 {
     [SerializeField] protected Transform ScreenParent;
 
     protected readonly Dictionary<AppScreen, ScreenController> _screens = new();
     protected AppScreen _currentScreen;
 
-    public static ScreenManagerBase Instance { get; private set; }
-
-    void Awake()
+    public AppScreen CurrentScreen
     {
-        if (Instance == null)
+        get { return _currentScreen; }
+        set
         {
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            Destroy(this);
+            ShowScreen(value);
+            if (value == AppScreen.GAME && _currentScreen != AppScreen.GAME)
+            {
+                SetGameSceneActive(true);
+            }
+            else if (_currentScreen == AppScreen.GAME && value != AppScreen.GAME)
+            {
+                SetGameSceneActive(false);
+            }
+            _currentScreen = value;
         }
     }
 
@@ -32,6 +36,18 @@ public abstract class ScreenManagerBase : MonoBehaviour
     {
         LoadScreens();
         HideAllScreens();
+    }
+
+    protected void SetGameSceneActive(bool isGameSceneActive)
+    {
+        if (isGameSceneActive)
+        {
+            SceneManager.LoadScene("GameScene", LoadSceneMode.Additive);
+        }
+        else
+        {
+            SceneManager.UnloadSceneAsync("GameScene");
+        }
     }
 
     protected void HideAllScreens()
@@ -42,7 +58,7 @@ public abstract class ScreenManagerBase : MonoBehaviour
         }
     }
 
-    public void ShowScreen(AppScreen screen)
+    private void ShowScreen(AppScreen screen)
     {
         if (_currentScreen != screen && _screens.TryGetValue(_currentScreen, out ScreenController curScreen))
         {
@@ -52,7 +68,6 @@ public abstract class ScreenManagerBase : MonoBehaviour
         if (_screens.TryGetValue(screen, out ScreenController newScreen))
         {
             newScreen.IsVisible = true;
-            _currentScreen = screen;
         }
     }
 
