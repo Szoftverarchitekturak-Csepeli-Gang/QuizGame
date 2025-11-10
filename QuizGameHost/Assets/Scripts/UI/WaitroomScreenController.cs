@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,5 +13,12 @@ public class WaitroomScreenController : ScreenController
     void OnEnable()
     {
         _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Host Asset Table");
+        _ui.Q<Button>("StartGameBtn").clicked += OnStartGameButtonClicked;
+    }
+
+    private void OnStartGameButtonClicked()
+    {
+        // TODO: Notify server to start the game
+        ScreenManagerBase.Instance.CurrentScreen = AppScreen.GAME;
     }
 }

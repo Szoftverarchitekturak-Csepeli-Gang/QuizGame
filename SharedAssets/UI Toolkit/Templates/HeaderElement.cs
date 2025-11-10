@@ -55,6 +55,6 @@ public partial class HeaderElement : VisualElement
     private void OnBackButtonClicked(ClickEvent evt)
     {
         // TODO: handle leaving the room if currently inside game or waiting room
-        ScreenManagerBase.Instance.ShowScreen(AppScreen.MAIN);
+        ScreenManagerBase.Instance.CurrentScreen = AppScreen.MAIN;
     }
 }

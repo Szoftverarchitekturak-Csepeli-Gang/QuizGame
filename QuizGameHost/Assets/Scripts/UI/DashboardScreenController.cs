@@ -39,7 +39,7 @@ public class DashboardScreenController : ScreenController
     private void OnCreateRoomClicked()
     {
         // TODO: send request to create game room
-        ScreenManagerBase.Instance.ShowScreen(AppScreen.WAITROOM);
+        ScreenManagerBase.Instance.CurrentScreen = AppScreen.WAITROOM;
     }
 
     private void SetupTabs()
@@ -62,7 +62,7 @@ public class DashboardScreenController : ScreenController
     private void OnLogoutClicked()
     {
         // TODO: handle logout logic
-        ScreenManagerBase.Instance.ShowScreen(AppScreen.MAIN);
+        ScreenManagerBase.Instance.CurrentScreen = AppScreen.MAIN;
     }
 
     private void ShowPage(DashboardTab dashboardTab)

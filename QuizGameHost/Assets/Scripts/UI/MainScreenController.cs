@@ -81,7 +81,7 @@ public class MainScreenController : ScreenController
             // TODO: send data to backend
         }
 
-        ScreenManagerBase.Instance.ShowScreen(AppScreen.DASHBOARD);
+        ScreenManagerBase.Instance.CurrentScreen = AppScreen.DASHBOARD;
     }
 
     private bool ValidateInputs()
