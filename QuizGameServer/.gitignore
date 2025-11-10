@@ -34,6 +34,9 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
+# prisma client generated folder
+/src/generated/
+
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
 
@@ -139,3 +142,4 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+/generated/prisma

@@ -4,12 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db:start": "docker-compose up -d",
+    "db:stop": "docker-compose down",
+    "db:reset": "docker-compose down -v && docker-compose up -d",
+    "setup:install": "npm install",
+    "wait:mysql": "docker exec quiz-mysql mysqladmin ping -u root -p%MYSQL_ROOT_PASSWORD% --silent --wait=30",
+    "setup:migrate": "npm run wait:mysql && npx prisma migrate deploy",
+    "setup:generate": "npx prisma generate",
+    "setup": "npm run setup:install && npm run db:start && npm run setup:migrate && npm run setup:generate",
+    "dev": "npm run setup && nodemon src/AppServer.js",
+    "start": "npm run setup && node src/AppServer.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^6.18.0",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "prisma": "^6.18.0",
+    "wait-on": "^9.0.3"
   }
 }
