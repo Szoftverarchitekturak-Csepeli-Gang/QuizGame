@@ -1,7 +1,18 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/QuizgameStylesheet.uss?fileID=7433441132597879392&amp;guid=624c7b45126eb5947ad048550da1304f&amp;type=3#QuizgameStylesheet" />
-    <HeaderElement name="HeaderElement" />
-    <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: center; justify-content: center;">
-        <ui:Label text="GAME SCREEN" />
+    <Style src="project://database/Assets/UI%20Toolkit/GameStylesheet.uss?fileID=7433441132597879392&amp;guid=be8133c5b4ef45c439127373c88a66f1&amp;type=3#GameStylesheet" />
+    <HeaderElement name="GameHeader" style="flex-direction: row;">
+        <LangButtonElement name="LangButton" />
+        <ui:Label text="5/12" style="flex-grow: 1; -unity-text-align: middle-left; padding-right: 10px; padding-left: 10px;" />
+    </HeaderElement>
+    <ui:ProgressBar value="22" name="GameViewProgress" style="position: absolute; bottom: 0; width: 100%;" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: center; justify-content: center; padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; margin-top: 40px; margin-right: 120px; margin-bottom: 80px; margin-left: 120px;">
+        <ui:VisualElement class="result-text-victory result-text-start" style="justify-content: center; width: 800px; height: 500px; border-top-left-radius: 360px; border-top-right-radius: 360px; border-bottom-right-radius: 360px; border-bottom-left-radius: 360px; text-shadow: 7.7px 12.9px 47.3px rgb(255, 255, 255); transition-property: letter-spacing, opacity, scale; transition-duration: 1s, 0.8s, 0.7s;">
+            <ui:Label text="VICTORY" name="ResultLabel" data-source-type="GameScreenController, Assembly-CSharp" style="-unity-font-definition: url(&quot;project://database/Assets/AssetPacks/TextMesh%20Pro/Examples%20&amp;%20Extras/Fonts/Anton.ttf?fileID=12800000&amp;guid=997a43b767814dd0a7642ec9b78cba41&amp;type=3#Anton&quot;); font-size: 160px; -unity-text-align: middle-center;">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="_resultText" binding-mode="ToTarget" />
+                </Bindings>
+            </ui:Label>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

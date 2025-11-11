@@ -1,0 +1,16 @@
+:root {
+}
+
+.result-text-victory {
+    color: rgb(28, 123, 79);
+}
+
+.result-text-defeat {
+    color: rgb(139, 0, 0);
+}
+
+.result-text-start {
+    opacity: 0;
+    letter-spacing: 300px;
+    scale: 2 2 2;
+}
