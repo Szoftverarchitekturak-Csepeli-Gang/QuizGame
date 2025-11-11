@@ -96,7 +96,7 @@ namespace Assets.Scripts.Networking.Http
         public async Task<bool> DeleteAsync(string endpoint, string token = null)
         {
             var request = CreateRequest(UnityWebRequest.kHttpVerbDELETE, endpoint, token);
-            await SendRequestAsync<string>(request);
+            await SendRequestAsync<object>(request);
             return true;
         }
     }

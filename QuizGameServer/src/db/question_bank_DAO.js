@@ -91,6 +91,7 @@ async function filterQuestionBanksByTitle(title_filter) {
       title: {
         contains: title_filter
       },
+      public : true,
     },
   });
 }

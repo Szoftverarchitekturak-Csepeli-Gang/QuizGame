@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 using UnityEngine;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 
 public class NetworkManager : MonoBehaviour
 {
@@ -80,10 +81,102 @@ public class NetworkManager : MonoBehaviour
         return questionBanks;
     }
 
+    public async Task<List<QuestionBankDto>> GetUserQuestionBanks(int user_id)
+    {
+        var questionBanks = await HttpClient.GetAsync<List<QuestionBankDto>>($"/questionbanks/user/{user_id}");
+        return questionBanks;
+    }
+
     public async Task<QuestionBankDto> GetQuestionBankWithId(int id)
     {
         var questionBank = await HttpClient.GetAsync<QuestionBankDto>($"/questionbanks/{id}");
         return questionBank;
+    }
+
+    public async Task<bool> DeleteQuestionBank(int questionBankId)
+    {
+        if (questionBankId < 0)
+        {
+            Debug.LogError($"Invalid data: id cannot be negative!");
+            return false;
+        }
+
+        try
+        {
+            await HttpClient.DeleteAsync($"/questionbanks/{questionBankId}");
+            return true;
+        }
+        catch(Exception ex)
+        {
+            Debug.LogError($"[Network] Delete failed: {ex.Message}");
+            return false;
+        }
+        
+    }
+
+    public async Task<QuestionBankDto> CreateQuestionBank(int owner_id, string title, bool isPublic)
+    {
+        if(owner_id < 0)
+        {
+            Debug.LogError($"Invalid data: owner id cannot be negative!");
+            return null;
+        }
+        else if(title.Length < 1)
+        {
+            Debug.LogError($"Invalid data: title cannot be empty!");
+            return null;
+        }
+
+            var questionBank = new QuestionBankDto
+            {
+                owner_user_id = owner_id,
+                title = title,
+                @public = isPublic
+            };
+
+        try
+        {
+            var response = await HttpClient.PostAsync<QuestionBankDto, QuestionBankDto>($"/questionbanks", questionBank);
+            return response;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[Network] Create failed: {ex.Message}");
+            return null;
+        }
+    }
+
+    public async Task<QuestionBankDto> UpdateQuestionBank(int id, int owner_id, string title, bool isPublic)
+    {
+        if (owner_id < 0)
+        {
+            Debug.LogError($"Invalid data: owner id cannot be negative!");
+            return null;
+        }
+        else if (title.Length < 1)
+        {
+            Debug.LogError($"Invalid data: title cannot be empty!");
+            return null;
+        }
+
+        var questionBank = new QuestionBankDto
+        {
+            id = id,
+            owner_user_id = owner_id,
+            title = title,
+            @public = isPublic
+        };
+
+        try
+        {
+            var response = await HttpClient.PutAsync<QuestionBankDto, QuestionBankDto>($"/questionbanks/{id}", questionBank);
+            return response;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[Network] Update failed: {ex.Message}");
+            return null;
+        }
     }
 
     public async Task<List<QuestionBankDto>> GetFilteredQuestionBanks(string title_filter)
