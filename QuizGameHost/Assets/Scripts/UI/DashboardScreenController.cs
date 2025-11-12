@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
@@ -15,19 +17,25 @@ public class DashboardScreenController : ScreenController
     private VisualElement _questionBankPage;
     private VisualElement _createRoomPage;
 
+    VisualElement _questionBankSettings;
+    Label _noQuestionBanksText;
+    private DropdownField _questionBanksOfUserDropdown;
+    private List<QuestionBank> _questionBanksOfUser = new();
     [SerializeField] List<QuestionEditElement> questions = new();
     private ScrollView _questionsScrollView;
     private NewQuestionElement _newQuestionElement;
     public static UnityEvent NewQuestionEvent = new();
     public static UnityEvent<QuestionEditElement> DeleteQuestionEvent = new();
 
+    [SerializeField, HideInInspector] private string _bankName;
+
     void OnEnable()
     {
         _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Host Asset Table");
 
-        SetupTabs();
         SetupQuestionBankTab();
         SetupCreateRoomTab();
+        SetupTabs();
     }
 
     private void SetupCreateRoomTab()
@@ -73,6 +81,7 @@ public class DashboardScreenController : ScreenController
         {
             _questionBankPage.RemoveFromClassList("hide");
             _createRoomPage.AddToClassList("hide");
+            LoadBanksOfUser();
         }
         else
         {
@@ -87,7 +96,7 @@ public class DashboardScreenController : ScreenController
     {
         _questionsScrollView = _ui.Q<ScrollView>("BankEditList");
 
-        NewQuestionEvent.AddListener(CreateNewQuestion);
+        NewQuestionEvent.AddListener(OnNewQuestionCreated);
         DeleteQuestionEvent.AddListener(DeleteQuestion);
 
         _newQuestionElement = new();
@@ -95,11 +104,51 @@ public class DashboardScreenController : ScreenController
 
         Button saveButton = _ui.Q<Button>("SaveBtn");
         saveButton.clicked += OnSaveButtonClicked;
+
+        _questionBanksOfUserDropdown = _ui.Q<DropdownField>("ChooseBankDropdown");
+        _questionBanksOfUserDropdown.RegisterValueChangedCallback(evt =>
+        {
+            int selectedIndex = _questionBanksOfUserDropdown.index;
+            if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
+            {
+                QuestionBank selected = _questionBanksOfUser[selectedIndex];
+                LoadQuestionBank(selected);
+                Debug.Log($"Selected '{selected.Name}' with ID = {selected.Id}");
+            }
+        });
+
+        Button newBankButton = _ui.Q<Button>("NewBankBtn");
+        newBankButton.clicked += OnNewBankClicked;
+
+        Button deleteBankButton = _ui.Q<Button>("DeleteBankBtn");
+        deleteBankButton.clicked += OnDeleteBankClicked;
+
+        LoadBanksOfUser();
+    }
+
+    private async void OnDeleteBankClicked()
+    {
+        int selectedIndex = _questionBanksOfUserDropdown.index;
+        if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
+        {
+            QuestionBank selected = _questionBanksOfUser[selectedIndex];
+
+            // TODO: send delete request to server for selected question bank
+
+            // TODO: after successful deletion, refresh the question banks list
+            LoadBanksOfUser();
+        }
+    }
+
+    private void OnNewBankClicked()
+    {
+        _questionBankSettings.RemoveFromClassList("hide");
+        _noQuestionBanksText.AddToClassList("hide");
     }
 
     private void OnSaveButtonClicked()
     {
-        // TODO: send question to server
+        // TODO: send question bank to server
         throw new NotImplementedException();
     }
 
@@ -109,13 +158,66 @@ public class DashboardScreenController : ScreenController
         questions.Remove(element);
     }
 
-    private void CreateNewQuestion()
+    private void OnNewQuestionCreated()
+    {
+        CreateNewQuestion();
+    }
+
+    private void CreateNewQuestion(Question question = null)
     {
         QuestionEditElement questionEditElement = new();
-        questionEditElement.BindQuestion(new Question());
+        questionEditElement.BindQuestion(question ?? new Question());
         questions.Add(questionEditElement);
         _questionsScrollView.contentContainer.Remove(_newQuestionElement);
         _questionsScrollView.contentContainer.Add(questionEditElement);
         _questionsScrollView.contentContainer.Add(_newQuestionElement);
+    }
+
+    private async Task<List<QuestionBank>> FetchQuestionBanks()
+    {
+        // TODO: implement fetching question banks from server by user id or fetch all
+        return new List<QuestionBank>
+        {
+            new QuestionBank(1, "General Knowledge"),
+            new QuestionBank(2, "Science"),
+            new QuestionBank(3, "History")
+        };
+    }
+
+    private async void LoadBanksOfUser()
+    {
+        _questionBanksOfUser = await FetchQuestionBanks();
+        _questionBanksOfUserDropdown.choices = _questionBanksOfUser.Select(r => r.Name).ToList();
+
+        _questionBankSettings = _ui.Q<VisualElement>("QuestionBankSettings");
+        _noQuestionBanksText = _ui.Q<Label>("NoQuestionBanksText");
+
+        if (_questionBanksOfUser.Count > 0)
+        {
+            _questionBankSettings.RemoveFromClassList("hide");
+            _noQuestionBanksText.AddToClassList("hide");
+        }
+        else
+        {
+            _questionBankSettings.AddToClassList("hide");
+            _noQuestionBanksText.RemoveFromClassList("hide");
+        }
+    }
+
+    private async void LoadQuestionBank(QuestionBank selected)
+    {
+        _bankName = selected.Name;
+
+        List<Question> questionsInBank = await FetchQuestions(selected.Id);
+        foreach (Question question in questionsInBank)
+        {
+            CreateNewQuestion(question);
+        }
+    }
+
+    private async Task<List<Question>> FetchQuestions(int id)
+    {
+        // TODO: fetch questions from server of bank id
+        throw new NotImplementedException();
     }
 }

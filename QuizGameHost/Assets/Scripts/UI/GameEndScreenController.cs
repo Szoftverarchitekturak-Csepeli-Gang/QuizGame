@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class GameEndScreenController : ScreenController
 {
-    [SerializeField] private string _conqueredVillagesText;
+    [SerializeField, HideInInspector] private string _conqueredVillagesText;
     private Button _exitButton;
 
     protected override void Awake()
