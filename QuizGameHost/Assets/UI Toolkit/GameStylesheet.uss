@@ -1,8 +1,22 @@
 :root {
 }
 
+#GameHeader > .header-container {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#GameHeader > * > .icon-button {
+    width: 70px;
+    height: 70px;
+}
+
+#GameViewProgress > .unity-progress-bar__container {
+    min-height: 55px;
+}
+
 .result-text-victory {
     color: rgb(28, 123, 79);
+    position: absolute;
 }
 
 .result-text-defeat {
@@ -13,4 +27,92 @@
     opacity: 0;
     letter-spacing: 300px;
     scale: 2 2 2;
+}
+
+QuestionDisplayElement {
+    width: 90%;
+    height: 80%;
+    background-color: rgb(255, 255, 255);
+    border-left-color: rgb(46, 46, 46);
+    border-right-color: rgb(46, 46, 46);
+    border-top-color: rgb(46, 46, 46);
+    border-bottom-color: rgb(46, 46, 46);
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.question-header {
+    flex-direction: row;
+    flex-grow: 0.2;
+    -unity-text-align: middle-left;
+    padding-top: 5px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    align-items: center;
+}
+
+.question-label {
+    flex-grow: 1;
+}
+
+.question-index-label {
+    flex-grow: 0.1;
+    -unity-text-align: middle-center;
+}
+
+.answers-container {
+    flex-grow: 1;
+}
+
+.answer-row {
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+AnswerElement {
+    flex-grow: 1;
+    flex-direction: row;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-left-color: rgb(65, 65, 65);
+    border-right-color: rgb(65, 65, 65);
+    border-top-color: rgb(65, 65, 65);
+    border-bottom-color: rgb(65, 65, 65);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+}
+
+.answer-label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 32px;
+    -unity-text-align: middle-center;
+}
+
+.completion-bar {
+    background-color: rgb(125, 142, 126);
+    flex-grow: 0.2;
+    transition-property: flex-grow;
+    transition-duration: 1s;
+}
+
+QuestionDisplayElement > .question-header > .icon-button > .unity-image {
+    flex-grow: 1;
+    background-image: resource('next-icon');
+}
+
+.correct-answer {
+    background-color: rgb(80, 238, 105);
 }

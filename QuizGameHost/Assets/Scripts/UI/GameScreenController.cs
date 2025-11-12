@@ -1,17 +1,21 @@
 using System;
+using Assets.Scripts.Networking.Data;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class GameScreenController : ScreenController
 {
     private VisualElement _resultElement;
-    [SerializeField] private string _resultText;
+    [SerializeField, HideInInspector] private string _resultText;
+
+    private QuestionDisplayElement _questionDisplayElement;
 
     protected override void Awake()
     {
         base.Awake();
         _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Host Asset Table");
         _resultElement = _ui.Q<VisualElement>("ResultElement");
+        _questionDisplayElement = _ui.Q<QuestionDisplayElement>();
     }
 
     void OnEnable()
@@ -48,13 +52,19 @@ public class GameScreenController : ScreenController
     private void ResetResultText()
     {
         _resultElement.AddToClassList("result-text-start");
-        // show the results statistics of the answers
-        ShowResultsStatistics();
     }
 
-    private void ShowResultsStatistics()
+    private void ShowResultsStatistics(Question question, float[] percentages)
     {
-        // TODO: results screen with player's answers and the right answer
-        throw new NotImplementedException();
+        _questionDisplayElement.LoadQuestion(question);
+        _questionDisplayElement.LoadPercentages(percentages);
+        _questionDisplayElement.RemoveFromClassList("hide");
+    }
+
+    public void ShowQuestionDisplay(Question question)
+    {
+        _questionDisplayElement.LoadQuestion(question);
+        _questionDisplayElement.ResetPercentages();
+        _questionDisplayElement.RemoveFromClassList("hide");
     }
 }

@@ -103,14 +103,5 @@ Button {
     margin-bottom: 30px;
 }
 
-#GameHeader > * > .icon-button {
-    width: 70px;
-    height: 70px;
-}
-
-#GameViewProgress > .unity-progress-bar__container {
-    min-height: 55px;
-}
-
-.result-text-defeat {
+#GameHeader > .header-container {
 }

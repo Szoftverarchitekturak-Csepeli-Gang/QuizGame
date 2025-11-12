@@ -11,4 +11,7 @@ public class GameManager : SingletonBase<GameManager>
     public static event Action<RoundResult> GameRoundEnded;
     public static void RaiseGameRoundEnded(RoundResult result) => GameRoundEnded?.Invoke(result);
 
+    public static event Action<int> CorrectAnswerIdx;
+    public static void RaiseCorrectAnswerIdx(int idx) => CorrectAnswerIdx?.Invoke(idx);
+
 }
