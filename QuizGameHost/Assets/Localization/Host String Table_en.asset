@@ -112,6 +112,18 @@ MonoBehaviour:
     m_Localized: Selected Question Bank
     m_Metadata:
       m_Items: []
+  - m_Id: 3687959516909568
+    m_Localized: Game Ended
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3688100672016384
+    m_Localized: Conquered villages
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3688671747477504
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

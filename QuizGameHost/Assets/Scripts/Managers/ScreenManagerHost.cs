@@ -7,6 +7,7 @@ public class ScreenManagerHost : ScreenManagerBase
     [SerializeField] GameObject DashboardScreenPrefab;
     [SerializeField] GameObject WaitroomScreenPrefab;
     [SerializeField] GameObject GameScreenPrefab;
+    [SerializeField] GameObject GameEndScreenPrefab;
 
     protected override void Start()
     {
@@ -20,5 +21,6 @@ public class ScreenManagerHost : ScreenManagerBase
         RegisterScreen(AppScreen.DASHBOARD, LoadPrefab(DashboardScreenPrefab));
         RegisterScreen(AppScreen.WAITROOM, LoadPrefab(WaitroomScreenPrefab));
         RegisterScreen(AppScreen.GAME, LoadPrefab(GameScreenPrefab));
+        RegisterScreen(AppScreen.FINISH, LoadPrefab(GameEndScreenPrefab));
     }
 }

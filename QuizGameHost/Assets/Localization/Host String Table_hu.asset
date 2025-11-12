@@ -111,6 +111,18 @@ MonoBehaviour:
     m_Localized: "Kiv\xE1lasztott K\xE9rd\xE9s Bank"
     m_Metadata:
       m_Items: []
+  - m_Id: 3687959516909568
+    m_Localized: "J\xE1t\xE9k V\xE9ge"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3688100672016384
+    m_Localized: Elfoglalt falvak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3688671747477504
+    m_Localized: "Kil\xE9p\xE9s"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

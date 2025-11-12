@@ -1,0 +1,27 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/QuizgameStylesheet.uss?fileID=7433441132597879392&amp;guid=624c7b45126eb5947ad048550da1304f&amp;type=3#QuizgameStylesheet" />
+    <ui:VisualElement class="main-container" style="flex-grow: 1; -unity-text-align: upper-center; justify-content: center;">
+        <ui:Label text="Game ended" style="font-size: 120px; flex-grow: 0.1; -unity-text-align: middle-center;">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(3687959516909568)" />
+            </Bindings>
+        </ui:Label>
+        <ui:VisualElement style="flex-grow: 0.5; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+            <ui:Label text="Conquered villages" style="font-size: 42px;">
+                <Bindings>
+                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(3688100672016384)" />
+                </Bindings>
+            </ui:Label>
+            <ui:Label text="4/5" style="-unity-font-style: bold; font-size: 48px;">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="_conqueredVillagesText" data-source-type="GameEndScreenController, Assembly-CSharp" binding-mode="ToTarget" />
+                </Bindings>
+            </ui:Label>
+        </ui:VisualElement>
+        <ui:Button text="Exit" name="ExitButton">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(3688671747477504)" />
+            </Bindings>
+        </ui:Button>
+    </ui:VisualElement>
+</ui:UXML>

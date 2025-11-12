@@ -200,6 +200,7 @@ MonoBehaviour:
   DashboardScreenPrefab: {fileID: 7085477311505717039, guid: 0fbab2da40d667b4391e041f235beb85, type: 3}
   WaitroomScreenPrefab: {fileID: 3673353613652142557, guid: 3828f2591c32cb9419a4d78ba206acbc, type: 3}
   GameScreenPrefab: {fileID: 2190451285465429788, guid: f053a530102a0984a98e5c0fc917e7d7, type: 3}
+  GameEndScreenPrefab: {fileID: 8405154094365059983, guid: 87cc1197b1152bc4c8d1cda66137b32c, type: 3}
 --- !u!1 &492261260
 GameObject:
   m_ObjectHideFlags: 0

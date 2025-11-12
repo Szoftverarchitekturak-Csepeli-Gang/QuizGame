@@ -107,6 +107,18 @@ MonoBehaviour:
     m_Key: SelectedQuestionBank
     m_Metadata:
       m_Items: []
+  - m_Id: 3687959516909568
+    m_Key: GameEnded
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3688100672016384
+    m_Key: ConqueredVillages
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3688671747477504
+    m_Key: Exit
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
