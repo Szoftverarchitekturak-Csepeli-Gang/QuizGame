@@ -13,28 +13,36 @@ public class DashboardScreenController : ScreenController
         QUESTION_BANKS, CREATE_ROOM
     }
 
+    // sidebar components
     private DashboardTab _currentTab;
     private VisualElement _questionBankPage;
     private VisualElement _createRoomPage;
 
+    // question banks tab
     VisualElement _questionBankSettings;
     Label _noQuestionBanksText;
     private DropdownField _questionBanksOfUserDropdown;
-    private List<QuestionBank> _questionBanksOfUser = new();
     [SerializeField] List<QuestionEditElement> questions = new();
     private ScrollView _questionsScrollView;
     private NewQuestionElement _newQuestionElement;
     public static UnityEvent NewQuestionEvent = new();
     public static UnityEvent<QuestionEditElement> DeleteQuestionEvent = new();
 
+    // create room tab
+    private DropdownField _questionBanksOfUserDropdownCreateRoom;
+    [SerializeField, HideInInspector] private string _searchInput;
+    private List<QuestionBank> _searchedQuestionBanks = new();
+
+    // fetched data
     [SerializeField, HideInInspector] private string _bankName;
+    private List<QuestionBank> _questionBanksOfUser = new();
 
     void OnEnable()
     {
         _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Host Asset Table");
 
-        SetupQuestionBankTab();
         SetupCreateRoomTab();
+        SetupQuestionBankTab();
         SetupTabs();
     }
 
@@ -42,6 +50,52 @@ public class DashboardScreenController : ScreenController
     {
         Button waitingRoomButton = _ui.Q<Button>("WaitingRoomBtn");
         waitingRoomButton.clicked += OnCreateRoomClicked;
+
+        _questionBanksOfUserDropdownCreateRoom = _ui.Q<DropdownField>("ChooseBankDropdownCreateRoom");
+        _questionBanksOfUserDropdownCreateRoom.RegisterValueChangedCallback(evt =>
+        {
+            int selectedIndex = _questionBanksOfUserDropdownCreateRoom.index;
+            if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
+            {
+                QuestionBank selected = _questionBanksOfUser[selectedIndex];
+                _bankName = selected.Name;
+                Debug.Log($"Selected '{selected.Name}' with ID = {selected.Id}");
+            }
+        });
+
+        SetupBankSearch();
+    }
+
+    private void SetupBankSearch()
+    {
+        TextField searchInputField = _ui.Q<TextField>("SearchInputField");
+        ListView bankSearchList = _ui.Q<ListView>("QuestionBankSearchList");
+        bankSearchList.fixedItemHeight = 42;
+        bankSearchList.makeItem = () =>
+        {
+            Label label = new Label();
+            label.AddToClassList("list-element");
+            return label;
+        };
+
+        bankSearchList.bindItem = (element, index) =>
+        {
+            Label label = (Label)element;
+            label.AddToClassList("list-element");
+            label.text = _searchedQuestionBanks[index].Name;
+        };
+
+        bankSearchList.itemsSource = _searchedQuestionBanks;
+
+        searchInputField.RegisterValueChangedCallback(async evt =>
+        {
+            Debug.Log(_searchInput);
+            _searchedQuestionBanks.Clear();
+            var results = await FetchQuestionBanks(_searchInput);
+            _searchedQuestionBanks.AddRange(results);
+
+            bankSearchList.Rebuild();
+        });
     }
 
     private void OnCreateRoomClicked()
@@ -173,7 +227,7 @@ public class DashboardScreenController : ScreenController
         _questionsScrollView.contentContainer.Add(_newQuestionElement);
     }
 
-    private async Task<List<QuestionBank>> FetchQuestionBanks()
+    private async Task<List<QuestionBank>> FetchQuestionBanks(string search = "", int userID = -1)
     {
         // TODO: implement fetching question banks from server by user id or fetch all
         return new List<QuestionBank>
@@ -187,7 +241,10 @@ public class DashboardScreenController : ScreenController
     private async void LoadBanksOfUser()
     {
         _questionBanksOfUser = await FetchQuestionBanks();
-        _questionBanksOfUserDropdown.choices = _questionBanksOfUser.Select(r => r.Name).ToList();
+
+        var dropdownList = _questionBanksOfUser.Select(r => r.Name).ToList();
+        _questionBanksOfUserDropdown.choices = dropdownList;
+        _questionBanksOfUserDropdownCreateRoom.choices = dropdownList;
 
         _questionBankSettings = _ui.Q<VisualElement>("QuestionBankSettings");
         _noQuestionBanksText = _ui.Q<Label>("NoQuestionBanksText");

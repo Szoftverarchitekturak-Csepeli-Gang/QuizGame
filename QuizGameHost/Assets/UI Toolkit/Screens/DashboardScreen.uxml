@@ -31,7 +31,7 @@
         <ui:VisualElement name="Content" style="flex-grow: 1; height: 100%; margin-top: 0;">
             <ui:VisualElement name="QuestionBankPage" style="flex-grow: 1;">
                 <ui:VisualElement name="BankSelectorContainer" style="flex-grow: 0; flex-direction: row; align-items: flex-end; justify-content: space-evenly; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
-                    <ui:DropdownField label="Question Bank" name="ChooseBankDropdown" style="flex-grow: 1;">
+                    <ui:DropdownField label="Question Bank" name="ChooseBankDropdown" index="-1" style="flex-grow: 1;">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="label" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(750622714933248)" />
                         </Bindings>
@@ -70,15 +70,16 @@
             </ui:VisualElement>
             <ui:VisualElement name="CreateRoomPage" class="hide" style="flex-grow: 1; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;">
                 <ui:VisualElement style="flex-grow: 2;">
-                    <ui:DropdownField label="My question banks" style="flex-grow: 0;">
+                    <ui:DropdownField label="My question banks" name="ChooseBankDropdownCreateRoom" style="flex-grow: 0;">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="label" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(756840514760704)" />
                         </Bindings>
                     </ui:DropdownField>
                     <ui:VisualElement name="SearchContainer" style="flex-grow: 2;">
-                        <ui:TextField label="Search other users&apos; question banks" placeholder-text="filler text">
+                        <ui:TextField label="Search other users&apos; question banks" placeholder-text="filler text" name="SearchInputField">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="label" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(757029166166016)" />
+                                <ui:DataBinding property="value" data-source-path="_searchInput" data-source-type="DashboardScreenController, Assembly-CSharp" binding-mode="ToSource" />
                             </Bindings>
                         </ui:TextField>
                         <ui:ListView name="QuestionBankSearchList" />
@@ -91,7 +92,11 @@
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(757364018425856)" />
                             </Bindings>
                         </ui:Label>
-                        <ui:Label text="QuestionBankName" style="-unity-font-style: bold;" />
+                        <ui:Label text="QuestionBankName" style="-unity-font-style: bold;">
+                            <Bindings>
+                                <ui:DataBinding property="text" data-source-path="_bankName" data-source-type="DashboardScreenController, Assembly-CSharp" binding-mode="ToTarget" />
+                            </Bindings>
+                        </ui:Label>
                     </ui:VisualElement>
                     <ui:Button text="Create Room" name="WaitingRoomBtn" style="flex-grow: 1;">
                         <Bindings>

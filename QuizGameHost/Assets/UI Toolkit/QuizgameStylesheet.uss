@@ -105,3 +105,9 @@ Button {
 
 #GameHeader > .header-container {
 }
+
+.unity-base-popup-field__popup .unity-list-view__item {
+}
+
+Dropdown > Template > Viewport > Content {
+}
