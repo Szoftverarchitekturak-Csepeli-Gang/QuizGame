@@ -6,7 +6,7 @@ public class VillageRaycastHandler : RaycastHandlerBase
     public static VillageRaycastHandler Instance { get; private set; }
 
     public event Action<GameObject> OnVillageHit;
-    public event Action<GameObject> OnVillageSelectChanged;
+    public static event Action<GameObject> OnVillageSelectChanged;
 
     private GameObject[] _villages;
     private GameObject _currentSelectedVillage = null;
@@ -44,7 +44,7 @@ public class VillageRaycastHandler : RaycastHandlerBase
 
             Collider collider = hitbox.GetComponent<Collider>();
             if (collider == null) continue;
-                
+
             if (collider.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity))
             {
                 if (hitInfo.distance < closestDistance)

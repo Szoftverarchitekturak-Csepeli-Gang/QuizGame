@@ -29,7 +29,8 @@
     scale: 2 2 2;
 }
 
-QuestionDisplayElement {
+QuestionDisplayElement,
+#SelectVillageElement {
     width: 90%;
     height: 80%;
     background-color: rgb(255, 255, 255);
