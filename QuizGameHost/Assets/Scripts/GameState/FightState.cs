@@ -36,4 +36,9 @@ public class FightState : IGameState
             GameStateManager.Instance.ChangeState(GameStateType.Statistics);
         }
     }
+
+    public void HandleBattleEnd()
+    { 
+    
+    }
 }

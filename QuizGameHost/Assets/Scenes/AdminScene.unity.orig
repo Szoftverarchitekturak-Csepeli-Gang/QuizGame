@@ -234,39 +234,10 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
---- !u!1 &683265714
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 683265715}
-  m_Layer: 0
-  m_Name: __ Environment
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &683265715
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 683265714}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1764977490}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &816740454
+=======
+--- !u!1 &637743790
+>>>>>>> cb4e13a ([Host] - Implemented MVP architecture. (Presenter connects FSM and UI))
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -274,36 +245,58 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 816740455}
   - component: {fileID: 816740456}
   m_Layer: 0
   m_Name: NetworkManager
+=======
+  - component: {fileID: 637743791}
+  - component: {fileID: 637743792}
+  m_Layer: 0
+  m_Name: GameScreenPresenter
+>>>>>>> cb4e13a ([Host] - Implemented MVP architecture. (Presenter connects FSM and UI))
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!4 &816740455
+=======
+--- !u!4 &637743791
+>>>>>>> cb4e13a ([Host] - Implemented MVP architecture. (Presenter connects FSM and UI))
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 816740454}
+=======
+  m_GameObject: {fileID: 637743790}
+>>>>>>> cb4e13a ([Host] - Implemented MVP architecture. (Presenter connects FSM and UI))
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+<<<<<<< HEAD
   m_Father: {fileID: 1559627370}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &816740456
+=======
+  m_Father: {fileID: 1505554675}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &637743792
+>>>>>>> cb4e13a ([Host] - Implemented MVP architecture. (Presenter connects FSM and UI))
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 816740454}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -313,7 +306,13 @@ MonoBehaviour:
   _serverUrl: ws://localhost:8080/ws
   _apiBaseUrl: http://localhost:3000
 =======
->>>>>>> 4845cab ([Host] - Fixed camera, shadows, skybox)
+  m_GameObject: {fileID: 637743790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0d9e43e84522d448bbff619d42b3816, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameScreenPresenter
+>>>>>>> cb4e13a ([Host] - Implemented MVP architecture. (Presenter connects FSM and UI))
 --- !u!1 &1217361808
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +323,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1217361811}
   - component: {fileID: 1217361810}
-  - component: {fileID: 1217361809}
   - component: {fileID: 1217361812}
   m_Layer: 0
   m_Name: UICamera
@@ -333,14 +331,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1217361809
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1217361808}
-  m_Enabled: 1
 --- !u!20 &1217361810
 Camera:
   m_ObjectHideFlags: 0
@@ -451,6 +441,38 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &1505554674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1505554675}
+  m_Layer: 0
+  m_Name: __ Presenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1505554675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505554674}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.88359, y: 1.70214, z: 0.86595}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 637743791}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1559627369
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,3 +589,4 @@ SceneRoots:
   - {fileID: 42153303}
   - {fileID: 1559627370}
   - {fileID: 492261261}
+  - {fileID: 1505554675}

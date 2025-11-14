@@ -10,32 +10,31 @@ public class VillageSelectedState : IGameState
 
     public void Enter()
     {
+        var village = RaycastManager.Instance.CurrentSelectedVillage;
         CameraManager.Instance.UseMainCamera();
         InputManager.Instance.DisableInputControl();
         BlurManager.Instance.ActivateBlurEffect();
-
-        var village = RaycastManager.Instance.CurrentSelectedVillage;
-        var uiController = (ScreenManagerHost.Instance.CurrentScreenController as GameScreenController);
-        uiController.ShowVillagePanel(
-            village,
-            () => {
-                GameStateManager.Instance.ChangeState(GameStateType.VillageConquer);
-            },
-            () => { 
-                GameStateManager.Instance.ChangeState(GameStateType.Idle);
-                RaycastManager.Instance.ResetSelectedVillage();
-            }
-        );
+        GameScreenPresenter.Instance.ShowVillagePanel(village, HandleConquer, HandleExit);
     }
 
     public void Exit()
     {
-        var uiController = (ScreenManagerHost.Instance.CurrentScreenController as GameScreenController);
-        uiController.HideVillagePanel();
+        GameScreenPresenter.Instance.HideVillagePanel();
     }
 
     public void Update()
     {
         return;
+    }
+
+    private void HandleConquer()
+    {
+        GameStateManager.Instance.ChangeState(GameStateType.VillageConquer);
+    }
+
+    private void HandleExit()
+    {
+        GameStateManager.Instance.ChangeState(GameStateType.Idle);
+        RaycastManager.Instance.ResetSelectedVillage();
     }
 }

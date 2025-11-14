@@ -23,14 +23,12 @@ public class QuestionState : IGameState
         //Todo: Subsbscibe: Setup network manager websocket handler to connect received data with UI???? 
         //OnQuestionReceived, OnClientAnswerReceived -> Need handlers on the UI side as well
 
-        var uiController = (ScreenManagerHost.Instance.CurrentScreenController as GameScreenController);
-        uiController.ShowQuestionDisplay(new Question());
+        GameScreenPresenter.Instance.ShowQuestionPanel(new Question());
     }
 
     public void Exit()
     {
-        var uiController = (ScreenManagerHost.Instance.CurrentScreenController as GameScreenController);
-        uiController.HideQuestionDisplay();
+        GameScreenPresenter.Instance.HideQuestionPanel();
 
         //Todo: Network handler unsubscribe
     }

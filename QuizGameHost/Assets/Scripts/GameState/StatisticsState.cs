@@ -21,15 +21,12 @@ public class StatisticsState : IGameState
         //Show UI
         //Set continue button action
 
-        //Just testing, statistics window code here!
-        var uiController = (ScreenManagerHost.Instance.CurrentScreenController as GameScreenController);
-        uiController.ShowQuestionDisplay(new Question());
+        GameScreenPresenter.Instance.ShowQuestionPanel(new Question());
     }
 
     public void Exit()
     {
-        var uiController = (ScreenManagerHost.Instance.CurrentScreenController as GameScreenController);
-        uiController.HideQuestionDisplay();
+        GameScreenPresenter.Instance.HideQuestionPanel();
     }
 
     public void Update()

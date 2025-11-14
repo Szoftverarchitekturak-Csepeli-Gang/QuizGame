@@ -25,6 +25,16 @@ public class GameScreenController : ScreenController
         VillagePanelInit();
     }
 
+    void Start()
+    {
+        GameScreenPresenter.Instance.AttachScreen(this);
+    }
+
+    void OnDestroy()
+    {
+        GameScreenPresenter.Instance.DetachScreen();
+    }
+
     void OnEnable()
     {
         _resultText = "DEFEAT";
