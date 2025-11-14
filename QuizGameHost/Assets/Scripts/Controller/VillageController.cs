@@ -2,12 +2,17 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using Unity.AppUI.UI;
+using UnityEditor.Build.Pipeline;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
 
 public class VillageController : MonoBehaviour
 {
+    [Header("Village Info")]
+    [SerializeField] private Village _info;
+
+    [Header("Attachments")]
     [SerializeField] private GameObject _characterContainer;
     [SerializeField] private GameObject _defenderPrefab;
     [SerializeField] private GameObject _attackerPrefab;
@@ -20,6 +25,8 @@ public class VillageController : MonoBehaviour
 
     private List<GameObject> _defenders = new List<GameObject>();
     private List<GameObject> _attackers = new List<GameObject>();
+    
+    public Village Info => _info;
 
     public void Start()
     {

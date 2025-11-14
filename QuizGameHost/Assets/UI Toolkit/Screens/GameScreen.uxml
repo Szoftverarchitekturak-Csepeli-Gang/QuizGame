@@ -14,8 +14,8 @@
                 </Bindings>
             </ui:Label>
         </ui:VisualElement>
-        <ui:VisualElement name="SelectVillageElement" class="hide" style="flex-grow: 0; justify-content: space-around; width: 50%; height: 70%;">
-            <ui:VisualElement name="VillageCard" style="flex-grow: 0; flex-direction: row; height: 80%; padding-top: 8px; padding-right: 16px; padding-bottom: 8px; padding-left: 16px;">
+        <ui:VisualElement name="SelectVillageElement" enabled="true" class="hide" style="flex-grow: 0; justify-content: space-between; width: 50%; height: 70%; align-content: flex-start; align-self: center;">
+            <ui:VisualElement name="VillageCard" style="flex-grow: 0; flex-direction: row; height: 80%; padding-top: 8px; padding-right: 16px; padding-bottom: 8px; padding-left: 16px; align-items: stretch; align-self: auto;">
                 <ui:VisualElement name="VillageInfo" style="flex-grow: 0; align-items: stretch; justify-content: center; width: 50%;">
                     <ui:Label text="Village 2" style="flex-grow: 1; -unity-text-align: lower-center;">
                         <Bindings>

@@ -16,7 +16,7 @@ public class GameScreenController : ScreenController
     private VisualElement _selectVillageElement;
     private Button _conquerButton;
     private Button _exitButton;
-    private Village _selectedVillage;
+    private GameObject _selectedVillage;
 
     protected override void Awake()
     {
@@ -87,17 +87,9 @@ public class GameScreenController : ScreenController
         _questionDisplayElement.RemoveFromClassList("hide");
     }
 
-    private void OnVillageSelected(GameObject obj)
+    private void OnVillageSelected(GameObject village)
     {
-        Village village = new()
-        {
-            ID = 0,
-            Name = obj.name,
-            ImagePath = "village1"
-        };
-
         _selectedVillage = village;
-
         Invoke(nameof(ShowSelectVillageDialog), 2f);
     }
 
@@ -105,9 +97,11 @@ public class GameScreenController : ScreenController
     {
         if (_selectedVillage == null) return;
 
+        var villageName = _selectedVillage.GetComponent<VillageController>().Info.name;
+
         _selectVillageElement.RemoveFromClassList("hide");
-        _villageName = _selectedVillage.Name;
-        Texture2D villageImg = Resources.Load<Texture2D>(_selectedVillage.ImagePath);
+        _villageName = villageName;
+        Texture2D villageImg = Resources.Load<Texture2D>(villageName);
         _villageImage.style.backgroundImage = villageImg;
     }
 

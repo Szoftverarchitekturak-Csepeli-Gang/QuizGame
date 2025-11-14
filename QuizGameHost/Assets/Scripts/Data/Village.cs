@@ -1,6 +1,9 @@
+using NUnit.Framework;
+using System.Collections.Generic;
+
+[System.Serializable]
 public class Village
 {
-    public int ID { get; set; }
-    public string Name { get; set; }
-    public string ImagePath { get; set; }
+    public int id;
+    public string name;
 }

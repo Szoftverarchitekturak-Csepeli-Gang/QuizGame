@@ -184,6 +184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03cd9986bc55ef4ba5434dd4ea1e57e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CityController
+  _info:
+    id: -1
+    name: '-'
   _characterContainer: {fileID: 4825911955825760394}
   _defenderPrefab: {fileID: 1959887721442257930, guid: dd0f174ea24c3a1479a946d10995533d, type: 3}
   _attackerPrefab: {fileID: 1104924181397806359, guid: 4d3ba9307148e2847b778ff894bce65f, type: 3}
