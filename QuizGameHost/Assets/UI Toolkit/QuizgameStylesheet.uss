@@ -7,6 +7,7 @@
     --gray: rgb(161, 163, 168);
     transition-property: border-color;
     transition-duration: 0.2s;
+    --blue-light: rgb(49, 119, 168);
 }
 
 * {
@@ -36,7 +37,6 @@
 
 .unity-text-element {
     font-size: 32px;
-    color: rgb(29, 29, 29);
 }
 
 .unity-base-field {
@@ -73,29 +73,43 @@
     cursor: resource('Cursors/cursor-text');
 }
 
-Button {
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
-    height: 80px;
+.yellow-button {
     background-color: var(--yellow);
+    border-width: 4px;
+    border-color: var(--yellow);
+    border-left-width: 4px;
+    border-right-width: 4px;
+    border-top-width: 4px;
+    border-bottom-width: 4px;
+}
+
+.yellow-button:hover {
+    color: var(--blue);
+    border-color: var(--blue);
+    background-color: var(--yellow);
+    cursor: resource('Cursors/cursor-point');
+    border-left-color: var(--yellow);
+    border-top-color: var(--yellow);
+}
+
+Button {
+    height: 80px;
     border-width: 4px;
     border-color: var(--yellow);
     transition-property: font-size, border-color;
     transition-duration: 0.2s, 0.2s;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 Button:hover {
-    color: var(--blue);
     border-color: var(--blue);
     font-size: 33px;
-    background-color: var(--yellow);
-    transition-property: font-size, border-color;
-    transition-duration: 0.2s, 0.2s;
+    transition-property: font-size, border-color, -unity-font-style;
+    transition-duration: 0.2s, 0.2s, 0.2s;
     cursor: resource('Cursors/cursor-point');
-    border-left-color: var(--yellow);
-    border-top-color: var(--yellow);
     -unity-font-style: bold;
 }
 
@@ -159,20 +173,6 @@ Button:focus {
     color: var(--blue);
 }
 
-#Sidebar > * {
-    height: 160px;
-    margin-bottom: 30px;
-}
-
-#GameHeader > .header-container {
-}
-
-.unity-base-popup-field__popup .unity-list-view__item {
-}
-
-Dropdown > Template > Viewport > Content {
-}
-
 .title-font {
     -unity-font-definition: url("project://database/Assets/AssetPacks/TextMesh%20Pro/Examples%20&%20Extras/Fonts/Anton.ttf?fileID=12800000&guid=997a43b767814dd0a7642ec9b78cba41&type=3#Anton");
     -unity-font-style: normal;
@@ -196,4 +196,28 @@ Dropdown > Template > Viewport > Content {
     -unity-background-image-tint-color: var(--white);
     background-size: 100% 100%;
     -unity-background-scale-mode: stretch-to-fill;
+}
+
+.blue-button {
+    background-color: var(--blue);
+    border-width: 4px;
+    border-color: var(--yellow);
+    border-left-width: 4px;
+    border-right-width: 4px;
+    border-top-width: 4px;
+    border-bottom-width: 4px;
+    border-color: var(--blue);
+    color: var(--white);
+}
+
+.blue-button:hover {
+    border-color: var(--blue);
+    background-color: var(--blue-light);
+    cursor: resource('Cursors/cursor-point');
+    border-top-color: var(--blue-light);
+    border-left-color: var(--blue-light);
+    color: var(--yellow);
+}
+
+#QuestionDelete {
 }

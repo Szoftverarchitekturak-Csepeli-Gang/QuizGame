@@ -1,6 +1,7 @@
 using System;
 using Unity.Properties;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UIElements;
 
 [UxmlElement]
@@ -9,6 +10,8 @@ public partial class QuestionEditElement : VisualElement
     [SerializeField] public string QuestionText;
     [SerializeField] public string AnswerA, AnswerB, AnswerC, AnswerD;
     [SerializeField] private int CorrectAnswerIdx;
+
+    LocalizedString _deleteButtonText;
 
     private RadioButtonGroup _correctAnswerGroup;
     private Button _deleteButton;
@@ -59,7 +62,10 @@ public partial class QuestionEditElement : VisualElement
 
         questionHeader.Add(questionTextField);
 
-        _deleteButton = new() { text = "Delete" };
+        _deleteButton = new() { text = "Delete", name = "QuestionDelete" };
+        _deleteButton.AddToClassList("red-button");
+        _deleteButtonText = LocalizationHelper.LoadLocalization("Delete");
+        LocalizationHelper.BindLabel(_deleteButton, _deleteButtonText);
         _deleteButton.clicked += OnDeleteButtonClicked;
         questionHeader.Add(_deleteButton);
 

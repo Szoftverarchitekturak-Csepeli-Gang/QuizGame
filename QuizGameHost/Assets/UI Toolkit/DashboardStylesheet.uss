@@ -1,8 +1,87 @@
 :root {
+    --icon-color: rgb(114, 114, 114);
+    --blue: rgb(22, 92, 141);
+    --yellow: rgb(249, 211, 98);
+    --red: rgb(222, 63, 79);
+    --white: rgb(225, 225, 232);
+    --gray: rgb(161, 163, 168);
+    transition-property: border-color;
+    transition-duration: 0.2s;
+    --blue-light: rgb(49, 119, 168);
+}
+
+#Sidebar {
+    padding-top: 30px;
+    padding-right: 0;
+    padding-bottom: 30px;
+    padding-left: 0;
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+#Sidebar > Button {
+    margin-top: 0;
+    margin-bottom: 2px;
+    flex-grow: 0.1;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    -unity-text-align: middle-left;
+    justify-content: flex-start;
+    align-self: flex-end;
+    width: 95%;
+    cursor: resource('Cursors/cursor-point');
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#Sidebar > Button > Image {
+    width: 60px;
+    padding-right: 15px;
+    cursor: resource('Cursors/cursor-point');
+}
+
+#Sidebar > Button:hover {
+    cursor: resource('Cursors/cursor-point');
+    font-size: 32px;
+    background-color: var(--blue-light);
+    color: var(--white);
+}
+
+.active-tab {
+    background-color: var(--blue-light);
+    -unity-font-style: bold;
+}
+
+Button > .unity-text-element {
+    cursor: resource('Cursors/cursor-point');
+}
+
+.red-button {
+    background-color: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+    border-left-color: rgb(222, 63, 79);
+    border-right-color: rgb(222, 63, 79);
+    border-top-color: var(--red);
+    border-bottom-color: rgb(222, 63, 79);
+}
+
+.red-button:hover {
+    background-color: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+    border-bottom-color: var(--blue);
+    border-right-color: var(--blue);
 }
 
 QuestionEditElement {
-    background-color: rgb(144, 144, 144);
+    background-color: var(--white);
     flex-direction: column;
     padding-top: 6px;
     padding-right: 6px;
@@ -13,6 +92,11 @@ QuestionEditElement {
     margin-bottom: 8px;
     margin-left: 8px;
     height: 400px;
+    border-bottom-color: var(--yellow);
+    border-top-width: 6px;
+    border-right-width: 6px;
+    border-bottom-width: 6px;
+    border-left-width: 6px;
 }
 
 .question-header {
@@ -28,6 +112,11 @@ QuestionEditElement {
 .question-header > TextField {
     flex-grow: 1;
     max-width: 89%;
+}
+
+#QuestionDelete {
+    width: 180px;
+    height: 65px;
 }
 
 .answer-field {
@@ -67,4 +156,28 @@ QuestionEditElement {
     padding-left: 20px;
     padding-right: 20px;
     font-size: 32px;
+}
+
+.unity-base-popup-field > .unity-base-field__input {
+    background-color: var(--white);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-color: var(--gray);
+    cursor: resource('Cursors/cursor-point');
+}
+
+.unity-base-popup-field {
+    cursor: resource('Cursors/cursor-point');
+}
+
+.red-text {
+    color: var(--red);
+    -unity-font-style: normal;
+    font-size: 34px;
 }

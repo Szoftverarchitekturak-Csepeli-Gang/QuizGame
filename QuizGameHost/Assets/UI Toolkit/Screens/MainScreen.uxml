@@ -24,7 +24,7 @@
                     <UnityEngine.Localization.LocalizedString property="label" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(334127214592)" />
                 </Bindings>
             </ui:TextField>
-            <ui:Button text="Login" name="SendButton" />
+            <ui:Button text="Login" name="SendButton" focusable="false" class="yellow-button" />
             <ui:VisualElement name="MessageContainer" style="flex-grow: 0; flex-direction: row; align-items: center; justify-content: center;">
                 <ui:Label name="AccountMessage" text="Already have an account?" />
                 <ui:Label name="AccountOperation" text="Register" />
