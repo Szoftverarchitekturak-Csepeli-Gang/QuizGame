@@ -14,13 +14,13 @@ public class GameEndScreenController : ScreenController
 
     void OnEnable()
     {
-        GameManager.GameEnded += OnGameEnded;
+        //GameManager.GameEnded += OnGameEnded;
         _exitButton.clicked += OnExitClicked;
     }
 
     void OnDisable()
     {
-        GameManager.GameEnded -= OnGameEnded;
+        //GameManager.GameEnded -= OnGameEnded;
         _exitButton.clicked -= OnExitClicked;
     }
 

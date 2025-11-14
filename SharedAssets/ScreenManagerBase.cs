@@ -32,6 +32,8 @@ public abstract class ScreenManagerBase : SingletonBase<ScreenManagerBase>
         }
     }
 
+    public ScreenController CurrentScreenController => _screens[_currentScreen];
+
     virtual protected void Start()
     {
         LoadScreens();

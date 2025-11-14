@@ -4,49 +4,153 @@ using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+public enum RoundResult
+{ 
+    VICTORY,
+    FAILURE
+}
+
 public class GameScreenController : ScreenController
 {
     private VisualElement _resultElement;
     [SerializeField, HideInInspector] private string _resultText;
-
-    private QuestionDisplayElement _questionDisplayElement;
-
-    [SerializeField, HideInInspector] private string _villageName;
-    private VisualElement _villageImage;
-    private VisualElement _selectVillageElement;
-    private Button _conquerButton;
-    private Button _exitButton;
-    private GameObject _selectedVillage;
 
     protected override void Awake()
     {
         base.Awake();
         _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Host Asset Table");
         _resultElement = _ui.Q<VisualElement>("ResultElement");
-        _questionDisplayElement = _ui.Q<QuestionDisplayElement>();
+        
+        QuestionPanelInit();
+        VillagePanelInit();
+    }
 
+    void OnEnable()
+    {
+        _resultText = "DEFEAT";
+        QuestionPanelEnable();
+        VillagePanelEnable();
+    }
+
+    void OnDisable()
+    {
+        QuestionPanelDisable();
+        VillagePanelDisable();
+    }
+
+    #region VillagePanel
+
+    [SerializeField, HideInInspector]
+    private string _villageName;
+    private VisualElement _villageImage;
+    private VisualElement _selectVillageElement;
+
+    private Button _conquerButton;
+    private Button _exitButton;
+
+    private Action _onConquer;
+    private Action _onExit;
+
+    private void VillagePanelInit()
+    {
         _selectVillageElement = _ui.Q<VisualElement>("SelectVillageElement");
         _conquerButton = _ui.Q<Button>("ConquerBtn");
         _exitButton = _ui.Q<Button>("SelectVillageExitBtn");
         _villageImage = _ui.Q<VisualElement>("VillageImage");
     }
 
-    void OnEnable()
+    private void VillagePanelEnable()
     {
-        _resultText = "DEFEAT";
-        GameManager.GameRoundEnded += OnGameRoundEnded;
-        _conquerButton.clicked += OnConquerClicked;
-        _exitButton.clicked += OnExitClicked;
-        VillageRaycastHandler.OnVillageSelectChanged += OnVillageSelected;
+        _conquerButton.clicked += HandleConquerClicked;
+        _exitButton.clicked += HandleExitClicked;
     }
 
-    void OnDisable()
+    private void VillagePanelDisable()
     {
-        GameManager.GameRoundEnded -= OnGameRoundEnded;
-        _conquerButton.clicked -= OnConquerClicked;
-        _exitButton.clicked -= OnExitClicked;
-        VillageRaycastHandler.OnVillageSelectChanged -= OnVillageSelected;
+        _conquerButton.clicked -= HandleConquerClicked;
+        _exitButton.clicked -= HandleExitClicked;
     }
+
+    public void ShowVillagePanel(GameObject village, Action onConquer, Action onExit)
+    {
+        if (village == null)
+            return;
+
+        _onConquer = onConquer;
+        _onExit = onExit;
+
+        var villageController = village.GetComponent<VillageController>();
+        var villageName = villageController.Info.name;
+
+        Texture2D villageImg = Resources.Load<Texture2D>(villageName);
+        _villageName = villageName;
+        _villageImage.style.backgroundImage = villageImg;
+
+        _selectVillageElement.RemoveFromClassList("hide");
+    }
+
+    public void HideVillagePanel()
+    {
+        _onConquer = null;
+        _onExit = null;
+
+        _selectVillageElement.AddToClassList("hide");
+    }
+
+    private void HandleConquerClicked()
+    {
+        _onConquer?.Invoke();
+    }
+
+    private void HandleExitClicked()
+    {
+        _onExit?.Invoke();
+    }
+
+    #endregion
+
+    #region QuestionPanel
+
+    private QuestionDisplayElement _questionDisplayElement;
+
+
+    private void QuestionPanelInit()
+    {
+        _questionDisplayElement = _ui.Q<QuestionDisplayElement>();
+    }
+
+    private void QuestionPanelEnable()
+    {
+    }
+
+    private void QuestionPanelDisable()
+    {
+    }
+
+    private void HandleAnswerReceived(int count)
+    {
+        //Todo: Show answers count on panel
+    }
+
+    private void HandleTimeTick(int time)
+    { 
+        //Todo: Show time on panel
+    }
+
+    public void ShowQuestionDisplay(Question question)
+    {
+        _questionDisplayElement.LoadQuestion(question);
+        _questionDisplayElement.ResetPercentages();
+
+        _questionDisplayElement.RemoveFromClassList("hide");
+    }
+
+    public void HideQuestionDisplay()
+    {
+        _questionDisplayElement.AddToClassList("hide");
+    }
+
+    #endregion
 
     private void OnGameRoundEnded(RoundResult result)
     {
@@ -78,44 +182,5 @@ public class GameScreenController : ScreenController
         _questionDisplayElement.LoadQuestion(question);
         _questionDisplayElement.LoadPercentages(percentages);
         _questionDisplayElement.RemoveFromClassList("hide");
-    }
-
-    public void ShowQuestionDisplay(Question question)
-    {
-        _questionDisplayElement.LoadQuestion(question);
-        _questionDisplayElement.ResetPercentages();
-        _questionDisplayElement.RemoveFromClassList("hide");
-    }
-
-    private void OnVillageSelected(GameObject village)
-    {
-        _selectedVillage = village;
-        Invoke(nameof(ShowSelectVillageDialog), 2f);
-    }
-
-    public void ShowSelectVillageDialog()
-    {
-        if (_selectedVillage == null) return;
-
-        var villageName = _selectedVillage.GetComponent<VillageController>().Info.name;
-
-        _selectVillageElement.RemoveFromClassList("hide");
-        _villageName = villageName;
-        Texture2D villageImg = Resources.Load<Texture2D>(villageName);
-        _villageImage.style.backgroundImage = villageImg;
-    }
-
-    private void OnConquerClicked()
-    {
-        // TODO: send conquer request to server
-        // TODO: get next question data
-        // TODO: get timer value
-
-        _selectVillageElement.AddToClassList("hide");
-    }
-
-    private void OnExitClicked()
-    {
-        _selectVillageElement.AddToClassList("hide");
     }
 }

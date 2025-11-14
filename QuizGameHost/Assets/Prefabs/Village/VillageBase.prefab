@@ -187,6 +187,7 @@ MonoBehaviour:
   _info:
     id: -1
     name: '-'
+  _camera: {fileID: 992787573123469121}
   _characterContainer: {fileID: 4825911955825760394}
   _defenderPrefab: {fileID: 1959887721442257930, guid: dd0f174ea24c3a1479a946d10995533d, type: 3}
   _attackerPrefab: {fileID: 1104924181397806359, guid: 4d3ba9307148e2847b778ff894bce65f, type: 3}
@@ -272,11 +273,11 @@ GameObject:
   - component: {fileID: 4667060892134276422}
   m_Layer: 0
   m_Name: FreeLook Camera
-  m_TagString: Untagged
+  m_TagString: VillageCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8170148021271350769
 Transform:
   m_ObjectHideFlags: 0

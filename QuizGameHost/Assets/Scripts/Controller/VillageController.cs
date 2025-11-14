@@ -2,9 +2,12 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using Unity.AppUI.UI;
+using Unity.Cinemachine;
 using UnityEditor.Build.Pipeline;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.UIElements;
 
 public class VillageController : MonoBehaviour
@@ -13,11 +16,12 @@ public class VillageController : MonoBehaviour
     [SerializeField] private Village _info;
 
     [Header("Attachments")]
-    [SerializeField] private GameObject _characterContainer;
-    [SerializeField] private GameObject _defenderPrefab;
-    [SerializeField] private GameObject _attackerPrefab;
-    [SerializeField] private GameObject _defenderSpawnPointParent;
-    [SerializeField] private GameObject _attackerSpawnPointParent;
+    [SerializeField] public GameObject _camera;
+    [SerializeField] public GameObject _characterContainer;
+    [SerializeField] public GameObject _defenderPrefab;
+    [SerializeField] public GameObject _attackerPrefab;
+    [SerializeField] public GameObject _defenderSpawnPointParent;
+    [SerializeField] public GameObject _attackerSpawnPointParent;
 
     [Header("Navigation")]
     [SerializeField] private GameObject _ground;
@@ -27,6 +31,7 @@ public class VillageController : MonoBehaviour
     private List<GameObject> _attackers = new List<GameObject>();
     
     public Village Info => _info;
+    public GameObject Camera => _camera;
 
     public void Start()
     {

@@ -29,14 +29,14 @@ public partial class AnswerElement : VisualElement
         Add(answerLabel);
 
         _answerIdx = answerIdx;
-        GameManager.CorrectAnswerIdx += OnCorrectAnswerIdxSet;
+        //GameManager.CorrectAnswerIdx += OnCorrectAnswerIdxSet;
 
         SetCorrectAnswer(true);
     }
 
     ~AnswerElement()
     {
-        GameManager.CorrectAnswerIdx -= OnCorrectAnswerIdxSet;
+        //GameManager.CorrectAnswerIdx -= OnCorrectAnswerIdxSet;
     }
 
     private void OnCorrectAnswerIdxSet(int idx)

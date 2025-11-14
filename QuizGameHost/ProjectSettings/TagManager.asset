@@ -7,6 +7,8 @@ TagManager:
   - Defender
   - Attacker
   - Village
+  - VillageCamera
+  - DragCamera
   layers:
   - Default
   - TransparentFX
