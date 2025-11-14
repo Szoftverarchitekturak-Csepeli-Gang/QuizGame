@@ -24,10 +24,7 @@ async function createQuestionBank(owner_id, title, public = false) {
 }
 
 async function deleteQuestionBank(id) {
-    const exists = await getQuestionBankWithId(id)
-    if (!exists) {
-      throw new Error(`No question bank with id: ${id}`);
-    }
+    _ = await getQuestionBankWithId(id)
   
     return await prisma.question_Bank.delete({
       where: { id },
@@ -37,10 +34,7 @@ async function deleteQuestionBank(id) {
 async function updateQuestionBank(id, owner_id, title, public)
 {
   //TODO: check if owner exists
-  const exists = await getQuestionBankWithId(id)
-  if (!exists) {
-    throw new Error(`No question bank with id: ${id}`);
-  }
+  _ = await getQuestionBankWithId(id)
 
   return await prisma.question_Bank.update({
     where: { id },
@@ -76,9 +70,15 @@ async function getAllQuestionBanks() {
 }
 
 async function getQuestionBankWithId(id) {
-  return await prisma.question_Bank.findUnique({
+  const questionBank = await prisma.question_Bank.findUnique({
     where: { id },
   });
+
+  if(!questionBank){
+    throw new Error(`No question bank with id: ${id}`);
+  }
+
+  return questionBank;
 }
 
 async function filterQuestionBanksByTitle(title_filter) {
