@@ -12,7 +12,7 @@ datasource db {
 
 model Question_Bank {
   id            Int       @id @default(autoincrement())
-  owner_user_id Int       // No auth for now
+  ownerId       Int       // No auth for now
   title         String
   public        Boolean   // Whether the bank could be used by users other than the owner
   questions     Question[]
@@ -21,20 +21,20 @@ model Question_Bank {
 
 model Question {
   id                Int       @id @default(autoincrement()) // Auto-incrementing ID
-  question_bank_id  Int       // Foreign key linking to Question_Banks
+  questionBankId    Int       // Foreign key linking to Question_Banks
   text              String
   optionA           String
   optionB           String
   optionC           String
   optionD           String
   correctAnswer     Int       // Correct answer (1-4 -> have to be restricted outside of the scheme)
-  bank              Question_Bank @relation(fields: [question_bank_id], references: [id]) // Relation to Question_Banks
+  bank              Question_Bank @relation(fields: [questionBankId], references: [id]) // Relation to Question_Banks
 }
 
 model Room {
   id                Int    @id
-  host_id           Int    @unique
-  question_bank_id  Int
+  hostId            Int    @unique
+  questionBankId    Int
   isOpen            Boolean
-  bank              Question_Bank @relation(fields: [question_bank_id], references: [id])
+  bank              Question_Bank @relation(fields: [questionBankId], references: [id])
 }
