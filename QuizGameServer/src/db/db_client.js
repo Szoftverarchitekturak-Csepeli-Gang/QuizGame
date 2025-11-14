@@ -20,7 +20,7 @@ async function InitDatabase() {
 
     const friedCheeseBank = await prisma.question_Bank.create({
       data: {
-        owner_user_id: 1,
+        ownerId: 1,
         title: 'Fried cheese basics',
         public: true,
       },
@@ -28,7 +28,7 @@ async function InitDatabase() {
 
     const formula1Bank = await prisma.question_Bank.create({
       data: {
-        owner_user_id: 1,
+        ownerId: 1,
         title: 'Formula1 basics',
         public: true,
       },
@@ -37,7 +37,7 @@ async function InitDatabase() {
     await prisma.question.createMany({
       data: [
         {
-          question_bank_id: friedCheeseBank.id,
+          questionBankId: friedCheeseBank.id,
           text: 'What is the best food in the world?',
           optionA: 'Fried Cheese',
           optionB: 'Cheese (fried)',
@@ -46,7 +46,7 @@ async function InitDatabase() {
           correctAnswer: 1,
         },
         {
-          question_bank_id: friedCheeseBank.id,
+          questionBankId: friedCheeseBank.id,
           text: '2 fried cheese + 3 fried cheese equals what?',
           optionA: '5 fried cheese',
           optionB: 'Lunch',
@@ -55,7 +55,7 @@ async function InitDatabase() {
           correctAnswer: 3,
         },
         {
-          question_bank_id: formula1Bank.id,
+          questionBankId: formula1Bank.id,
           text: 'Who is goind to win the 2025 formula 1 driver championship?',
           optionA: 'Max Verstappen',
           optionB: 'Lando Norris',
@@ -64,7 +64,7 @@ async function InitDatabase() {
           correctAnswer: 4,
         },
         {
-          question_bank_id: formula1Bank.id,
+          questionBankId: formula1Bank.id,
           text: 'How much horsepower a modern formula 1 car generates?',
           optionA: '650',
           optionB: '1000',
