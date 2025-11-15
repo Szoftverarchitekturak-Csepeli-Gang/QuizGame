@@ -937,7 +937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoldierController
   hp: 100
   damagePerHit: 20
-  attackRange: 5
+  attackRange: 6
   attackCooldown: 2
 --- !u!1 &1155968396405710473
 GameObject:

@@ -51,4 +51,14 @@ public class GameScreenPresenter : SingletonBase<GameScreenPresenter>, IPresente
         //Todo: Bind statistics panel
         _screen?.HideQuestionDisplay();
     }
+
+    public void ShowBattleEndPanel(bool victory)
+    {
+        _screen?.OnGameRoundEnded(victory ? RoundResult.VICTORY : RoundResult.FAILURE);
+    }
+
+    public void HideBattleEndPanel()
+    { 
+        //_screen?.ResetResultText();
+    }
 }

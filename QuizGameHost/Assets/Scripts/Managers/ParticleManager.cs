@@ -7,17 +7,19 @@ using UnityEngine;
 
 public class ParticleManager : SingletonBase<ParticleManager>
 {
-    [SerializeField] private ParticleSystem _victoryParticleSystem;
-    [SerializeField] private ParticleSystem _defeatParticleSystem;
+    [SerializeField] private GameObject _victoryParticleSystem;
+    [SerializeField] private GameObject _defeatParticleSystem;
 
-    public void PlayVictoryParticleSystem()
+    public void PlayVictoryParticleSystem(Vector3 position)
     {
-        _victoryParticleSystem.Play();
+        _victoryParticleSystem.transform.position = position;
+        _victoryParticleSystem.GetComponent<ParticleSystem>().Play();
     }
 
-    public void PlayDefeatParticleSystem()
+    public void PlayDefeatParticleSystem(Vector3 position)
     {
-        _defeatParticleSystem.Play();
+        _defeatParticleSystem.transform.position = position;
+        _defeatParticleSystem.GetComponent<ParticleSystem>().Play();
     }
 }
 

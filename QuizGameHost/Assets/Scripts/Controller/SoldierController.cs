@@ -78,7 +78,8 @@ public class SoldierController : MonoBehaviour
                 {
                     _agent.isStopped = true;
                     _attackTimer -= Time.deltaTime;
-
+                    
+                    //Todo: Animation end event
                     if (_attackTimer <= 0f)
                     {
                         _attackTimer = attackCooldown;

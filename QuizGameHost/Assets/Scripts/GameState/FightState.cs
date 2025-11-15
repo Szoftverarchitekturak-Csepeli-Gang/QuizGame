@@ -16,6 +16,8 @@ public class FightState : IGameState
     {
         _timer = 0.0f;
         BattleManager.Instance.OnBattleFinished += HandleBattleFinished;
+        BattleManager.Instance.OnBattleEarlyFinished += HandleBattleEarlyFinished;
+
         RaycastManager.Instance.DisableRaycast(); //To prevent changing current village!
         BlurManager.Instance.DeactivateBlurEffect();
         InputManager.Instance.EnableInputControl();
@@ -26,6 +28,8 @@ public class FightState : IGameState
     public void Exit()
     {
         BattleManager.Instance.OnBattleFinished -= HandleBattleFinished;
+        BattleManager.Instance.OnBattleEarlyFinished -= HandleBattleEarlyFinished;
+        GameScreenPresenter.Instance.HideBattleEndPanel();
         RaycastManager.Instance.EnableRaycast(); 
     }
 
@@ -39,8 +43,6 @@ public class FightState : IGameState
             GameStateManager.Instance.ChangeState(GameStateType.Statistics);
         }
         */
-
-
     }
 
     private IEnumerator StartBattleDelayed()
@@ -51,9 +53,18 @@ public class FightState : IGameState
 
     public void HandleBattleFinished(BattleResult result)
     {
-        //ParticleSystem
-        //....
-
         GameStateManager.Instance.ChangeState(GameStateType.Statistics);
+    }
+
+    public void HandleBattleEarlyFinished(BattleResult result)
+    {
+        var villagePos = RaycastManager.Instance.CurrentSelectedVillage.transform.position + new Vector3(0.0f, 5.0f, 0.0f);
+
+        if (result.attackerWon)
+            ParticleManager.Instance.PlayVictoryParticleSystem(villagePos);
+        else
+            ParticleManager.Instance.PlayDefeatParticleSystem(villagePos);
+
+        GameScreenPresenter.Instance.ShowBattleEndPanel(result.attackerWon);
     }
 }

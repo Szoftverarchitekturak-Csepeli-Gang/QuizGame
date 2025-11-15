@@ -10,6 +10,7 @@ using static UnityEngine.Rendering.STP;
 public class BattleManager : SingletonBase<BattleManager>
 {
     public event Action<BattleResult> OnBattleFinished;
+    public event Action<BattleResult> OnBattleEarlyFinished;
     private readonly List<SoldierController> _attackers = new();
     private readonly List<SoldierController> _defenders = new();
 
@@ -145,16 +146,16 @@ public class BattleManager : SingletonBase<BattleManager>
 
     private IEnumerator BattleEndSequence(bool attackerWin, int attackersAlive, int defendersAlive)
     {
-        yield return new WaitForSeconds(5f);
-
-        //Todo: Partice System Play???
-
         var result = new BattleResult
         {
             attackerWon = attackerWin,
             attackersAlive = attackersAlive,
             defendersAlive = defendersAlive
         };
+
+        OnBattleEarlyFinished?.Invoke(result);
+
+        yield return new WaitForSeconds(8f);
 
         CleanupPreviousBattle();
         OnBattleFinished?.Invoke(result);

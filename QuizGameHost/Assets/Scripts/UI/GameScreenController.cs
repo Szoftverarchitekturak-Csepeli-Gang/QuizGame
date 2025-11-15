@@ -19,7 +19,7 @@ public class GameScreenController : ScreenController
     {
         base.Awake();
         _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Host Asset Table");
-        _resultElement = _ui.Q<VisualElement>("ResultElement");
+        _resultElement = _ui.Q<VisualElement>("ResultStatusElement");
         
         QuestionPanelInit();
         VillagePanelInit();
@@ -162,7 +162,7 @@ public class GameScreenController : ScreenController
 
     #endregion
 
-    private void OnGameRoundEnded(RoundResult result)
+    public void OnGameRoundEnded(RoundResult result)
     {
         if (result == RoundResult.VICTORY)
         {
@@ -182,7 +182,7 @@ public class GameScreenController : ScreenController
         Invoke(nameof(ResetResultText), 2f);
     }
 
-    private void ResetResultText()
+    public void ResetResultText()
     {
         _resultElement.AddToClassList("result-text-start");
     }
