@@ -4,3 +4,7 @@
     height: 58px;
     cursor: resource('Cursors/cursor-point');
 }
+
+.unity-base-dropdown__checkmark {
+    margin-top: 20px;
+}

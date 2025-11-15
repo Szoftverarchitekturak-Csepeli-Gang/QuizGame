@@ -94,7 +94,7 @@
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(757364018425856)" />
                             </Bindings>
                         </ui:Label>
-                        <ui:Label text="QuestionBankName" style="-unity-font-style: bold;">
+                        <ui:Label text="QuestionBankName" class="red-text" style="-unity-font-style: bold;">
                             <Bindings>
                                 <ui:DataBinding property="text" data-source-path="_bankName" data-source-type="DashboardScreenController, Assembly-CSharp" binding-mode="ToTarget" />
                             </Bindings>

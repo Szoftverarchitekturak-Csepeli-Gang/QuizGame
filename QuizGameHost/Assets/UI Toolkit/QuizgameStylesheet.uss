@@ -208,5 +208,6 @@ Button:focus {
     color: var(--yellow);
 }
 
-#QuestionDelete {
+.red-text {
+    color: var(--red);
 }
