@@ -13,7 +13,9 @@ public class BattleManager : SingletonBase<BattleManager>
     private readonly List<SoldierController> _attackers = new();
     private readonly List<SoldierController> _defenders = new();
 
+    private int _returnAssigned = 0;
     private bool _battleRunning;
+    private bool _battleFinished;
     private VillageController _currentVillage;
 
     private void CleanupPreviousBattle()
@@ -59,9 +61,11 @@ public class BattleManager : SingletonBase<BattleManager>
 
         _currentVillage = village;
         _battleRunning = true;
+        _battleFinished = false;
     }
 
     public bool IsBattleRunning => _battleRunning;
+    public bool IsBattleFinished => _battleFinished;
 
     public SoldierController GetClosestEnemy(SoldierController self)
     {
@@ -87,14 +91,28 @@ public class BattleManager : SingletonBase<BattleManager>
         return best;
     }
 
+    public Transform GetReturnSpawnPoint(SoldierController self)
+    {
+        var returnPointCount = _currentVillage.DefenderSpawnPointParent.transform.childCount;
+        var returnPointIndex = _returnAssigned++;
+        _returnAssigned = _returnAssigned % returnPointCount;
+
+        return _currentVillage.DefenderSpawnPointParent.transform.GetChild(returnPointIndex);
+    }
+
     public void OnSoldierDied(SoldierController soldier)
+    {
+        CheckBattleFinished();
+    }
+
+    public void OnSoldierArrived(SoldierController soldier)
     {
         CheckBattleEnd();
     }
 
-    private void CheckBattleEnd()
+    private void CheckBattleFinished()
     {
-        if (!_battleRunning) 
+        if (_battleFinished) 
             return;
 
         int attackersAlive = _attackers.Count(a => a != null && !a.IsDead);
@@ -103,64 +121,34 @@ public class BattleManager : SingletonBase<BattleManager>
         if (attackersAlive > 0 && defendersAlive > 0)
             return;
 
-        _battleRunning = false;
-
-        StartCoroutine(BattleEndSequence(attackersAlive, defendersAlive));
+        _battleFinished = true;
     }
 
-    private IEnumerator BattleEndSequence(int attackersAlive, int defendersAlive)
+    private void CheckBattleEnd()
     {
-        yield return new WaitForSeconds(2f);
-        /*
-        var config = _currentVillage.Config;
+        int attackersAlive = _attackers.Count(a => a != null && !a.IsDead);
+        int attackersArrived = _attackers.Count(a => a != null && !a.IsDead && a.ArrivedAtSpawn);
+        bool allAttackerArrived = attackersArrived == attackersAlive;
 
-        bool attackerWin;
-        // Példa logika: ha legalább X támadó él → támadó win, különben védő win
-        if (attackersAlive >= config.minAttackersToSurviveForWin)
-            attackerWin = true;
-        else
-            attackerWin = false;
+        int defendersAlive = _defenders.Count(d => d != null && !d.IsDead);
+        int defendersArrived = _attackers.Count(a => a != null && !a.IsDead && a.ArrivedAtSpawn);
+        bool allDefenderArrived = defendersArrived == defendersAlive;
 
-        // összegyűjtjük a még élő katonákat
-        var allSoldiers = _attackers.Concat(_defenders)
-            .Where(s => s != null && !s.IsDead)
-            .ToList();
+        bool attackerWin = attackersAlive >= defendersAlive;
 
-        // középre futás
-        var centerPoint = _currentVillage.transform.position; // vagy egy empty "DancePoint"
-        foreach (var s in allSoldiers)
+        if ((attackerWin && allAttackerArrived) || (!attackerWin && allDefenderArrived))
         {
-            s.GoToCelebrate(centerPoint);
+            _battleRunning = false;
+            StartCoroutine(BattleEndSequence(attackerWin, attackersAlive, defendersAlive));
         }
+    }
 
-        // kis várakozás, hogy odaérjenek
-        yield return new WaitForSeconds(2f);
+    private IEnumerator BattleEndSequence(bool attackerWin, int attackersAlive, int defendersAlive)
+    {
+        yield return new WaitForSeconds(5f);
 
-        // anim triggerei
-        foreach (var s in allSoldiers)
-        {
-            if (attackerWin && s.Team == Team.Attacker ||
-                !attackerWin && s.Team == Team.Defender)
-            {
-                s.PlayDanceAnimation();
-            }
-            else
-            {
-                s.PlayLaughAnimation();
-            }
-        }
+        //Todo: Partice System Play???
 
-        // még pár másodperc
-        yield return new WaitForSeconds(2f);
-
-        // particle
-        var particlePrefab = attackerWin ? config.winParticlePrefab : config.loseParticlePrefab;
-        if (particlePrefab != null)
-        {
-            Instantiate(particlePrefab, centerPoint, Quaternion.identity);
-        }
-
-        // eredmény visszajelzése
         var result = new BattleResult
         {
             attackerWon = attackerWin,
@@ -168,8 +156,8 @@ public class BattleManager : SingletonBase<BattleManager>
             defendersAlive = defendersAlive
         };
 
+        CleanupPreviousBattle();
         OnBattleFinished?.Invoke(result);
-        */
     }
 
     public Vector3 GetRandomPointOnNavMesh(float radiusStart, float radiusEnd, VillageController village)
