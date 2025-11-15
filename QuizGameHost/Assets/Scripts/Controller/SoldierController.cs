@@ -59,6 +59,7 @@ public class SoldierController : MonoBehaviour
         {
             _agent.isStopped = false;
             _agent.SetDestination(target.transform.position);
+            _animator.SetFloat("MoveType", _agent.velocity.magnitude);
         }
         else
         {
@@ -70,11 +71,9 @@ public class SoldierController : MonoBehaviour
                 _attackTimer = attackCooldown;
                 target.TakeDamage(damagePerHit);
                 _animator.SetInteger("AttackType", UnityEngine.Random.Range(0, 3));
-                _animator.SetTrigger("AttackTrigger");
+                _animator.SetTrigger("AttackTriggered");
             }
         }
-
-        _animator.SetFloat("MoveType", _agent.velocity.magnitude);
     }
 
     public void TakeDamage(float amount)
@@ -90,10 +89,11 @@ public class SoldierController : MonoBehaviour
 
     private void Die()
     {
+        Debug.Log("Soldier Died");
         _dead = true;
         _agent.isStopped = true;
         _animator.SetInteger("DeathType", UnityEngine.Random.Range(0, 3));
-        _animator.SetTrigger("DeathTrigger");
+        _animator.SetTrigger("DeathTriggered");
         _battle.OnSoldierDied(this);
     }
 }

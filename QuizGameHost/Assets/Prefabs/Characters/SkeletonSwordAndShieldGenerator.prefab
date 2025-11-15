@@ -792,8 +792,8 @@ GameObject:
   - component: {fileID: 8185639721754034062}
   - component: {fileID: 3322673206117969688}
   - component: {fileID: 819196136474962893}
-  - component: {fileID: 8472344305074954668}
   - component: {fileID: 1694066141942559595}
+  - component: {fileID: 8472344305074954668}
   - component: {fileID: 3034992730346157114}
   m_Layer: 0
   m_Name: SkeletonSwordAndShieldGenerator
@@ -865,29 +865,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &8472344305074954668
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1959887721442257930}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Height: 1.8
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &1694066141942559595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,6 +894,29 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 1959887721442257930}
+--- !u!136 &8472344305074954668
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959887721442257930}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &3034992730346157114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -931,8 +931,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoldierController
   hp: 100
   damagePerHit: 10
-  attackRange: 10
-  attackCooldown: 1
+  attackRange: 6
+  attackCooldown: 2.5
 --- !u!1 &2106942292462626085
 GameObject:
   m_ObjectHideFlags: 0

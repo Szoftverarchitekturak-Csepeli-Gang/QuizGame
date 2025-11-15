@@ -75,7 +75,7 @@ public class BattleManager : SingletonBase<BattleManager>
             if (soldier == null || soldier.IsDead)
                 continue;
 
-            float dist = Vector3.Distance(self.transform.position, self.transform.position);
+            float dist = Vector3.Distance(self.transform.position, soldier.transform.position);
 
             if (dist < bestDist)
             {

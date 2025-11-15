@@ -36,4 +36,27 @@ public class VillageController : MonoBehaviour
     public GameObject AttackerSpawnPointParent => _attackerSpawnPointParent;
     public GameObject DefenderSpawnPointParent => _defenderSpawnPointParent;
     public GameObject CharacterContainer { get => _characterContainer; set => _characterContainer = value; }
+
+    public void Start()
+    {
+        foreach (Transform spawnPoint in AttackerSpawnPointParent.transform)
+        {
+            var renderer = spawnPoint.gameObject.GetComponent<MeshRenderer>();
+
+            if (renderer != null)
+            {
+                renderer.enabled = false;
+            }
+        }
+
+        foreach (Transform spawnPoint in DefenderSpawnPointParent.transform)
+        {
+            var renderer = spawnPoint.gameObject.GetComponent<MeshRenderer>();
+
+            if (renderer != null)
+            {
+                renderer.enabled = false;
+            }
+        }
+    }
 }
