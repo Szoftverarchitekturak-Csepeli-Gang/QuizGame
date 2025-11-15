@@ -1226,6 +1226,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PriestSwordAndShieldGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 272253426107933173, guid: 98f56f840adfaf949b5b3c522acbf97d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 595340195097229098, guid: 98f56f840adfaf949b5b3c522acbf97d, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -2255,7 +2259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830470937}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
+  m_LocalRotation: {x: 0.3826834, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 478.4, y: 54.13301, z: 173.87698}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2571,7 +2575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1846530523549185644, guid: 23f907c94ad92894495c02b43a563c6f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2700548119580517043, guid: 23f907c94ad92894495c02b43a563c6f, type: 3}
       propertyPath: m_Enabled
@@ -5330,6 +5334,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlagueSwordAndShieldGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 4747481146190267535, guid: 5cc7f54602f53f74ba9d29e1a121efee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5629275668250397439, guid: 5cc7f54602f53f74ba9d29e1a121efee, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -5425,6 +5433,10 @@ PrefabInstance:
     - target: {fileID: 1530541142161044500, guid: 435d261c1fe73ba46883b819e578219d, type: 3}
       propertyPath: m_Name
       value: CharacterFemaleSwordAndShieldGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530541142161044500, guid: 435d261c1fe73ba46883b819e578219d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2195016239474110126, guid: 435d261c1fe73ba46883b819e578219d, type: 3}
       propertyPath: m_LocalScale.x
@@ -6006,6 +6018,10 @@ PrefabInstance:
     - target: {fileID: 1959887721442257930, guid: dd0f174ea24c3a1479a946d10995533d, type: 3}
       propertyPath: m_Name
       value: SkeletonSwordAndShieldGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1959887721442257930, guid: dd0f174ea24c3a1479a946d10995533d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8185639721754034062, guid: dd0f174ea24c3a1479a946d10995533d, type: 3}
       propertyPath: m_LocalPosition.x

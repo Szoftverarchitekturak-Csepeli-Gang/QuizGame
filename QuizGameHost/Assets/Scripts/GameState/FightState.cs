@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,31 +15,45 @@ public class FightState : IGameState
     public void Enter()
     {
         _timer = 0.0f;
-        RaycastManager.Instance.DisableRaycast();
+        BattleManager.Instance.OnBattleFinished += HandleBattleFinished;
+        RaycastManager.Instance.DisableRaycast(); //To prevent changing current village!
         BlurManager.Instance.DeactivateBlurEffect();
         InputManager.Instance.EnableInputControl();
         CameraManager.Instance.UseVillageCamera(RaycastManager.Instance.CurrentSelectedVillage);
-
-        //BattleManager.Instance
-        //ParticleSystem
+        BattleManager.Instance.StartCoroutine(StartBattleDelayed());
     }
 
     public void Exit()
     {
-        RaycastManager.Instance.EnableRaycast();
+        BattleManager.Instance.OnBattleFinished -= HandleBattleFinished;
+        RaycastManager.Instance.EnableRaycast(); 
     }
 
     public void Update()
     {
+        /*
+        //Just for testing
         _timer += Time.deltaTime;
         if (_timer > 3.0f)
         {
             GameStateManager.Instance.ChangeState(GameStateType.Statistics);
         }
+        */
+
+
     }
 
-    public void HandleBattleEnd()
-    { 
-    
+    private IEnumerator StartBattleDelayed()
+    {
+        yield return new WaitForSeconds(1.5f);
+        BattleManager.Instance.StartBattle(RaycastManager.Instance.CurrentSelectedVillage.GetComponent<VillageController>());
+    }
+
+    public void HandleBattleFinished(BattleResult result)
+    {
+        //ParticleSystem
+        //....
+
+        GameStateManager.Instance.ChangeState(GameStateType.Statistics);
     }
 }

@@ -796,6 +796,7 @@ GameObject:
   - component: {fileID: 6059295382897139793}
   - component: {fileID: 966276019568069538}
   - component: {fileID: 8135348431492538568}
+  - component: {fileID: 7909987692138781835}
   m_Layer: 0
   m_Name: CharacterSwordAndShield
   m_TagString: Attacker
@@ -877,7 +878,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104924181397806359}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
   m_Name: 
@@ -922,6 +923,22 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &7909987692138781835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104924181397806359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ea94b03ca31f94a80a04fb760cc1ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoldierController
+  hp: 100
+  damagePerHit: 20
+  attackRange: 10
+  attackCooldown: 1
 --- !u!1 &1155968396405710473
 GameObject:
   m_ObjectHideFlags: 0

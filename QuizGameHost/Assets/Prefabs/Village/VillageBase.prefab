@@ -187,10 +187,13 @@ MonoBehaviour:
   _info:
     id: -1
     name: '-'
+  _config:
+    attackerCount: 10
+    attackerPrefab: {fileID: 1104924181397806359, guid: 4d3ba9307148e2847b778ff894bce65f, type: 3}
+    defenderCount: 10
+    defenderPrefab: {fileID: 1959887721442257930, guid: dd0f174ea24c3a1479a946d10995533d, type: 3}
   _camera: {fileID: 992787573123469121}
   _characterContainer: {fileID: 4825911955825760394}
-  _defenderPrefab: {fileID: 1959887721442257930, guid: dd0f174ea24c3a1479a946d10995533d, type: 3}
-  _attackerPrefab: {fileID: 1104924181397806359, guid: 4d3ba9307148e2847b778ff894bce65f, type: 3}
   _defenderSpawnPointParent: {fileID: 528589365781230607}
   _attackerSpawnPointParent: {fileID: 2632191289628551720}
   _ground: {fileID: 6381752138587073347}
