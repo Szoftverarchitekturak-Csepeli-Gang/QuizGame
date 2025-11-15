@@ -34,7 +34,7 @@ const getQuerySchema = Joi.object({
         .optional(),
     title: Joi.string()
         .trim()
-        .min(5)
+        .min(1)
         .optional(),
 })
 .or('ownerId', 'title');

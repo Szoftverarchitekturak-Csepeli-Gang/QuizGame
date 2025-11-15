@@ -5,6 +5,11 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
+using Assets.SharedAssets.Networking.Http;
+using Assets.Scripts.Networking.Data;
+using Assets.SharedAssets.Networking.Mappers;
+using Unity.VisualScripting;
+using UnityEditor.Searcher;
 
 public class DashboardScreenController : ScreenController
 {
@@ -89,7 +94,7 @@ public class DashboardScreenController : ScreenController
 
         searchInputField.RegisterValueChangedCallback(async evt =>
         {
-            Debug.Log(_searchInput);
+            if (_searchInput.Length < 1) return;
             _searchedQuestionBanks.Clear();
             var results = await FetchQuestionBanks(_searchInput);
             _searchedQuestionBanks.AddRange(results);
@@ -146,6 +151,14 @@ public class DashboardScreenController : ScreenController
         _currentTab = dashboardTab;
     }
 
+    private void ResetQuestionScrollView()
+    {
+        _questionsScrollView.contentContainer.Clear();
+        questions.Clear();
+        _newQuestionElement = new();
+        _questionsScrollView.contentContainer.Add(_newQuestionElement);
+    }
+
     private void SetupQuestionBankTab()
     {
         _questionsScrollView = _ui.Q<ScrollView>("BankEditList");
@@ -153,8 +166,7 @@ public class DashboardScreenController : ScreenController
         NewQuestionEvent.AddListener(OnNewQuestionCreated);
         DeleteQuestionEvent.AddListener(DeleteQuestion);
 
-        _newQuestionElement = new();
-        _questionsScrollView.contentContainer.Add(_newQuestionElement);
+        ResetQuestionScrollView();
 
         Button saveButton = _ui.Q<Button>("SaveBtn");
         saveButton.clicked += OnSaveButtonClicked;
@@ -186,16 +198,16 @@ public class DashboardScreenController : ScreenController
         if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
         {
             QuestionBank selected = _questionBanksOfUser[selectedIndex];
-
-            // TODO: send delete request to server for selected question bank
-
-            // TODO: after successful deletion, refresh the question banks list
-            LoadBanksOfUser();
+            var response = await NetworkManager.Instance.DeleteQuestionBank(selected.Id);
+            _questionBanksOfUserDropdown.index = -1;
+            SetupQuestionBankTab();
         }
     }
 
     private void OnNewBankClicked()
     {
+        _questionBanksOfUserDropdown.index = -1;
+        ResetQuestionScrollView();
         _questionBankSettings.RemoveFromClassList("hide");
         _noQuestionBanksText.AddToClassList("hide");
     }
@@ -229,18 +241,16 @@ public class DashboardScreenController : ScreenController
 
     private async Task<List<QuestionBank>> FetchQuestionBanks(string search = "", int userID = -1)
     {
-        // TODO: implement fetching question banks from server by user id or fetch all
-        return new List<QuestionBank>
-        {
-            new QuestionBank(1, "General Knowledge"),
-            new QuestionBank(2, "Science"),
-            new QuestionBank(3, "History")
-        };
+        //TODO: show error message on UI (response.ErrorMessage is !response.isSuccess)
+        var response = await NetworkManager.Instance.GetQuestionBanks(search, userID);
+        return response.IsSuccess ? QuestionBankMapper.ToModelList(response.Data) : new List<QuestionBank>();
     }
 
     private async void LoadBanksOfUser()
     {
-        _questionBanksOfUser = await FetchQuestionBanks();
+
+        _questionBanksOfUser = await FetchQuestionBanks(userID:1);
+
 
         var dropdownList = _questionBanksOfUser.Select(r => r.Name).ToList();
         _questionBanksOfUserDropdown.choices = dropdownList;
@@ -259,12 +269,13 @@ public class DashboardScreenController : ScreenController
             _questionBankSettings.AddToClassList("hide");
             _noQuestionBanksText.RemoveFromClassList("hide");
         }
+
     }
 
     private async void LoadQuestionBank(QuestionBank selected)
     {
         _bankName = selected.Name;
-
+        ResetQuestionScrollView();
         List<Question> questionsInBank = await FetchQuestions(selected.Id);
         foreach (Question question in questionsInBank)
         {
@@ -274,7 +285,7 @@ public class DashboardScreenController : ScreenController
 
     private async Task<List<Question>> FetchQuestions(int id)
     {
-        // TODO: fetch questions from server of bank id
-        throw new NotImplementedException();
+        var response = await NetworkManager.Instance.GetQuestionsFromBank(id);
+        return response.IsSuccess ? QuestionMapper.ToModelList(response.Data) : new List<Question>();
     }
 }

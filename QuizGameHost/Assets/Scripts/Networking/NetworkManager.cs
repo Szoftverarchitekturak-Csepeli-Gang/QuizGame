@@ -1,12 +1,14 @@
 using Assets.Scripts.Networking.Data;
 using Assets.Scripts.Networking.Http;
 using Assets.Scripts.Networking.Websocket;
+using Assets.SharedAssets.Networking.Http;
 using UnityEngine.Networking;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 using UnityEngine;
 using UnityEditor.Localization.Plugins.XLIFF.V12;
+using UnityEditor.Searcher;
 
 public class NetworkManager : MonoBehaviour
 {
@@ -75,43 +77,48 @@ public class NetworkManager : MonoBehaviour
         Debug.Log($"[Network] Room players: {string.Join(", ", players)}");
     }
 
-    public async Task<List<QuestionBankDto>> GetAllQuestionBanks()
+    public async Task<Response<List<QuestionBankDto>>> GetQuestionBanks(string search, int ownerId)
     {
-        var questionBanks = await HttpClient.GetAsync<List<QuestionBankDto>>($"/questionbanks");
-        return questionBanks;
+        try
+        {
+            var query = System.Web.HttpUtility.ParseQueryString(string.Empty);
+            if (ownerId != -1)
+                query["ownerId"] = ownerId.ToString();
+            else
+                query["title"] = search;
+
+            var endpoint = "/questionbanks";
+            endpoint += $"?{query}";
+
+            var questionBanks = await HttpClient.GetAsync<List<QuestionBankDto>>(endpoint);
+
+            return Response<List<QuestionBankDto>>.Success(questionBanks);
+        }
+        catch(Exception ex)
+        {
+            return Response<List<QuestionBankDto>>.Failure(ex.Message);
+        }
     }
 
-    public async Task<List<QuestionBankDto>> GetUserQuestionBanks(int user_id)
+    public async Task<Response<bool>> DeleteQuestionBank(int questionBankId)
     {
-        var questionBanks = await HttpClient.GetAsync<List<QuestionBankDto>>($"/questionbanks/user/{user_id}");
-        return questionBanks;
+        try
+        {
+            await HttpClient.DeleteAsync($"/questionbanks/{questionBankId}");
+            return Response<bool>.Success(true);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[Network] Delete failed: {ex.Message}");
+            return Response<bool>.Failure(ex.Message);
+        }
+
     }
 
     public async Task<QuestionBankDto> GetQuestionBankWithId(int id)
     {
         var questionBank = await HttpClient.GetAsync<QuestionBankDto>($"/questionbanks/{id}");
         return questionBank;
-    }
-
-    public async Task<bool> DeleteQuestionBank(int questionBankId)
-    {
-        if (questionBankId < 0)
-        {
-            Debug.LogError($"Invalid data: id cannot be negative!");
-            return false;
-        }
-
-        try
-        {
-            await HttpClient.DeleteAsync($"/questionbanks/{questionBankId}");
-            return true;
-        }
-        catch(Exception ex)
-        {
-            Debug.LogError($"[Network] Delete failed: {ex.Message}");
-            return false;
-        }
-        
     }
 
     public async Task<QuestionBankDto> CreateQuestionBank(int owner_id, string title, bool isPublic)
@@ -129,7 +136,7 @@ public class NetworkManager : MonoBehaviour
 
             var questionBank = new QuestionBankDto
             {
-                owner_user_id = owner_id,
+                ownerId = owner_id,
                 title = title,
                 @public = isPublic
             };
@@ -162,7 +169,7 @@ public class NetworkManager : MonoBehaviour
         var questionBank = new QuestionBankDto
         {
             id = id,
-            owner_user_id = owner_id,
+            ownerId = owner_id,
             title = title,
             @public = isPublic
         };
@@ -179,15 +186,21 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    public async Task<List<QuestionBankDto>> GetFilteredQuestionBanks(string title_filter)
+    public async Task<Response<List<QuestionDto>>> GetQuestionsFromBank(int bankId)
     {
-        var questionBanks = await HttpClient.GetAsync<List<QuestionBankDto>>($"/questionbanks/filter/{title_filter}");
-        return questionBanks;
+        try
+        {
+            var questions = await HttpClient.GetAsync<List<QuestionDto>>($"/questionbanks/{bankId}/questions");
+            return Response<List<QuestionDto>>.Success(questions);
+        }
+        catch (Exception ex)
+        {
+            return Response<List<QuestionDto>>.Failure(ex.Message);
+        }
     }
-
     public void QuestionReceiveHandler(QuestionDto question)
     {
-        Debug.Log($"[Network] Question received: {question.Question}");
+        Debug.Log($"[Network] Question received: {question.text}");
     }
 
     public void ServerMessageHandler(string message)

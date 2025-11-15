@@ -8,7 +8,7 @@ namespace Assets.Scripts.Networking.Data
     public class QuestionBankDto
     {
         public int id { get; set; }
-        public int owner_user_id { get; set; }
+        public int ownerId { get; set; }
         public string title { get; set; }
         public bool @public { get; set; } // @ escapes C# keyword
     }

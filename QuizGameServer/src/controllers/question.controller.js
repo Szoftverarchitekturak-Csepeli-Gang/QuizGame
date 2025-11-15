@@ -24,7 +24,7 @@ const deleteQuestion = tryHandle(async (req, res) => {
 
 const getQuestions = tryHandle(async (req, res) => {
     const questions = await questionDao.getAllQuestionsFromBank(parseInt(req.params.questionBankId));
-    res.status(200).json({questions: questions});
+    res.status(200).json(questions);
 });
 
 const getQuestion = tryHandle(async (req, res) => {

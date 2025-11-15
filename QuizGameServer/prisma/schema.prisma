@@ -28,7 +28,7 @@ model Question {
   optionC           String
   optionD           String
   correctAnswer     Int       // Correct answer (1-4 -> have to be restricted outside of the scheme)
-  bank              Question_Bank @relation(fields: [questionBankId], references: [id]) // Relation to Question_Banks
+  bank              Question_Bank @relation(fields: [questionBankId], references: [id], onDelete: Cascade)
 }
 
 model Room {

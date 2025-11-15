@@ -16,7 +16,7 @@ async function createQuestionBank(owner_id, title, public = false) {
 
   return await prisma.question_Bank.create({
     data: {
-      owner_user_id: owner_id,
+      ownerId: owner_id,
       title: title,
       public: public,
     },
@@ -39,7 +39,7 @@ async function updateQuestionBank(id, owner_id, title, public)
   return await prisma.question_Bank.update({
     where: { id },
     data: { 
-      owner_user_id: owner_id,
+      ownerId: owner_id,
       title: title,
       public: public,
     },
@@ -50,7 +50,7 @@ async function getPublicQuestionBanks(hostId) {
   return await prisma.question_Bank.findMany({
     where : { 
       OR: [
-        { owner_user_id: hostId },
+        { ownerId: hostId },
         { public: true },
       ],
     }      
@@ -61,7 +61,7 @@ async function getUserQuestionBanks(owner_id) {
   //TODO: check if owner exists
 
   return await prisma.question_Bank.findMany({
-    where : {owner_user_id: owner_id},
+    where : {ownerId: owner_id},
   });
 }
 

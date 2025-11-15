@@ -32,8 +32,8 @@ async function createRoom(id, hostId, questionBankId, isOpen = true) {
   return await prisma.room.create({
     data: {
       id,
-      host_id: hostId,
-      question_bank_id: questionBankId,
+      hostId: hostId,
+      questionBankId: questionBankId,
       isOpen,
     },
   });
@@ -62,7 +62,7 @@ async function getRoomWithID(id) {
 
 async function getRoomWithHostId(hostId) {
   return await prisma.room.findUnique({
-    where: { host_id: hostId },
+    where: { hostId: hostId },
   });
 }
 

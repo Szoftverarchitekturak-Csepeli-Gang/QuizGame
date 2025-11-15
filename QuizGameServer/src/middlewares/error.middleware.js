@@ -9,6 +9,7 @@ exports.errorHandler = (error, _req, res, _next) => {
     }
 
     if(error.message){
+        console.log(error.message)
         return res.status(404).send({
             type: "Not Found",
             details: error.message,

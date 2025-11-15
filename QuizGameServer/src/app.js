@@ -13,7 +13,6 @@ app.use(errorHandler);
 async function startServer() {
   try{
     await dbClient.InitDatabase();
-
     app.listen(port, () => {
       console.log(`QuizGameServer listening at http://localhost:${port}`);
     });

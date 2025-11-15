@@ -18,7 +18,7 @@ async function createQuestion(questionBank_id, text, optionA, optionB, optionC, 
 
   return await prisma.question.create({
     data: {
-        question_bank_id: questionBank_id,
+        questionBankId: questionBank_id,
         text: text,
         optionA: optionA,
         optionB: optionB,
@@ -55,7 +55,7 @@ async function updateQuestion(id, questionBank_id, text, optionA, optionB, optio
   return await prisma.question.update({
     where: { id },
     data: {
-        question_bank_id: questionBank_id,
+        questionBankId: questionBank_id,
         text: text,
         optionA: optionA,
         optionB: optionB,
@@ -77,7 +77,7 @@ async function getAllQuestionsFromBank(questionBank_id)
     if (!questionBankExists) throw new Error(`No question bank with id: ${questionBank_id}`);
 
     return await prisma.question.findMany({
-        where: {question_bank_id: questionBank_id},
+        where: {questionBankId: questionBank_id},
         orderBy: { id: 'asc'},
     });
 }

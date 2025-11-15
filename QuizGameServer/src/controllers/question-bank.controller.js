@@ -15,7 +15,7 @@ const getQuestionBanks = tryHandle(async (req , res) => {
         questionBanks = await question_bank_DAO.filterQuestionBanksByTitle(value.title);
     }
 
-    res.status(200).json({questionBanks: questionBanks});
+    res.status(200).json(questionBanks);
 });
 
 const getQuestionBank = tryHandle(async (req, res) => {
@@ -39,7 +39,8 @@ const updateQuestionBank = tryHandle(async (req, res) => {
 
 const deleteQuestionBank = tryHandle(async (req, res) => {
     const questionBank = await question_bank_DAO.deleteQuestionBank(parseInt(req.params.questionBankId));
-    res.status(200).json({questionBank: questionBank}); 
+    console.log("Question bank deleted: ", questionBank)
+    res.status(200).json(questionBank); 
 });
 
 module.exports = {
