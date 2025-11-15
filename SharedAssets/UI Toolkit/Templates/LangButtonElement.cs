@@ -9,7 +9,7 @@ public partial class LangButtonElement : VisualElement
 
     public LangButtonElement()
     {
-        _langButton = new();
+        _langButton = new() { focusable = false };
         _langButton.AddToClassList("icon-button");
         _langButton.RegisterCallback<ClickEvent>(OnLangButtonClicked);
 

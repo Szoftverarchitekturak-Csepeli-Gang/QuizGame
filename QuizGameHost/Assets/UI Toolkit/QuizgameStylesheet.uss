@@ -1,5 +1,13 @@
 :root {
     --icon-color: rgb(114, 114, 114);
+    --blue: rgb(22, 92, 141);
+    --yellow: rgb(249, 211, 98);
+    --red: rgb(222, 63, 79);
+    --white: rgb(225, 225, 232);
+    --gray: rgb(161, 163, 168);
+    transition-property: border-color;
+    transition-duration: 0.2s;
+    --blue-light: rgb(49, 119, 168);
 }
 
 .main-container {
@@ -9,7 +17,7 @@
     padding-right: 120px;
     padding-bottom: 60px;
     padding-left: 120px;
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(255, 255, 255);
 }
 
 .main-container > * {
@@ -21,12 +29,13 @@
 }
 
 .unity-text-element {
-    font-size: 32px;
+    font-size: 30px;
 }
 
 .unity-base-field {
     height: 140px;
     flex-direction: column;
+    cursor: resource('Cursors/cursor-text');
 }
 
 .unity-base-text-field__input {
@@ -34,22 +43,73 @@
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
+    border-color: var(--gray);
     border-top-width: 4px;
     border-right-width: 4px;
     border-bottom-width: 4px;
     border-left-width: 4px;
+    transition-duration: 0.2s;
+    cursor: resource('Cursors/cursor-text');
+}
+
+.unity-base-text-field__input:hover {
+    border-color: var(--blue);
+    border-left-color: rgb(22, 92, 141);
+    border-right-color: rgb(22, 92, 141);
+    border-top-color: rgb(22, 92, 141);
+    border-bottom-color: rgb(22, 92, 141);
+    transition-duration: 0.2s;
+    cursor: resource('Cursors/cursor-text');
+}
+
+.unity-text-element--inner-input-field-component {
+    cursor: resource('Cursors/cursor-text');
+}
+
+.yellow-button {
+    background-color: var(--yellow);
+    border-width: 4px;
+    border-color: var(--yellow);
+    border-left-width: 4px;
+    border-right-width: 4px;
+    border-top-width: 4px;
+    border-bottom-width: 4px;
+}
+
+.yellow-button:hover {
+    color: var(--blue);
+    border-color: var(--blue);
+    background-color: var(--yellow);
+    cursor: resource('Cursors/cursor-point');
+    border-left-color: var(--yellow);
+    border-top-color: var(--yellow);
 }
 
 Button {
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
     height: 80px;
+    border-width: 4px;
+    border-color: var(--yellow);
+    transition-property: font-size, border-color, background-color;
+    transition-duration: 0.2s, 0.2s, 0.2s;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+Button:hover {
+    border-color: var(--blue);
+    font-size: 33px;
+    transition-property: font-size, border-color, background-color;
+    transition-duration: 0.2s, 0.2s, 0.2s;
+    cursor: resource('Cursors/cursor-point');
+}
+
+Button:focus {
+    background-color: var(--blue);
+    color: var(--white);
+    font-size: 33px;
+    border-color: var(--blue);
 }
 
 .error-message {
@@ -65,6 +125,8 @@ Button {
     margin-left: 8px;
     background-size: 85% 125%;
     height: 90px;
+    background-color: var(--white);
+    border-color: var(--gray);
 }
 
 .unity-progress-bar__container {
@@ -84,30 +146,70 @@ Button {
 
 .hide {
     display: none;
+    transition-property: display, opacity;
+    transition-duration: 0s, 0.2s;
+    transition-delay: 0.2s, 0s;
+    opacity: 0;
 }
 
 #InputContainer > * {
     margin-bottom: 12px;
 }
 
-#AccountOperation {
-    color: rgb(0, 0, 255);
-}
-
 #AccountOperation:hover {
-    color: rgb(83, 199, 255);
+    color: var(--blue);
 }
 
-#Sidebar > * {
-    height: 160px;
-    margin-bottom: 30px;
+.title-font {
+    -unity-font-definition: url("project://database/Assets/AssetPacks/TextMesh%20Pro/Examples%20&%20Extras/Fonts/Anton.ttf?fileID=12800000&guid=997a43b767814dd0a7642ec9b78cba41&type=3#Anton");
+    -unity-font-style: normal;
 }
 
-#GameHeader > .header-container {
+#AccountOperation {
+    color: var(--red);
+    cursor: resource('Cursors/cursor-point');
 }
 
-.unity-base-popup-field__popup .unity-list-view__item {
+#Title {
+    color: var(--blue);
 }
 
-Dropdown > Template > Viewport > Content {
+#TitleGame {
+    color: var(--red);
+}
+
+.background-image {
+    background-image: resource('Cursors/background');
+    -unity-background-image-tint-color: var(--white);
+    background-size: 100% 100%;
+    -unity-background-scale-mode: stretch-to-fill;
+}
+
+.blue-button {
+    background-color: var(--blue);
+    border-width: 4px;
+    border-color: var(--yellow);
+    border-left-width: 4px;
+    border-right-width: 4px;
+    border-top-width: 4px;
+    border-bottom-width: 4px;
+    border-color: var(--blue);
+    color: var(--white);
+}
+
+.blue-button:hover {
+    border-color: var(--blue);
+    background-color: var(--blue-light);
+    cursor: resource('Cursors/cursor-point');
+    border-top-color: var(--blue-light);
+    border-left-color: var(--blue-light);
+    color: var(--yellow);
+}
+
+.red-text {
+    color: var(--red);
+}
+
+.blue-text {
+    color: var(--blue);
 }

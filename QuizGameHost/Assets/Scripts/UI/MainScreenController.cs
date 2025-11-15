@@ -34,9 +34,9 @@ public class MainScreenController : ScreenController
 
     void OnEnable()
     {
-        _localizedAccMsg = LoadLocalization("NoAccMsg");
-        _localizedSendBtnText = LoadLocalization("Login");
-        _localizedOpMsg = LoadLocalization("Register");
+        _localizedAccMsg = LocalizationHelper.LoadLocalization("NoAccMsg");
+        _localizedSendBtnText = LocalizationHelper.LoadLocalization("Login");
+        _localizedOpMsg = LocalizationHelper.LoadLocalization("Register");
 
         _accountMessage = _ui.Q<Label>("AccountMessage");
         _operationMessage = _ui.Q<Label>("AccountOperation");
@@ -54,19 +54,10 @@ public class MainScreenController : ScreenController
 
         _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Host Asset Table");
 
-        BindLabel(_accountMessage, _localizedAccMsg);
-        BindLabel(_operationMessage, _localizedOpMsg);
-        BindLabel(_sendButton, _localizedSendBtnText);
+        LocalizationHelper.BindLabel(_accountMessage, _localizedAccMsg);
+        LocalizationHelper.BindLabel(_operationMessage, _localizedOpMsg);
+        LocalizationHelper.BindLabel(_sendButton, _localizedSendBtnText);
 
-    }
-
-    private LocalizedString LoadLocalization(string stringRef)
-    {
-        return new LocalizedString
-        {
-            TableReference = "Host String Table",
-            TableEntryReference = stringRef
-        };
     }
 
     void OnDisable()
@@ -114,10 +105,10 @@ public class MainScreenController : ScreenController
         }
     }
 
-    private void BindLabel(TextElement element, LocalizedString localized)
-    {
-        localized.StringChanged += s => element.text = s;
-        localized.RefreshString();
-    }
+    // private void BindLabel(TextElement element, LocalizedString localized)
+    // {
+    //     localized.StringChanged += s => element.text = s;
+    //     localized.RefreshString();
+    // }
 
 }

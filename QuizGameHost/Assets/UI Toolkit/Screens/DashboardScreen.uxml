@@ -1,53 +1,55 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/QuizgameStylesheet.uss?fileID=7433441132597879392&amp;guid=624c7b45126eb5947ad048550da1304f&amp;type=3#QuizgameStylesheet" />
     <Style src="project://database/Assets/UI%20Toolkit/DashboardStylesheet.uss?fileID=7433441132597879392&amp;guid=9bba14834c82f084ca6b2e36508584d0&amp;type=3#DashboardStylesheet" />
-    <ui:VisualElement class="main-container" style="flex-grow: 1; padding-top: 60px; flex-direction: row; justify-content: space-evenly;">
-        <ui:VisualElement name="Sidebar" style="flex-grow: 1; height: 100%; margin-top: 0; max-width: 360px; justify-content: flex-start; padding-top: 20px; padding-bottom: 20px; margin-right: 20px;">
-            <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center;">
-                <ui:Label text="Welcome,&#10;User" name="Label" style="font-size: 48px; -unity-text-align: middle-center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+    <ui:VisualElement class="main-container background-image" style="flex-grow: 1; padding-top: 0; flex-direction: row; justify-content: space-evenly; padding-left: 0; padding-right: 0; padding-bottom: 0;">
+        <ui:VisualElement name="Sidebar" style="flex-grow: 1; height: 100%; margin-top: 0; max-width: 420px; justify-content: flex-start; margin-right: 20px; width: 48%;">
+            <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; padding-right: 15px;">
+                <ui:Label text="Welcome,&#10;User" name="Label" class="title-font" style="font-size: 48px; -unity-text-align: middle-center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
                     <Bindings>
                         <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(749078640635904)" />
                     </Bindings>
                 </ui:Label>
                 <ui:Label text="User" name="Username" style="font-size: 48px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
             </ui:VisualElement>
-            <ui:Button text="Question banks" name="QuestionBankBtn">
+            <ui:VisualElement style="flex-grow: 0.5;" />
+            <ui:Button text="Question banks" name="QuestionBankBtn" icon-image="project://database/Assets/Resources/Icons/question.png?fileID=2800000&amp;guid=bde0125006b6b794097d966aab180938&amp;type=3#question" focusable="false" double-click-selects-word="false" triple-click-selects-line="false" class="active-tab blue-button">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(750622714933248)" />
                 </Bindings>
             </ui:Button>
-            <ui:Button text="Create room" name="CreateRoomBtn">
+            <ui:Button text="Create room" name="CreateRoomBtn" icon-image="project://database/Assets/Resources/Icons/room.png?fileID=2800000&amp;guid=bd114d1f3ae2be54a874a34db8e4c3c8&amp;type=3#room" focusable="false" double-click-selects-word="false" triple-click-selects-line="false" class="blue-button">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(750810858827776)" />
                 </Bindings>
             </ui:Button>
-            <ui:Button text="Log out" name="LogoutBtn">
+            <ui:Button text="Log out" name="LogoutBtn" icon-image="project://database/Assets/Resources/Icons/logout.png?fileID=2800000&amp;guid=26914c51b16ddec47ace7e51182ed06e&amp;type=3#logout" focusable="false" double-click-selects-word="false" triple-click-selects-line="false" class="blue-button">
                 <Bindings>
                     <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(750962159955968)" />
                 </Bindings>
             </ui:Button>
-            <LangButtonElement name="LangButton" style="flex-direction: row-reverse;" />
+            <ui:VisualElement style="flex-grow: 3;" />
+            <LangButtonElement name="LangButton" style="flex-direction: row-reverse; padding-right: 16px;" />
         </ui:VisualElement>
-        <ui:VisualElement name="Content" style="flex-grow: 1; height: 100%; margin-top: 0;">
+        <ui:VisualElement name="Content" style="flex-grow: 1; height: 100%; margin-top: 0; padding-top: 30px; padding-right: 20px; padding-bottom: 30px;">
             <ui:VisualElement name="QuestionBankPage" style="flex-grow: 1;">
                 <ui:VisualElement name="BankSelectorContainer" style="flex-grow: 0; flex-direction: row; align-items: flex-end; justify-content: space-evenly; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
-                    <ui:DropdownField label="Question Bank" name="ChooseBankDropdown" index="-1" style="flex-grow: 1;">
+                    <ui:DropdownField label="Question Bank" name="ChooseBankDropdown" index="-1" style="flex-grow: 1; margin-right: 16px;">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="label" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(750622714933248)" />
                         </Bindings>
                     </ui:DropdownField>
-                    <ui:Button text="New" name="NewBankBtn" style="flex-grow: 1;">
+                    <ui:Button text="New" name="NewBankBtn" focusable="false" double-click-selects-word="false" triple-click-selects-line="false" class="yellow-button" style="flex-grow: 0; width: 300px; margin-right: 16px;">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(751099087204352)" />
                         </Bindings>
                     </ui:Button>
-                    <ui:Button text="Delete" name="DeleteBankBtn" style="flex-grow: 1;">
+                    <ui:Button text="Delete" name="DeleteBankBtn" double-click-selects-word="false" triple-click-selects-line="false" focusable="false" class="red-button" style="flex-grow: 0; width: 300px;">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(751354620981248)" />
                         </Bindings>
                     </ui:Button>
                 </ui:VisualElement>
-                <ui:Label text="Click on &quot;New&quot; to create your first Question Bank." name="NoQuestionBanksText" style="-unity-text-align: upper-center;">
+                <ui:Label text="Click on &quot;New&quot; to create your first Question Bank." name="NoQuestionBanksText" class="red-text" style="-unity-text-align: upper-center;">
                     <Bindings>
                         <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(751859615182848)" />
                     </Bindings>
@@ -59,13 +61,13 @@
                                 <UnityEngine.Localization.LocalizedString property="label" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(751631268884480)" />
                             </Bindings>
                         </ui:TextField>
-                        <ui:Button text="Save" name="SaveBtn" style="width: 20%;">
+                        <ui:Button text="Save" name="SaveBtn" focusable="false" double-click-selects-word="false" triple-click-selects-line="false" class="blue-button" style="width: 20%;">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(751529179525120)" />
                             </Bindings>
                         </ui:Button>
                     </ui:VisualElement>
-                    <ui:ScrollView name="BankEditList" horizontal-scroller-visibility="Hidden" style="height: 60%; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;" />
+                    <ui:ScrollView name="BankEditList" horizontal-scroller-visibility="Hidden" style="height: 80%; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="CreateRoomPage" class="hide" style="flex-grow: 1; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;">
@@ -92,13 +94,13 @@
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(757364018425856)" />
                             </Bindings>
                         </ui:Label>
-                        <ui:Label text="QuestionBankName" style="-unity-font-style: bold;">
+                        <ui:Label text="QuestionBankName" class="red-text" style="-unity-font-style: bold;">
                             <Bindings>
                                 <ui:DataBinding property="text" data-source-path="_bankName" data-source-type="DashboardScreenController, Assembly-CSharp" binding-mode="ToTarget" />
                             </Bindings>
                         </ui:Label>
                     </ui:VisualElement>
-                    <ui:Button text="Create Room" name="WaitingRoomBtn" style="flex-grow: 1;">
+                    <ui:Button text="Create Room" name="WaitingRoomBtn" class="yellow-button" style="flex-grow: 1; width: 350px;">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(750810858827776)" />
                         </Bindings>

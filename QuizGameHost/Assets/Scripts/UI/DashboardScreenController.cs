@@ -22,6 +22,8 @@ public class DashboardScreenController : ScreenController
     private DashboardTab _currentTab;
     private VisualElement _questionBankPage;
     private VisualElement _createRoomPage;
+    private Button _questionBankButton;
+    private Button _createRoomButton;
 
     // question banks tab
     VisualElement _questionBankSettings;
@@ -114,16 +116,16 @@ public class DashboardScreenController : ScreenController
         _questionBankPage = _ui.Q<VisualElement>("QuestionBankPage");
         _createRoomPage = _ui.Q<VisualElement>("CreateRoomPage");
 
-        ShowPage(DashboardTab.QUESTION_BANKS);
+        _questionBankButton = _ui.Q<Button>("QuestionBankBtn");
+        _questionBankButton.clicked += () => ShowPage(DashboardTab.QUESTION_BANKS);
 
-        Button questionBankButton = _ui.Q<Button>("QuestionBankBtn");
-        questionBankButton.clicked += () => ShowPage(DashboardTab.QUESTION_BANKS);
-
-        Button createRoomButton = _ui.Q<Button>("CreateRoomBtn");
-        createRoomButton.clicked += () => ShowPage(DashboardTab.CREATE_ROOM);
+        _createRoomButton = _ui.Q<Button>("CreateRoomBtn");
+        _createRoomButton.clicked += () => ShowPage(DashboardTab.CREATE_ROOM);
 
         Button logoutButton = _ui.Q<Button>("LogoutBtn");
         logoutButton.clicked += OnLogoutClicked;
+
+        ShowPage(DashboardTab.QUESTION_BANKS, true);
     }
 
     private void OnLogoutClicked()
@@ -132,20 +134,24 @@ public class DashboardScreenController : ScreenController
         ScreenManagerBase.Instance.CurrentScreen = AppScreen.MAIN;
     }
 
-    private void ShowPage(DashboardTab dashboardTab)
+    private void ShowPage(DashboardTab dashboardTab, bool firstLoad = false)
     {
-        if (_currentTab == dashboardTab) return;
+        if (_currentTab == dashboardTab && !firstLoad) return;
 
         if (dashboardTab == DashboardTab.QUESTION_BANKS)
         {
             _questionBankPage.RemoveFromClassList("hide");
             _createRoomPage.AddToClassList("hide");
+            _questionBankButton.AddToClassList("active-tab");
+            _createRoomButton.RemoveFromClassList("active-tab");
             LoadBanksOfUser();
         }
         else
         {
             _questionBankPage.AddToClassList("hide");
             _createRoomPage.RemoveFromClassList("hide");
+            _questionBankButton.RemoveFromClassList("active-tab");
+            _createRoomButton.AddToClassList("active-tab");
         }
 
         _currentTab = dashboardTab;

@@ -123,6 +123,10 @@ MonoBehaviour:
     m_Localized: "Kil\xE9p\xE9s"
     m_Metadata:
       m_Items: []
+  - m_Id: 4432643478491136
+    m_Localized: "\xDAj K\xE9rd\xE9s"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
