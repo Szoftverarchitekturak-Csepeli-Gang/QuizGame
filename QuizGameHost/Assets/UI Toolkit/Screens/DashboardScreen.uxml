@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI%20Toolkit/QuizgameStylesheet.uss?fileID=7433441132597879392&amp;guid=624c7b45126eb5947ad048550da1304f&amp;type=3#QuizgameStylesheet" />
     <Style src="project://database/Assets/UI%20Toolkit/DashboardStylesheet.uss?fileID=7433441132597879392&amp;guid=9bba14834c82f084ca6b2e36508584d0&amp;type=3#DashboardStylesheet" />
     <ui:VisualElement class="main-container background-image" style="flex-grow: 1; padding-top: 0; flex-direction: row; justify-content: space-evenly; padding-left: 0; padding-right: 0; padding-bottom: 0;">
-        <ui:VisualElement name="Sidebar" style="flex-grow: 1; height: 100%; margin-top: 0; max-width: 400px; justify-content: flex-start; margin-right: 20px; width: 45%;">
+        <ui:VisualElement name="Sidebar" style="flex-grow: 1; height: 100%; margin-top: 0; max-width: 420px; justify-content: flex-start; margin-right: 20px; width: 48%;">
             <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; padding-right: 15px;">
                 <ui:Label text="Welcome,&#10;User" name="Label" class="title-font" style="font-size: 48px; -unity-text-align: middle-center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
                     <Bindings>

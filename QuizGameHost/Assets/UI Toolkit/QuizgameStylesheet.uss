@@ -29,7 +29,7 @@
 }
 
 .unity-text-element {
-    font-size: 32px;
+    font-size: 30px;
 }
 
 .unity-base-field {
@@ -89,8 +89,8 @@ Button {
     height: 80px;
     border-width: 4px;
     border-color: var(--yellow);
-    transition-property: font-size, border-color;
-    transition-duration: 0.2s, 0.2s;
+    transition-property: font-size, border-color, background-color;
+    transition-duration: 0.2s, 0.2s, 0.2s;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -100,10 +100,9 @@ Button {
 Button:hover {
     border-color: var(--blue);
     font-size: 33px;
-    transition-property: font-size, border-color, -unity-font-style;
+    transition-property: font-size, border-color, background-color;
     transition-duration: 0.2s, 0.2s, 0.2s;
     cursor: resource('Cursors/cursor-point');
-    -unity-font-style: bold;
 }
 
 Button:focus {
@@ -111,7 +110,6 @@ Button:focus {
     color: var(--white);
     font-size: 33px;
     border-color: var(--blue);
-    -unity-font-style: bold;
 }
 
 .error-message {
@@ -210,4 +208,8 @@ Button:focus {
 
 .red-text {
     color: var(--red);
+}
+
+.blue-text {
+    color: var(--blue);
 }
