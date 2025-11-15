@@ -1,6 +1,4 @@
 using System;
-using Assets.Scripts.Networking.Data;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UIElements;
 

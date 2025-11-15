@@ -1,14 +1,4 @@
-using NUnit.Framework;
-using System.Collections.Generic;
-using Unity.AI.Navigation;
-using Unity.AppUI.UI;
-using Unity.Cinemachine;
-using UnityEditor.Build.Pipeline;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.HighDefinition;
-using UnityEngine.UIElements;
 
 public class VillageController : MonoBehaviour
 {

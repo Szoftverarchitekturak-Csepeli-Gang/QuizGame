@@ -1,7 +1,6 @@
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering.HighDefinition;
 
 public class InputManager : SingletonBase<InputManager>
 {

@@ -1,5 +1,3 @@
-using System;
-using UnityEngine;
 using Unity.Properties;
 
 public class Question

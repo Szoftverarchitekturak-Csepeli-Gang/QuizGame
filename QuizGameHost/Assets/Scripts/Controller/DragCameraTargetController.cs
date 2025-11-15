@@ -1,7 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Splines;
-
 public class DragCameraTargetController : MonoBehaviour
 {
     [Header("Movement")]
