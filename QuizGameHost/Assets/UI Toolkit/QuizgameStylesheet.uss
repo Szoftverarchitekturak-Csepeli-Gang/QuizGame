@@ -10,13 +10,6 @@
     --blue-light: rgb(49, 119, 168);
 }
 
-* {
-    cursor: resource('Cursors/cursor');
-    display: flex;
-    transition-property: opacity;
-    transition-duration: 0.1s;
-}
-
 .main-container {
     flex-grow: 1;
     align-content: center;
@@ -163,10 +156,6 @@ Button:focus {
 
 #InputContainer > * {
     margin-bottom: 12px;
-}
-
-#AccountOperation {
-    color: rgb(0, 0, 255);
 }
 
 #AccountOperation:hover {
