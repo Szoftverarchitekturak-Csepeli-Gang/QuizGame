@@ -1,4 +1,14 @@
 :root {
+    --icon-color: rgb(114, 114, 114);
+    --blue: rgb(22, 92, 141);
+    --yellow: rgb(249, 211, 98);
+    --red: rgb(222, 63, 79);
+    --white: rgb(225, 225, 232);
+    --gray: rgb(161, 163, 168);
+    transition-property: border-color;
+    transition-duration: 0.2s;
+    --blue-light: rgb(49, 119, 168);
+    --blue-dark: rgb(9, 47, 75);
 }
 
 #GameHeader > .header-container {
@@ -11,7 +21,16 @@
 }
 
 #GameViewProgress > .unity-progress-bar__container {
-    min-height: 55px;
+    min-height: 40px;
+}
+
+.unity-progress-bar__background {
+    background-color: var(--blue-dark);
+}
+
+.unity-progress-bar__progress {
+    transition-property: background-color;
+    transition-duration: 0.5s;
 }
 
 .result-text-victory {
@@ -29,15 +48,26 @@
     scale: 2 2 2;
 }
 
-QuestionDisplayElement,
+QuestionDisplayElement {
+    width: 90%;
+    height: 80%;
+    background-color: var(--white);
+    border-color: var(--blue);
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
 #SelectVillageElement {
     width: 90%;
     height: 80%;
-    background-color: rgb(255, 255, 255);
-    border-left-color: rgb(46, 46, 46);
-    border-right-color: rgb(46, 46, 46);
-    border-top-color: rgb(46, 46, 46);
-    border-bottom-color: rgb(46, 46, 46);
+    background-color: var(--white);
+    border-color: var(--blue);
     border-top-width: 5px;
     border-right-width: 5px;
     border-bottom-width: 5px;
@@ -61,11 +91,15 @@ QuestionDisplayElement,
 
 .question-label {
     flex-grow: 1;
+    -unity-font-style: bold;
 }
 
 .question-index-label {
     flex-grow: 0.1;
     -unity-text-align: middle-center;
+    font-size: 34px;
+    -unity-font-style: bold;
+    color: var(--red);
 }
 
 .answers-container {
@@ -84,10 +118,7 @@ AnswerElement {
     padding-right: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
-    border-left-color: rgb(65, 65, 65);
-    border-right-color: rgb(65, 65, 65);
-    border-top-color: rgb(65, 65, 65);
-    border-bottom-color: rgb(65, 65, 65);
+    border-color: var(--blue);
     border-top-width: 2px;
     border-right-width: 2px;
     border-bottom-width: 2px;
@@ -103,7 +134,7 @@ AnswerElement {
 }
 
 .completion-bar {
-    background-color: rgb(125, 142, 126);
+    background-color: var(--blue-light);
     flex-grow: 0.2;
     transition-property: flex-grow;
     transition-duration: 1s;
@@ -112,8 +143,28 @@ AnswerElement {
 QuestionDisplayElement > .question-header > .icon-button > .unity-image {
     flex-grow: 1;
     background-image: resource('next-icon');
+    cursor: resource('Cursors/cursor-point');
 }
 
 .correct-answer {
-    background-color: rgb(80, 238, 105);
+    background-color: var(--yellow);
+}
+
+.red-button {
+    background-color: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+    border-left-color: rgb(222, 63, 79);
+    border-right-color: rgb(222, 63, 79);
+    border-top-color: var(--red);
+    border-bottom-color: rgb(222, 63, 79);
+    cursor: resource('Cursors/cursor-point');
+}
+
+.red-button:hover {
+    background-color: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+    border-bottom-color: var(--blue);
+    border-right-color: var(--blue);
 }

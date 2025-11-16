@@ -35,10 +35,25 @@ public class GameScreenPresenter : SingletonBase<GameScreenPresenter>, IPresente
         _screen?.HideQuestionDisplay();
     }
 
-    public void ShowStatisticsPanel(Question question)
+    public void SetCurrentQuestionIndex(int currentIndex, int totalQuestions)
+    {
+        _screen?.SetCurrentQuestionIndex(currentIndex, totalQuestions);
+    }
+
+    public void HandleQuestionTimer(float timer)
+    {
+        _screen?.HandleQuestionTimer(timer);
+    }
+
+    public void InitTimer(float max)
+    {
+        _screen?.InitTimer(max);
+    }
+
+    public void ShowStatisticsPanel(Question question, Action onNext)
     {
         //Todo: Bind statistics panel
-        _screen?.ShowQuestionDisplay(question);
+        _screen?.ShowResultsStatistics(question, new float[] { 0.5f, 0.1f, 0.2f, 0.2f }, onNext);
     }
 
     public void HideStatisticsPanel()
@@ -53,7 +68,7 @@ public class GameScreenPresenter : SingletonBase<GameScreenPresenter>, IPresente
     }
 
     public void HideBattleEndPanel()
-    { 
+    {
         //_screen?.ResetResultText();
     }
 }

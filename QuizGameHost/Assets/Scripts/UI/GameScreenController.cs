@@ -1,9 +1,10 @@
 using System;
+using Unity.Properties;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public enum RoundResult
-{ 
+{
     VICTORY,
     FAILURE
 }
@@ -12,13 +13,15 @@ public class GameScreenController : ScreenController
 {
     private VisualElement _resultElement;
     [SerializeField, HideInInspector] private string _resultText;
+    [SerializeField, HideInInspector] private float _timer;
 
     protected override void Awake()
     {
         base.Awake();
         _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Host Asset Table");
         _resultElement = _ui.Q<VisualElement>("ResultStatusElement");
-        
+
+        TimerElementInit();
         QuestionPanelInit();
         VillagePanelInit();
     }
@@ -121,7 +124,6 @@ public class GameScreenController : ScreenController
 
     private QuestionDisplayElement _questionDisplayElement;
 
-
     private void QuestionPanelInit()
     {
         _questionDisplayElement = _ui.Q<QuestionDisplayElement>();
@@ -140,10 +142,11 @@ public class GameScreenController : ScreenController
         //Todo: Show answers count on panel
     }
 
-    private void HandleTimeTick(int time)
-    { 
-        //Todo: Show time on panel
+    public void SetCurrentQuestionIndex(int currentIndex, int totalQuestions)
+    {
+        _questionDisplayElement.SetCurrentQuestionIndex(currentIndex, totalQuestions);
     }
+
 
     public void ShowQuestionDisplay(Question question)
     {
@@ -160,8 +163,58 @@ public class GameScreenController : ScreenController
 
     #endregion
 
+    #region Timer
+
+    private ProgressBar _questionTimer;
+    private VisualElement _progressBarColor;
+
+    private void TimerElementInit()
+    {
+        _questionTimer = _ui.Q<ProgressBar>("GameViewProgress");
+        HideTimer();
+
+        _progressBarColor = _questionTimer.Q<VisualElement>(className: "unity-progress-bar__progress");
+        _progressBarColor.AddToClassList("blue-background");
+    }
+
+    public void InitTimer(float max)
+    {
+        _questionTimer.RemoveFromClassList("hide");
+        _questionTimer.lowValue = 0f;
+        _questionTimer.highValue = max;
+    }
+
+    public void HideTimer()
+    {
+        _questionTimer.AddToClassList("hide");
+    }
+
+    public void HandleQuestionTimer(float time)
+    {
+        //Todo: Show time on panel
+        _timer = time;
+
+        float p = time / _questionTimer.highValue;
+        if (p > 0.33f && p <= 0.66f)
+        {
+            _progressBarColor.RemoveFromClassList("blue-background");
+            _progressBarColor.RemoveFromClassList("red-background");
+            _progressBarColor.AddToClassList("yellow-background");
+        }
+        else if (p > 0.66f)
+        {
+            _progressBarColor.RemoveFromClassList("blue-background");
+            _progressBarColor.RemoveFromClassList("yellow-background");
+            _progressBarColor.AddToClassList("red-background");
+        }
+    }
+
+    #endregion
+
     public void OnGameRoundEnded(RoundResult result)
     {
+        _resultElement.RemoveFromClassList("hide");
+
         if (result == RoundResult.VICTORY)
         {
             _resultText = "VICTORY";
@@ -177,7 +230,7 @@ public class GameScreenController : ScreenController
 
         _resultElement.RemoveFromClassList("result-text-start");
 
-        Invoke(nameof(ResetResultText), 2f);
+        Invoke(nameof(ResetResultText), 3f);
     }
 
     public void ResetResultText()
@@ -185,10 +238,18 @@ public class GameScreenController : ScreenController
         _resultElement.AddToClassList("result-text-start");
     }
 
-    private void ShowResultsStatistics(Question question, float[] percentages)
+    private void HideResultText()
+    {
+        _resultElement.AddToClassList("hide");
+    }
+
+    public void ShowResultsStatistics(Question question, float[] percentages, Action onNext)
     {
         _questionDisplayElement.LoadQuestion(question);
         _questionDisplayElement.LoadPercentages(percentages);
         _questionDisplayElement.RemoveFromClassList("hide");
+
+        HideResultText();
+        _questionDisplayElement.SetOnNext(onNext);
     }
 }

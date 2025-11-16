@@ -23,10 +23,15 @@ public class Question
         CorrectAnswerIdx = 1;
     }
 
-    public Question(string questionText, string[] answers, int correctAnswerIdx)
+    public Question(string questionText, string[] answers)
     {
         QuestionText = questionText;
         Answers = answers;
+        CorrectAnswerIdx = -1;
+    }
+
+    public Question(string questionText, string[] answers, int correctAnswerIdx) : this(questionText, answers)
+    {
         CorrectAnswerIdx = correctAnswerIdx;
     }
 }

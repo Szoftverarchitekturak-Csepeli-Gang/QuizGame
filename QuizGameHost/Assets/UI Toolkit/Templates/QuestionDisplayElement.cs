@@ -1,6 +1,8 @@
+using System;
 using Assets.Scripts.Networking.Data;
 using Unity.Properties;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 [UxmlElement]
@@ -11,6 +13,10 @@ public partial class QuestionDisplayElement : VisualElement
     [SerializeField, CreateProperty] private string _answerA, _answerB, _answerC, _answerD;
     [SerializeField, CreateProperty] private float _answerACompletion, _answerBCompletion, _answerCCompletion, _answerDCompletion;
 
+    private Button _nextButton;
+    private Action _onNext;
+    private readonly UnityEvent<int> CorrectAnswerIdx = new();
+
     public QuestionDisplayElement()
     {
         dataSource = this;
@@ -20,11 +26,16 @@ public partial class QuestionDisplayElement : VisualElement
 
         CreateLabel(questionHeader, "question-label", nameof(_questionText));
         CreateLabel(questionHeader, "question-index-label", nameof(_currentQuestionIndexText));
-        CreateNextButton(questionHeader);
 
+        CreateNextButton(questionHeader);
         CreateAnswerElements();
 
         DebugValues();
+    }
+
+    public void SetOnNext(Action onNext)
+    {
+        _onNext = onNext;
     }
 
     private void CreateLabel(VisualElement parent, string className, string bindingPath)
@@ -41,15 +52,16 @@ public partial class QuestionDisplayElement : VisualElement
 
     private void CreateNextButton(VisualElement questionHeader)
     {
-        Button nextButton = new();
-        nextButton.AddToClassList("icon-button");
+        _nextButton = new();
+        _nextButton.AddToClassList("icon-button");
+        _nextButton.AddToClassList("red-button");
         Image nextImage = new();
-        nextButton.Add(nextImage);
-        questionHeader.Add(nextButton);
+        _nextButton.Add(nextImage);
+        questionHeader.Add(_nextButton);
 
-        nextButton.clicked += () =>
+        _nextButton.clicked += () =>
         {
-            // TODO: handle next game state transition
+            _onNext?.Invoke();
             AddToClassList("hide");
         };
     }
@@ -77,7 +89,7 @@ public partial class QuestionDisplayElement : VisualElement
 
     private void CreateAnswerElement(VisualElement answerRow, string labelPath, string completionPath, int answerIdx)
     {
-        AnswerElement answerElement = new(labelPath, completionPath, answerIdx);
+        AnswerElement answerElement = new(labelPath, completionPath, answerIdx, CorrectAnswerIdx);
         answerElement.dataSource = this;
         answerRow.Add(answerElement);
     }
@@ -110,6 +122,12 @@ public partial class QuestionDisplayElement : VisualElement
         _answerB = question.Answers[1];
         _answerC = question.Answers[2];
         _answerD = question.Answers[3];
+
+        // -1 if no correct answer yet -> we are in question state
+        if (question.CorrectAnswerIdx < 0) _nextButton.AddToClassList("hide");
+        else _nextButton.RemoveFromClassList("hide");
+
+        CorrectAnswerIdx.Invoke(question.CorrectAnswerIdx);
     }
 
     public void LoadPercentages(float[] percentages)

@@ -66,25 +66,6 @@
     cursor: resource('Cursors/cursor-text');
 }
 
-.yellow-button {
-    background-color: var(--yellow);
-    border-width: 4px;
-    border-color: var(--yellow);
-    border-left-width: 4px;
-    border-right-width: 4px;
-    border-top-width: 4px;
-    border-bottom-width: 4px;
-}
-
-.yellow-button:hover {
-    color: var(--blue);
-    border-color: var(--blue);
-    background-color: var(--yellow);
-    cursor: resource('Cursors/cursor-point');
-    border-left-color: var(--yellow);
-    border-top-color: var(--yellow);
-}
-
 Button {
     height: 80px;
     border-width: 4px;
@@ -212,4 +193,35 @@ Button:focus {
 
 .blue-text {
     color: var(--blue);
+}
+
+.blue-background {
+    background-color: var(--blue);
+}
+
+.yellow-background {
+    background-color: var(--yellow);
+}
+
+.red-background {
+    background-color: var(--red);
+}
+
+.yellow-button {
+    background-color: var(--yellow);
+    border-width: 4px;
+    border-color: var(--yellow);
+    border-left-width: 4px;
+    border-right-width: 4px;
+    border-top-width: 4px;
+    border-bottom-width: 4px;
+}
+
+.yellow-button:hover {
+    color: var(--blue);
+    border-color: var(--blue);
+    background-color: var(--yellow);
+    cursor: resource('Cursors/cursor-point');
+    border-left-color: var(--yellow);
+    border-top-color: var(--yellow);
 }
