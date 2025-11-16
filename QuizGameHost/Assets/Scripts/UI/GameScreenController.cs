@@ -208,6 +208,8 @@ public class GameScreenController : ScreenController
 
     public void OnGameRoundEnded(RoundResult result)
     {
+        _resultElement.RemoveFromClassList("hide");
+
         if (result == RoundResult.VICTORY)
         {
             _resultText = "VICTORY";
@@ -223,7 +225,7 @@ public class GameScreenController : ScreenController
 
         _resultElement.RemoveFromClassList("result-text-start");
 
-        Invoke(nameof(ResetResultText), 2f);
+        Invoke(nameof(ResetResultText), 3f);
     }
 
     public void ResetResultText()
@@ -231,10 +233,16 @@ public class GameScreenController : ScreenController
         _resultElement.AddToClassList("result-text-start");
     }
 
+    private void HideResultText()
+    {
+        _resultElement.AddToClassList("hide");
+    }
+
     public void ShowResultsStatistics(Question question, float[] percentages)
     {
         _questionDisplayElement.LoadQuestion(question);
         _questionDisplayElement.LoadPercentages(percentages);
         _questionDisplayElement.RemoveFromClassList("hide");
+        HideResultText();
     }
 }
