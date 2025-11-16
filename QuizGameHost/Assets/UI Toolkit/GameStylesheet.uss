@@ -66,10 +66,7 @@ QuestionDisplayElement {
     width: 90%;
     height: 80%;
     background-color: var(--white);
-    border-left-color: rgb(46, 46, 46);
-    border-right-color: rgb(46, 46, 46);
-    border-top-color: var(--blue);
-    border-bottom-color: rgb(46, 46, 46);
+    border-color: var(--blue);
     border-top-width: 5px;
     border-right-width: 5px;
     border-bottom-width: 5px;

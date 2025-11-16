@@ -18,21 +18,25 @@
                 </Bindings>
             </ui:Label>
         </ui:VisualElement>
-        <ui:VisualElement name="SelectVillageElement" enabled="true" class="hide" style="flex-grow: 0; justify-content: space-between; width: 50%; height: 70%; align-content: flex-start; align-self: center;">
+        <ui:VisualElement name="SelectVillageElement" enabled="true" class="background-image hide" style="flex-grow: 0; justify-content: space-between; width: 60%; height: 80%; align-content: flex-start; align-self: center; background-color: rgb(255, 255, 255);">
             <ui:VisualElement name="VillageCard" style="flex-grow: 0; flex-direction: row; height: 80%; padding-top: 8px; padding-right: 16px; padding-bottom: 8px; padding-left: 16px; align-items: stretch; align-self: auto;">
                 <ui:VisualElement name="VillageInfo" style="flex-grow: 0; align-items: stretch; justify-content: center; width: 50%;">
-                    <ui:Label text="Village 2" style="flex-grow: 1; -unity-text-align: lower-center;">
+                    <ui:Label text="Village 2" class="title-font blue-text" style="flex-grow: 1; -unity-text-align: lower-center; font-size: 48px;">
                         <Bindings>
                             <ui:DataBinding property="text" data-source-path="_villageName" data-source-type="GameScreenController, Assembly-CSharp" binding-mode="ToTarget" />
                         </Bindings>
                     </ui:Label>
                     <ui:Label text="info" style="flex-grow: 1; -unity-text-align: upper-center;" />
                 </ui:VisualElement>
-                <ui:VisualElement style="flex-grow: 0; padding-top: 100px; padding-right: 80px; padding-bottom: 100px; padding-left: 80px; width: 50%;">
+                <ui:VisualElement style="flex-grow: 0; padding-top: 100px; padding-right: 80px; padding-bottom: 40px; padding-left: 20px; width: 50%;">
                     <ui:VisualElement name="VillageImage" style="flex-grow: 1; background-image: resource(&apos;village1&apos;);" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:Button text="Conquer" name="ConquerBtn" style="width: 50%; align-self: center; margin-top: 16px; margin-bottom: 16px;" />
+            <ui:Button text="Conquer" name="ConquerBtn" class="red-button" style="width: 50%; align-self: center; margin-top: 16px; margin-bottom: 16px;">
+                <Bindings>
+                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(5092650784100352)" />
+                </Bindings>
+            </ui:Button>
             <ui:Button name="SelectVillageExitBtn" class="icon-button" style="position: absolute; right: 16px; top: 16px; align-items: center; justify-content: center; padding-top: 14px; padding-right: 14px; padding-bottom: 14px; padding-left: 14px; width: 70px; height: 70px;">
                 <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=5866165431930342980&amp;guid=4e0763e5bc9193d4ea18b41e0a0aee72&amp;type=3#Remove@2x&quot;); width: 100%;" />
             </ui:Button>
