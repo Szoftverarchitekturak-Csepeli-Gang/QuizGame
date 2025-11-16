@@ -20,6 +20,9 @@ public class QuestionState : IGameState
 
         GameScreenPresenter.Instance.InitTimer(_questionTime);
         GameScreenPresenter.Instance.ShowQuestionPanel(new Question("Ingredient of cheese", new string[] { "moon", "milk", "flour", "rock" }));
+
+        // TODO: get question index from server
+        GameScreenPresenter.Instance.SetCurrentQuestionIndex(2, 10);
     }
 
     public void Exit()

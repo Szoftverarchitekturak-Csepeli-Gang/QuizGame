@@ -35,6 +35,11 @@ public class GameScreenPresenter : SingletonBase<GameScreenPresenter>, IPresente
         _screen?.HideQuestionDisplay();
     }
 
+    public void SetCurrentQuestionIndex(int currentIndex, int totalQuestions)
+    {
+        _screen?.SetCurrentQuestionIndex(currentIndex, totalQuestions);
+    }
+
     public void HandleQuestionTimer(float timer)
     {
         _screen?.HandleQuestionTimer(timer);

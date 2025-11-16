@@ -142,6 +142,11 @@ public class GameScreenController : ScreenController
         //Todo: Show answers count on panel
     }
 
+    public void SetCurrentQuestionIndex(int currentIndex, int totalQuestions)
+    {
+        _questionDisplayElement.SetCurrentQuestionIndex(currentIndex, totalQuestions);
+    }
+
 
     public void ShowQuestionDisplay(Question question)
     {
