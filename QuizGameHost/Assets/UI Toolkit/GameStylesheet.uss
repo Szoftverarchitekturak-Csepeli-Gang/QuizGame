@@ -8,6 +8,7 @@
     transition-property: border-color;
     transition-duration: 0.2s;
     --blue-light: rgb(49, 119, 168);
+    --blue-dark: rgba(9, 47, 75, 1)
 }
 
 #GameHeader > .header-container {
@@ -24,7 +25,7 @@
 }
 
 .unity-progress-bar__background {
-    background-color: var(--white);
+    background-color: var(--blue-dark);
 }
 
 .unity-progress-bar__progress {

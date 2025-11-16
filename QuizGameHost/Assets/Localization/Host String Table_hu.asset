@@ -127,6 +127,10 @@ MonoBehaviour:
     m_Localized: "\xDAj K\xE9rd\xE9s"
     m_Metadata:
       m_Items: []
+  - m_Id: 5092650784100352
+    m_Localized: "Elfoglal\xE1s"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

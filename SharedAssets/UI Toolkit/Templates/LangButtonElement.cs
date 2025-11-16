@@ -11,6 +11,7 @@ public partial class LangButtonElement : VisualElement
     {
         _langButton = new() { focusable = false };
         _langButton.AddToClassList("icon-button");
+        _langButton.AddToClassList("yellow-button");
         _langButton.RegisterCallback<ClickEvent>(OnLangButtonClicked);
 
         Add(_langButton);

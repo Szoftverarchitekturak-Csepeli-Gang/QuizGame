@@ -26,6 +26,7 @@ public partial class HeaderElement : VisualElement
 
         _backButton = new();
         _backButton.AddToClassList("icon-button");
+        _backButton.AddToClassList("yellow-button");
         _backButton.RegisterCallback<ClickEvent>(OnBackButtonClicked);
 
         Image backImage = new()
