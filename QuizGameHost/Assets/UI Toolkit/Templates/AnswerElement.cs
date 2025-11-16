@@ -1,14 +1,14 @@
-using System;
 using Unity.Properties;
-using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 public partial class AnswerElement : VisualElement
 {
     private int _answerIdx;
     private VisualElement _completionBar;
+    private readonly UnityEvent<int> _idxSetEvent;
 
-    public AnswerElement(string labelPath, string completionPath, int answerIdx)
+    public AnswerElement(string labelPath, string completionPath, int answerIdx, UnityEvent<int> idxSetEvent)
     {
         _completionBar = new();
         _completionBar.AddToClassList("completion-bar");
@@ -29,14 +29,16 @@ public partial class AnswerElement : VisualElement
         Add(answerLabel);
 
         _answerIdx = answerIdx;
-        //GameManager.CorrectAnswerIdx += OnCorrectAnswerIdxSet;
+
+        _idxSetEvent = idxSetEvent;
+        _idxSetEvent.AddListener(OnCorrectAnswerIdxSet);
 
         SetCorrectAnswer(true);
     }
 
     ~AnswerElement()
     {
-        //GameManager.CorrectAnswerIdx -= OnCorrectAnswerIdxSet;
+        _idxSetEvent.RemoveListener(OnCorrectAnswerIdxSet);
     }
 
     private void OnCorrectAnswerIdxSet(int idx)

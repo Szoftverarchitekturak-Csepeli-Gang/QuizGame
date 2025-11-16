@@ -5,6 +5,7 @@ public class QuestionState : IGameState
     public GameStateType Type => GameStateType.Question;
 
     private float _timer;
+    private float _questionTime = 5.0f;
 
     public void Enter()
     {
@@ -17,7 +18,8 @@ public class QuestionState : IGameState
         //Todo: Subsbscibe: Setup network manager websocket handler to connect received data with UI???? 
         //OnQuestionReceived, OnClientAnswerReceived -> Need handlers on the UI side as well
 
-        GameScreenPresenter.Instance.ShowQuestionPanel(new Question());
+        GameScreenPresenter.Instance.InitTimer(_questionTime);
+        GameScreenPresenter.Instance.ShowQuestionPanel(new Question("Ingredient of cheese", new string[] { "moon", "milk", "flour", "rock" }));
     }
 
     public void Exit()
@@ -30,7 +32,10 @@ public class QuestionState : IGameState
     public void Update()
     {
         _timer += Time.deltaTime;
-        if (_timer > 5.0f)
+
+        GameScreenPresenter.Instance.HandleQuestionTimer(_timer);
+
+        if (_timer > _questionTime)
         {
             GameStateManager.Instance.ChangeState(GameStateType.Fight);
         }

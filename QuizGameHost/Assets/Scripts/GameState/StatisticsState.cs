@@ -16,7 +16,7 @@ public class StatisticsState : IGameState
         //Show UI
         //Set continue button action
 
-        GameScreenPresenter.Instance.ShowQuestionPanel(new Question());
+        GameScreenPresenter.Instance.ShowStatisticsPanel(new Question("Ingredient of cheese", new string[] { "moon", "milk", "flour", "rock" }, 1));
     }
 
     public void Exit()

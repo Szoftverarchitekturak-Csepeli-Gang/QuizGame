@@ -4,7 +4,11 @@
     <HeaderElement name="GameHeader" style="flex-direction: row;">
         <LangButtonElement name="LangButton" />
     </HeaderElement>
-    <ui:ProgressBar value="22" name="GameViewProgress" style="position: absolute; bottom: 0; width: 100%;" />
+    <ui:ProgressBar value="22" name="GameViewProgress" style="position: absolute; width: 100%; bottom: 0; align-self: center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+        <Bindings>
+            <ui:DataBinding property="value" data-source-path="_timer" data-source-type="GameScreenController, Assembly-CSharp" binding-mode="ToTarget" />
+        </Bindings>
+    </ui:ProgressBar>
     <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: center; justify-content: center; padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; margin-top: 40px; margin-right: 120px; margin-bottom: 80px; margin-left: 120px;">
         <QuestionDisplayElement class="hide" />
         <ui:VisualElement name="ResultStatusElement" class="result-text-victory result-text-start" style="justify-content: center; width: 800px; height: 500px; border-top-left-radius: 360px; border-top-right-radius: 360px; border-bottom-right-radius: 360px; border-bottom-left-radius: 360px; text-shadow: 4.9px 3.8px 5.2px rgb(255, 213, 250); transition-property: letter-spacing, opacity, scale; transition-duration: 1s, 0.8s, 0.7s;">

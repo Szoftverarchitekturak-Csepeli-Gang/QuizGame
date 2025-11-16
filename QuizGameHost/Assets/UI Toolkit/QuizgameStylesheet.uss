@@ -213,3 +213,15 @@ Button:focus {
 .blue-text {
     color: var(--blue);
 }
+
+.blue-background {
+    background-color: var(--blue);
+}
+
+.yellow-background {
+    background-color: var(--yellow);
+}
+
+.red-background {
+    background-color: var(--red);
+}
