@@ -794,11 +794,10 @@ GameObject:
   - component: {fileID: 6836450062486559914}
   - component: {fileID: 9192178370345835334}
   - component: {fileID: 6059295382897139793}
-  - component: {fileID: 966276019568069538}
   - component: {fileID: 8135348431492538568}
-  - component: {fileID: 7909987692138781835}
+  - component: {fileID: 1453670908274370277}
   m_Layer: 0
-  m_Name: CharacterSwordAndShield
+  m_Name: SoldierMan
   m_TagString: Attacker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -871,35 +870,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &966276019568069538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1104924181397806359}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraphAgent
-  m_Graph: {fileID: 4389983709879279708, guid: afb9705291e4f8d41be6d9ff6e80bef8, type: 2}
-  m_BlackboardVariableOverridesList:
-  - rid: 6030568966029836579
-  m_OriginalGraph: {fileID: 4389983709879279708, guid: afb9705291e4f8d41be6d9ff6e80bef8, type: 2}
-  m_IsInitialised: 0
-  m_IsStarted: 0
-  references:
-    version: 2
-    RefIds:
-    - rid: 6030568966029836579
-      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 1
-          m_Value1: 0
-        Name: Self
-        m_Value: {fileID: 1104924181397806359}
 --- !u!136 &8135348431492538568
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -923,7 +893,7 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &7909987692138781835
+--- !u!114 &1453670908274370277
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -935,10 +905,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ea94b03ca31f94a80a04fb760cc1ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoldierController
-  hp: 100
-  damagePerHit: 20
-  attackRange: 6
-  attackCooldown: 2
+  _attackRange: 6
+  _attackCooldown: 2
 --- !u!1 &1155968396405710473
 GameObject:
   m_ObjectHideFlags: 0

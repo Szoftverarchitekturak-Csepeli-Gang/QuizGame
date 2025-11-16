@@ -5,10 +5,11 @@ public enum Team { Attacker, Defender }
 
 public class SoldierController : MonoBehaviour
 {
-    [SerializeField] private float hp = 100;
-    [SerializeField] private float damagePerHit = 10;
-    [SerializeField] private float attackRange = 1.5f;
-    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private float _attackRange = 1.5f;
+    [SerializeField] private float _attackCooldown = 1f;
+
+    private float _hp = 100;
+    private float _damagePerHit = 10;
 
     private Team _team;
     private BattleManager _battle;
@@ -61,7 +62,7 @@ public class SoldierController : MonoBehaviour
 
                 var dist = Vector3.Distance(transform.position, target.transform.position);
 
-                if (dist > attackRange)
+                if (dist > _attackRange)
                 {
                     _agent.isStopped = false;
                     _agent.SetDestination(target.transform.position);
@@ -75,8 +76,8 @@ public class SoldierController : MonoBehaviour
                     //Todo: Animation end event
                     if (_attackTimer <= 0f)
                     {
-                        _attackTimer = attackCooldown;
-                        target.TakeDamage(damagePerHit);
+                        _attackTimer = _attackCooldown;
+                        target.TakeDamage(_damagePerHit);
                         _animator.SetInteger("AttackType", UnityEngine.Random.Range(0, 3));
                         _animator.SetTrigger("AttackTriggered");
                     }
@@ -122,9 +123,9 @@ public class SoldierController : MonoBehaviour
         if (_dead) 
             return;
 
-        hp -= amount;
+        _hp -= amount;
 
-        if (hp <= 0)
+        if (_hp <= 0)
             Die();
     }
 
@@ -136,5 +137,10 @@ public class SoldierController : MonoBehaviour
         _animator.SetInteger("DeathType", UnityEngine.Random.Range(0, 3));
         _animator.SetTrigger("DeathTriggered");
         _battle.OnSoldierDied(this);
+    }
+
+    public void SetDamagePerHit(float damage)
+    {
+        _damagePerHit = damage;
     }
 }

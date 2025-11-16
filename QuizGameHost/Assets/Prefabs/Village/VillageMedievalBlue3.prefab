@@ -2040,6 +2040,10 @@ PrefabInstance:
       propertyPath: _villageName
       value: Timberwell
       objectReference: {fileID: 0}
+    - target: {fileID: 8265638782979296416, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: _config.defenderPrefab
+      value: 
+      objectReference: {fileID: 6530701699954624700, guid: 27e42b4b22f868f4483dfa5890e577dc, type: 3}
     - target: {fileID: 8638742843656031397, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647

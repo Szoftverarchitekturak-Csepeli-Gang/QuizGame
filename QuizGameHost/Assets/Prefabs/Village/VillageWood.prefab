@@ -1817,6 +1817,10 @@ PrefabInstance:
       propertyPath: _villageName
       value: Woodmere
       objectReference: {fileID: 0}
+    - target: {fileID: 8265638782979296416, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: _config.attackerPrefab
+      value: 
+      objectReference: {fileID: 3130222633283435499, guid: e642416ceb5d4e34aa0134b9a6ce3e4b, type: 3}
     - target: {fileID: 8638742843656031397, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647

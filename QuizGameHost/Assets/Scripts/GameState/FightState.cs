@@ -42,7 +42,9 @@ public class FightState : IGameState
     private IEnumerator StartBattleDelayed()
     {
         yield return new WaitForSeconds(1.5f);
-        BattleManager.Instance.StartBattle(RaycastManager.Instance.CurrentSelectedVillage.GetComponent<VillageController>());
+
+        //Todo: StartBattle victory from question phase success/failure
+        BattleManager.Instance.StartBattle(RaycastManager.Instance.CurrentSelectedVillage.GetComponent<VillageController>(), true);
     }
 
     public void HandleBattleFinished(BattleResult result)
