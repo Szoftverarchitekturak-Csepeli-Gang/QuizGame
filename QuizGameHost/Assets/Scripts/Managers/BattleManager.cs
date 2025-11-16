@@ -43,7 +43,8 @@ public class BattleManager : SingletonBase<BattleManager>
 
             var soldier = go.GetComponent<SoldierController>();
             soldier.Init(team, this);
-            soldier.SetDamagePerHit(10f * (boostDamage ? 1.5f : 1.0f));           
+            soldier.SetDamagePerHit(10f * (boostDamage ? 1.5f : 1.0f));
+            soldier.SetTeamMarkerMaterial(team == Team.Attacker);
 
             if (team == Team.Attacker)
                 _attackers.Add(soldier);

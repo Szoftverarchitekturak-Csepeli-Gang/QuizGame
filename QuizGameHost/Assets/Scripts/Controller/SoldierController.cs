@@ -7,6 +7,9 @@ public class SoldierController : MonoBehaviour
 {
     [SerializeField] private float _attackRange = 1.5f;
     [SerializeField] private float _attackCooldown = 1f;
+    [SerializeField] Material _attackerMaterial;
+    [SerializeField] Material _defenderMaterial;
+
 
     private float _hp = 100;
     private float _damagePerHit = 10;
@@ -16,6 +19,7 @@ public class SoldierController : MonoBehaviour
     private NavMeshAgent _agent;
     private Animator _animator;
     private Transform _returnPoint;
+    private GameObject? _teamMarker;
     private float _attackTimer;
     private bool _dead;
     private bool _returningToSpawn;
@@ -45,6 +49,9 @@ public class SoldierController : MonoBehaviour
         _animator.SetFloat("IdleType", idleAnimType);
         _animator.SetFloat("WalkType", walkAnimType);
         _animator.SetFloat("RunType", runAnimType);
+
+        var marker = transform.Find("TeamMarker");
+        _teamMarker = marker == null ? null : marker.gameObject;
     }
 
     private void Update()
@@ -137,10 +144,23 @@ public class SoldierController : MonoBehaviour
         _animator.SetInteger("DeathType", UnityEngine.Random.Range(0, 3));
         _animator.SetTrigger("DeathTriggered");
         _battle.OnSoldierDied(this);
+        HideTeamMarker();
     }
 
     public void SetDamagePerHit(float damage)
     {
         _damagePerHit = damage;
+    }
+
+    public void SetTeamMarkerMaterial(bool attacker)
+    {
+        if (_teamMarker && _defenderMaterial && _attackerMaterial)
+            _teamMarker.GetComponent<MeshRenderer>().material = attacker ? _attackerMaterial : _defenderMaterial;  
+    }
+
+    public void HideTeamMarker()
+    {
+        if (_teamMarker)
+            _teamMarker.SetActive(false);
     }
 }
