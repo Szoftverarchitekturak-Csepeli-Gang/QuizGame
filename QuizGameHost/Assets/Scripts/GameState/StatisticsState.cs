@@ -16,7 +16,8 @@ public class StatisticsState : IGameState
         //Show UI
         //Set continue button action
 
-        GameScreenPresenter.Instance.ShowStatisticsPanel(new Question("Ingredient of cheese", new string[] { "moon", "milk", "flour", "rock" }, 1));
+        GameScreenPresenter.Instance.ShowStatisticsPanel(new Question("Ingredient of cheese", new string[] { "moon", "milk", "flour", "rock" }, 1), OnNext);
+
     }
 
     public void Exit()
@@ -26,11 +27,16 @@ public class StatisticsState : IGameState
 
     public void Update()
     {
-        _timer += Time.deltaTime;
-        if (_timer > 5.0f)
-        {
-            GameStateManager.Instance.ChangeState(GameStateType.Idle);
-        }
+        // _timer += Time.deltaTime;
+        // if (_timer > 5.0f)
+        // {
+
+        // }
+    }
+
+    private void OnNext()
+    {
+        GameStateManager.Instance.ChangeState(GameStateType.Idle);
     }
 
     private void Continue()

@@ -45,10 +45,10 @@ public class GameScreenPresenter : SingletonBase<GameScreenPresenter>, IPresente
         _screen?.InitTimer(max);
     }
 
-    public void ShowStatisticsPanel(Question question)
+    public void ShowStatisticsPanel(Question question, Action onNext)
     {
         //Todo: Bind statistics panel
-        _screen?.ShowResultsStatistics(question, new float[] { 0.5f, 0.1f, 0.2f, 0.2f });
+        _screen?.ShowResultsStatistics(question, new float[] { 0.5f, 0.1f, 0.2f, 0.2f }, onNext);
     }
 
     public void HideStatisticsPanel()

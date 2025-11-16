@@ -14,6 +14,7 @@ public partial class QuestionDisplayElement : VisualElement
     [SerializeField, CreateProperty] private float _answerACompletion, _answerBCompletion, _answerCCompletion, _answerDCompletion;
 
     private Button _nextButton;
+    private Action _onNext;
     private readonly UnityEvent<int> CorrectAnswerIdx = new();
 
     public QuestionDisplayElement()
@@ -25,11 +26,16 @@ public partial class QuestionDisplayElement : VisualElement
 
         CreateLabel(questionHeader, "question-label", nameof(_questionText));
         CreateLabel(questionHeader, "question-index-label", nameof(_currentQuestionIndexText));
-        CreateNextButton(questionHeader);
 
+        CreateNextButton(questionHeader);
         CreateAnswerElements();
 
         DebugValues();
+    }
+
+    public void SetOnNext(Action onNext)
+    {
+        _onNext = onNext;
     }
 
     private void CreateLabel(VisualElement parent, string className, string bindingPath)
@@ -55,8 +61,7 @@ public partial class QuestionDisplayElement : VisualElement
 
         _nextButton.clicked += () =>
         {
-            // TODO: handle next game state transition
-            Debug.Log("nextbutton clicked");
+            _onNext?.Invoke();
             AddToClassList("hide");
         };
     }

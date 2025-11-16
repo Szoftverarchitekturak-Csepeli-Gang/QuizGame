@@ -8,7 +8,7 @@
     transition-property: border-color;
     transition-duration: 0.2s;
     --blue-light: rgb(49, 119, 168);
-    --blue-dark: rgba(9, 47, 75, 1)
+    --blue-dark: rgb(9, 47, 75);
 }
 
 #GameHeader > .header-container {
@@ -143,6 +143,7 @@ AnswerElement {
 QuestionDisplayElement > .question-header > .icon-button > .unity-image {
     flex-grow: 1;
     background-image: resource('next-icon');
+    cursor: resource('Cursors/cursor-point');
 }
 
 .correct-answer {

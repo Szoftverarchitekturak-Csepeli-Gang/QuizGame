@@ -238,11 +238,13 @@ public class GameScreenController : ScreenController
         _resultElement.AddToClassList("hide");
     }
 
-    public void ShowResultsStatistics(Question question, float[] percentages)
+    public void ShowResultsStatistics(Question question, float[] percentages, Action onNext)
     {
         _questionDisplayElement.LoadQuestion(question);
         _questionDisplayElement.LoadPercentages(percentages);
         _questionDisplayElement.RemoveFromClassList("hide");
+
         HideResultText();
+        _questionDisplayElement.SetOnNext(onNext);
     }
 }
