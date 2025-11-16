@@ -28,7 +28,7 @@ public class BattleManager : SingletonBase<BattleManager>
                 Destroy(defender.gameObject);
     }
 
-    private void SpawnSoldiers(Team team, VillageController village)
+    private void SpawnSoldiers(Team team, VillageController village, bool boostDamage)
     {
         var count = team == Team.Attacker ? village.Config.attackerCount : village.Config.defenderCount;
         var spawnPointParent = team == Team.Attacker ? village.AttackerSpawnPointParent : village.DefenderSpawnPointParent;
@@ -43,20 +43,22 @@ public class BattleManager : SingletonBase<BattleManager>
 
             var soldier = go.GetComponent<SoldierController>();
             soldier.Init(team, this);
+            soldier.SetDamagePerHit(10f * (boostDamage ? 1.5f : 1.0f));
+            soldier.SetTeamMarkerMaterial(team == Team.Attacker);
 
-            if(team == Team.Attacker)
+            if (team == Team.Attacker)
                 _attackers.Add(soldier);
             else
                 _defenders.Add(soldier);
         }
     }
 
-    public void StartBattle(VillageController village)
+    public void StartBattle(VillageController village, bool victory)
     {
         CleanupPreviousBattle();
 
-        SpawnSoldiers(Team.Attacker, village);
-        SpawnSoldiers(Team.Defender, village);  
+        SpawnSoldiers(Team.Attacker, village, victory);
+        SpawnSoldiers(Team.Defender, village, !victory);  
 
         _currentVillage = village;
         _battleRunning = true;

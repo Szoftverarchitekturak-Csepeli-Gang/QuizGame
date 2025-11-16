@@ -34,7 +34,7 @@ namespace Assets.Scripts.Networking.Websocket
             var msg = new SocketMessage
             {
                 Type = type,
-                Data = JToken.FromObject(data) // ← Most JToken-t csinálunk belőle
+                Data = JToken.FromObject(data)
             };
 
             var json = JsonConvert.SerializeObject(msg);
