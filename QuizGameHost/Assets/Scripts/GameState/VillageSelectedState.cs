@@ -29,6 +29,5 @@
     private void HandleExit()
     {
         GameStateManager.Instance.ChangeState(GameStateType.Idle);
-        RaycastManager.Instance.ResetSelectedVillage();
     }
 }

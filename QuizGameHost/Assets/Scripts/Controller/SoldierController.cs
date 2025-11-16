@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
 public enum Team { Attacker, Defender }
@@ -24,6 +25,8 @@ public class SoldierController : MonoBehaviour
     private bool _dead;
     private bool _returningToSpawn;
     private bool _arrivedAtSpawn;
+    private bool _isAttacking;
+    private bool _enableAttacking;
 
     public Team Team => _team;
     public bool IsDead => _dead;
@@ -36,8 +39,10 @@ public class SoldierController : MonoBehaviour
         _dead = false;
         _returningToSpawn = false;
         _arrivedAtSpawn = false;
+        _isAttacking = false;
+        _enableAttacking = true;
 
-    _team = team;
+        _team = team;
         _battle = battle;
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
@@ -59,6 +64,9 @@ public class SoldierController : MonoBehaviour
         if (_dead)
             return;
 
+        if (_isAttacking)
+            return;
+
         if (_battle.IsBattleRunning)
         {
             if (!_battle.IsBattleFinished)
@@ -71,18 +79,18 @@ public class SoldierController : MonoBehaviour
 
                 if (dist > _attackRange)
                 {
+                    float speed = _agent.velocity.magnitude;
+
                     _agent.isStopped = false;
                     _agent.SetDestination(target.transform.position);
-                    _animator.SetFloat("MoveType", _agent.velocity.magnitude);
+                    _animator.SetFloat("MoveType", speed);
                 }
                 else
                 {
-                    _agent.isStopped = true;
-                    _attackTimer -= Time.deltaTime;
-                    
-                    //Todo: Animation end event
-                    if (_attackTimer <= 0f)
+                    if (!_isAttacking && _enableAttacking)
                     {
+                        _enableAttacking = false;
+                        _isAttacking = true;
                         _attackTimer = _attackCooldown;
                         target.TakeDamage(_damagePerHit);
                         _animator.SetInteger("AttackType", UnityEngine.Random.Range(0, 3));
@@ -141,6 +149,7 @@ public class SoldierController : MonoBehaviour
         Debug.Log("Soldier Died");
         _dead = true;
         _agent.isStopped = true;
+        _agent.enabled = false;
         _animator.SetInteger("DeathType", UnityEngine.Random.Range(0, 3));
         _animator.SetTrigger("DeathTriggered");
         _battle.OnSoldierDied(this);
@@ -162,5 +171,19 @@ public class SoldierController : MonoBehaviour
     {
         if (_teamMarker)
             _teamMarker.SetActive(false);
+    }
+
+    public void OnAttackAnimationEnd()
+    {
+        _isAttacking = false;
+
+        StartCoroutine(ResetAttackEnable());
+    }
+
+    //Need to delay attack, so soldier can reposition himself correctly!
+    private IEnumerator ResetAttackEnable()
+    {
+        yield return new WaitForSeconds(0.1f);
+        _enableAttacking = true;
     }
 }

@@ -6,12 +6,11 @@ public class IdleState : IGameState
 
     public void Enter()
     {
-        RaycastManager.Instance.OnVillageSelectChanged += NextState;
+        RaycastManager.Instance.ResetSelectedVillage();
         CameraManager.Instance.UseMainCamera();
         InputManager.Instance.EnableInputControl();
         BlurManager.Instance.DeactivateBlurEffect();
-
-        //_ctx.UI.HideAll();
+        RaycastManager.Instance.OnVillageSelectChanged += NextState;
     }
 
     public void Exit()

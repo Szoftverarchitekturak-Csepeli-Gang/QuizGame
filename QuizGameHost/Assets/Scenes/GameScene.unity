@@ -119,6 +119,105 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &56158403 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 232757488603879730, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+  m_PrefabInstance: {fileID: 5980963357157774001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03cd9986bc55ef4ba5434dd4ea1e57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CityController
+--- !u!114 &56158404 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2205938968085008769, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+  m_PrefabInstance: {fileID: 5980963357157774001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03cd9986bc55ef4ba5434dd4ea1e57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CityController
+--- !u!114 &56158405 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7095435874368068621, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+  m_PrefabInstance: {fileID: 5980963357157774001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03cd9986bc55ef4ba5434dd4ea1e57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CityController
+--- !u!114 &56158406 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4190955324344352727, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+  m_PrefabInstance: {fileID: 5980963357157774001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03cd9986bc55ef4ba5434dd4ea1e57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CityController
+--- !u!114 &56158407 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8460885103595743031, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+  m_PrefabInstance: {fileID: 5980963357157774001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03cd9986bc55ef4ba5434dd4ea1e57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CityController
+--- !u!114 &56158408 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5474037779409111949, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+  m_PrefabInstance: {fileID: 5980963357157774001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03cd9986bc55ef4ba5434dd4ea1e57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CityController
+--- !u!114 &56158409 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2628104019969437561, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+  m_PrefabInstance: {fileID: 5980963357157774001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03cd9986bc55ef4ba5434dd4ea1e57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CityController
+--- !u!114 &56158410 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5195562476791993504, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+  m_PrefabInstance: {fileID: 5980963357157774001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03cd9986bc55ef4ba5434dd4ea1e57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CityController
+--- !u!114 &56158411 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2073856622801126445, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+  m_PrefabInstance: {fileID: 5980963357157774001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03cd9986bc55ef4ba5434dd4ea1e57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CityController
 --- !u!1 &84640593
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,6 +1082,7 @@ Transform:
   - {fileID: 904182012}
   - {fileID: 739645624}
   - {fileID: 208404399}
+  - {fileID: 1108823715}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705529571
@@ -1332,8 +1432,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830470937}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
-  m_LocalPosition: {x: 478.4, y: 54.13301, z: 173.87698}
+  m_LocalRotation: {x: -0.15090853, y: 0.8490115, z: -0.35167223, w: -0.36432526}
+  m_LocalPosition: {x: 695.5994, y: 59.823013, z: 977.4893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2080,6 +2180,118 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086118845}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1108823714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1108823715}
+  - component: {fileID: 1108823716}
+  m_Layer: 0
+  m_Name: VillageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1108823715
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108823714}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 634022213}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1108823716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108823714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2625e6d894eed42ac7d8b798efd64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VillageManager
+  _villageConnections:
+  - village: {fileID: 5980963357157774007}
+    neighbors:
+    - {fileID: 5980963357157774006}
+    - {fileID: 5980963357157774005}
+  - village: {fileID: 5980963357157774006}
+    neighbors:
+    - {fileID: 5980963357157774004}
+    - {fileID: 5980963357157774007}
+  - village: {fileID: 5980963357157774005}
+    neighbors:
+    - {fileID: 5980963357157774003}
+    - {fileID: 5980963357157774007}
+    - {fileID: 5980963357157774002}
+  - village: {fileID: 5980963357157774003}
+    neighbors:
+    - {fileID: 56158411}
+    - {fileID: 5980963357157774005}
+  - village: {fileID: 56158411}
+    neighbors:
+    - {fileID: 56158410}
+    - {fileID: 5980963357157774003}
+  - village: {fileID: 5980963357157774004}
+    neighbors:
+    - {fileID: 5980963357157774006}
+    - {fileID: 56158410}
+  - village: {fileID: 56158410}
+    neighbors:
+    - {fileID: 5980963357157774004}
+    - {fileID: 56158411}
+    - {fileID: 56158409}
+  - village: {fileID: 56158409}
+    neighbors:
+    - {fileID: 56158410}
+    - {fileID: 56158408}
+  - village: {fileID: 56158408}
+    neighbors:
+    - {fileID: 56158409}
+    - {fileID: 56158407}
+  - village: {fileID: 56158407}
+    neighbors:
+    - {fileID: 56158406}
+    - {fileID: 56158405}
+  - village: {fileID: 56158406}
+    neighbors:
+    - {fileID: 56158407}
+    - {fileID: 56158404}
+  - village: {fileID: 56158404}
+    neighbors:
+    - {fileID: 56158406}
+    - {fileID: 56158403}
+  - village: {fileID: 56158405}
+    neighbors:
+    - {fileID: 56158407}
+    - {fileID: 56158403}
+  - village: {fileID: 56158403}
+    neighbors:
+    - {fileID: 56158405}
+    - {fileID: 56158404}
+    - {fileID: 5980963357157774002}
+  - village: {fileID: 5980963357157774002}
+    neighbors:
+    - {fileID: 56158403}
+    - {fileID: 5980963357157774005}
+  _startingVillages:
+  - {fileID: 56158404}
+  - {fileID: 5980963357157774007}
+  - {fileID: 56158409}
 --- !u!1 &1123389824
 GameObject:
   m_ObjectHideFlags: 0
@@ -4146,6 +4358,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.000000010644882
       objectReference: {fileID: 0}
+    - target: {fileID: 6824186205848327122, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7038930148654357852, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4161,6 +4377,10 @@ PrefabInstance:
     - target: {fileID: 7867943518036572159, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014431533942575871, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8555813258846987878, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4228,6 +4448,72 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+--- !u!114 &5980963357157774002 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8735426349270552284, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+  m_PrefabInstance: {fileID: 5980963357157774001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03cd9986bc55ef4ba5434dd4ea1e57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CityController
+--- !u!114 &5980963357157774003 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1361750503540423142, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+  m_PrefabInstance: {fileID: 5980963357157774001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03cd9986bc55ef4ba5434dd4ea1e57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CityController
+--- !u!114 &5980963357157774004 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6797474540288597357, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+  m_PrefabInstance: {fileID: 5980963357157774001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03cd9986bc55ef4ba5434dd4ea1e57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CityController
+--- !u!114 &5980963357157774005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 560086863055720060, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+  m_PrefabInstance: {fileID: 5980963357157774001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03cd9986bc55ef4ba5434dd4ea1e57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CityController
+--- !u!114 &5980963357157774006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2630651784113964596, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+  m_PrefabInstance: {fileID: 5980963357157774001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03cd9986bc55ef4ba5434dd4ea1e57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CityController
+--- !u!114 &5980963357157774007 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8830611165385251218, guid: ad0493200a671e24791fc66f22c0ac3a, type: 3}
+  m_PrefabInstance: {fileID: 5980963357157774001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03cd9986bc55ef4ba5434dd4ea1e57e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CityController
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

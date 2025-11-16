@@ -49,6 +49,9 @@ public class FightState : IGameState
 
     public void HandleBattleFinished(BattleResult result)
     {
+        if (result.attackerWon)
+            VillageManager.Instance.VillageConquered(RaycastManager.Instance.CurrentSelectedVillage.GetComponent<VillageController>());
+
         GameStateManager.Instance.ChangeState(GameStateType.Statistics);
     }
 

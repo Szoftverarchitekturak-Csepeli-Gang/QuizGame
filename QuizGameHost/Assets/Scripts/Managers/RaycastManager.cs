@@ -53,6 +53,8 @@ public class RaycastManager : SingletonBase<RaycastManager>
 
         foreach (var village in _villages)
         {
+            if (!village.GetComponent<VillageController>().IsConquerable) continue;
+
             var hitbox = village.transform.Find("RayCastHitbox");
             if (hitbox == null) continue;
 

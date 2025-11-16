@@ -3634,7 +3634,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1
   m_Height: 1.8
@@ -3652,7 +3652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ea94b03ca31f94a80a04fb760cc1ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoldierController
-  _attackRange: 6
+  _attackRange: 7.5
   _attackCooldown: 2
   _attackerMaterial: {fileID: 2100000, guid: 163fba1f4d192e34da9753f6d29d2be6, type: 2}
   _defenderMaterial: {fileID: 2100000, guid: bfc769b79539e864aa3d611896b16024, type: 2}
