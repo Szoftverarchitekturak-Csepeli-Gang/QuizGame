@@ -55,7 +55,6 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    //Use this when hitting back on waiting room
     public async Task LeaveRoom()
     {
         try

@@ -11,6 +11,8 @@ using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEditor.Searcher;
 using SocketIOClient;
 using Assets.SharedAssets.Networking.Websocket;
+using PimDeWitte.UnityMainThreadDispatcher;
+
 public class NetworkManager : SingletonBase<NetworkManager>
 {
     public event Action<int> OnRoomCreated;
