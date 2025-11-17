@@ -2,25 +2,33 @@ using Assets.Scripts.Networking.Data;
 using Assets.Scripts.Networking.Http;
 using Assets.Scripts.Networking.Websocket;
 using Assets.SharedAssets.Networking.Http;
+using UnityEngine.Networking;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 using UnityEngine;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
+using UnityEditor.Searcher;
+using SocketIOClient;
+using Assets.SharedAssets.Networking.Websocket;
+using PimDeWitte.UnityMainThreadDispatcher;
 
 public class NetworkManager : MonoBehaviour
 {
-    public static NetworkManager Instance { get; private set; }
+    public event Action<int> OnRoomCreated;
+    public event Action<string> OnSocketError;
+    public event Action OnPlayerJoined;
+    public event Action OnPlayerDisconnected;
 
-    public IUnityWebSocketClient WebSocketClient { get; private set; }
+    public static NetworkManager Instance { get; private set; }
+    public IUnitySocketIOClient socketIOClient { get; private set; }
     public IUnityHttpClient HttpClient { get; private set; }
 
-    [SerializeField] private string _serverUrl = "ws://localhost:8080/ws";
     [SerializeField] private string _apiBaseUrl = "http://localhost:8080";
-
-    private int _roomIndex = 0;
 
     private async void Awake()
     {
+
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -30,36 +38,31 @@ public class NetworkManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        WebSocketClient = new UnityWebSocketClient(new NativeWebSocketClient());
+        socketIOClient = new UnitySocketIOClient();
         HttpClient = new UnityHttpClient(_apiBaseUrl);
 
-        WebSocketClient.On<QuestionDto>("QuestionReceive", QuestionReceiveHandler);
-        WebSocketClient.On<string>("ServerMessage", ServerMessageHandler);
+        await socketIOClient.ConnectAsync(_apiBaseUrl);
 
-        await WebSocketClient.ConnectAsync(_serverUrl);
+        socketIOClient.On<int>("roomCreated", roomId => OnRoomCreated?.Invoke(roomId));
+        socketIOClient.On<object>("clientConnected", _ => OnPlayerJoined?.Invoke());
+        socketIOClient.On<object>("clientDisconnected", _ => OnPlayerDisconnected?.Invoke());
+        socketIOClient.On<string>("error", message => OnSocketError?.Invoke(message));
     }
-
-    private void Update()
-    {
-        WebSocketClient?.Update();
-    }
-
     private async void OnDestroy()
     {
-        await WebSocketClient.DisconnectAsync();
+        await socketIOClient.DisconnectAsync();
     }
 
-    public async Task CreateRoom()
+    public async Task CreateRoom(int questionBankId)
     {
-        var room = new RoomDto
+        try
         {
-            Id = _roomIndex++,
-            Name = $"Room {_roomIndex}"
-        };
-
-        var response = await HttpClient.PostAsync<RoomDto, string>($"/rooms", room);
-
-        Debug.Log($"[Network] Room created: {response}");
+            await socketIOClient.SendAsync<int>("createRoom", questionBankId);
+        }
+        catch(Exception ex)
+        {
+            Debug.LogError($"[Network] Failed to create room: {ex}");
+        }
     }
 
     public async Task JoinRoom(int roomId)
@@ -194,14 +197,5 @@ public class NetworkManager : MonoBehaviour
         {
             return Response<List<QuestionDto>>.Failure(ex.Message);
         }
-    }
-    public void QuestionReceiveHandler(QuestionDto question)
-    {
-        Debug.Log($"[Network] Question received: {question.text}");
-    }
-
-    public void ServerMessageHandler(string message)
-    {
-        Debug.Log($"[Network] Server message received: {message}");
     }
 }

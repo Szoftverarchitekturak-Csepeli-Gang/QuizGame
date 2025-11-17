@@ -32,8 +32,8 @@ model Question {
 }
 
 model Room {
-  id                Int    @id
-  hostId            Int    @unique
+  id                Int       @id
+  hostId            String    @unique
   questionBankId    Int
   isOpen            Boolean
   bank              Question_Bank @relation(fields: [questionBankId], references: [id])

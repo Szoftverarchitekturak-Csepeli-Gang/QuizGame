@@ -101,10 +101,16 @@ public class DashboardScreenController : ScreenController
         });
     }
 
-    private void OnCreateRoomClicked()
+    private async void OnCreateRoomClicked()
     {
         // TODO: send request to create game room
-        ScreenManagerBase.Instance.CurrentScreen = AppScreen.WAITROOM;
+        int selectedIndex = _questionBanksOfUserDropdownCreateRoom.index;
+        if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
+        {
+            var selectedQuestionBank = _questionBanksOfUser[selectedIndex];
+            await NetworkManager.Instance.CreateRoom(selectedQuestionBank.Id);
+            ScreenManagerBase.Instance.CurrentScreen = AppScreen.WAITROOM;
+        }
     }
 
     private void SetupTabs()

@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Room` MODIFY `hostId` VARCHAR(191) NOT NULL;

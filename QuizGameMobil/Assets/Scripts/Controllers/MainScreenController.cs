@@ -20,32 +20,37 @@ public class MainScreenController : ScreenController
 
         _inputErrorLabel = _ui.Q<Label>("InputError");
         _inputErrorLabel.style.visibility = Visibility.Hidden;
+        NetworkManager.Instance.RoomJoinedEvent += HandleRoomJoined;
+        NetworkManager.Instance.SocketErrorEvent += HandleSocketError;
     }
 
     void OnDisable()
     {
         _joinButton.clicked -= OnJoinButtonClick;
+        if(NetworkManager.Instance != null)
+        {
+            NetworkManager.Instance.RoomJoinedEvent -= HandleRoomJoined;
+            NetworkManager.Instance.SocketErrorEvent -= HandleSocketError;
+        }
     }
 
-    private void OnJoinButtonClick()
+    private async void OnJoinButtonClick()
     {
+        await NetworkManager.Instance.JoinRoom(_roomID);
         Debug.Log($"id: {_roomID}, pass: {_roomPassword}");
-        if (ValidateInputs())
-        {
-            _inputErrorLabel.style.visibility = Visibility.Hidden;
-            // TODO: join room
-            ScreenManagerMobil.Instance.CurrentScreen = AppScreen.WAITROOM;
-        }
-        else
-        {
-            _errorMessage = "Wrong room ID or password";
-            _inputErrorLabel.style.visibility = Visibility.Visible;
-            // TODO: display error message
-        }
     }
 
-    private bool ValidateInputs()
+    private void HandleRoomJoined(int roomId)
     {
-        return true;
+        Debug.Log($"Joined room {roomId}");
+        _inputErrorLabel.style.visibility = Visibility.Hidden;
+        ScreenManagerMobil.Instance.ShowScreen(AppScreen.WAITROOM);
+    }
+
+    private void HandleSocketError(string message)
+    {
+        Debug.Log($"Socket error: {message}");
+        _errorMessage = message;
+        _inputErrorLabel.style.visibility = Visibility.Visible;
     }
 }

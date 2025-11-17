@@ -331,6 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 816740455}
   - component: {fileID: 816740456}
+  - component: {fileID: 816740457}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -365,8 +366,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c30a91738093b49aff700316dde10f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NetworkManager
-  _serverUrl: ws://localhost:8080/ws
   _apiBaseUrl: http://localhost:3000
+--- !u!114 &816740457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816740454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16173428f7358476fa784f899e396692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PimDeWitte.UnityMainThreadDispatcher::PimDeWitte.UnityMainThreadDispatcher.UnityMainThreadDispatcher
 --- !u!1 &1217361808
 GameObject:
   m_ObjectHideFlags: 0

@@ -58,7 +58,7 @@ public abstract class ScreenManagerBase : SingletonBase<ScreenManagerBase>
         }
     }
 
-    private void ShowScreen(AppScreen screen)
+    public void ShowScreen(AppScreen screen)
     {
         if (_currentScreen != screen && _screens.TryGetValue(_currentScreen, out ScreenController curScreen))
         {
