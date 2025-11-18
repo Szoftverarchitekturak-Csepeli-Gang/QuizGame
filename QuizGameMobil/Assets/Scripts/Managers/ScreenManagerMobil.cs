@@ -15,6 +15,8 @@ public class ScreenManagerMobil : ScreenManagerBase
     {
         base.Start();
         CurrentScreen = AppScreen.MAIN;
+
+        NetworkManager.Instance.HostDisconnectedEvent += HandleHostDisconnected;
     }
 
     protected override void LoadScreens()
@@ -23,5 +25,11 @@ public class ScreenManagerMobil : ScreenManagerBase
         RegisterScreen(AppScreen.QUIZ, LoadPrefab(QuizScreenPrefab));
         RegisterScreen(AppScreen.WAITROOM, LoadPrefab(WaitroomScreenPrefab));
         RegisterScreen(AppScreen.FINISH, LoadPrefab(FinishScreenPrefab));
+    }
+
+    protected void HandleHostDisconnected()
+    {
+        //TODO: Show some error message about the disconnected host
+        CurrentScreen = AppScreen.MAIN;
     }
 }

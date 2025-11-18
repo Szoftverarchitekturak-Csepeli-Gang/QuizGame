@@ -66,6 +66,8 @@ public class DashboardScreenController : ScreenController
             }
         });
 
+        RoomManager.Instance.RoomCreated += handleRoomCreated;
+
         SetupBankSearch();
     }
 
@@ -103,13 +105,11 @@ public class DashboardScreenController : ScreenController
 
     private async void OnCreateRoomClicked()
     {
-        // TODO: send request to create game room
         int selectedIndex = _questionBanksOfUserDropdownCreateRoom.index;
         if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
         {
             var selectedQuestionBank = _questionBanksOfUser[selectedIndex];
-            await NetworkManager.Instance.CreateRoom(selectedQuestionBank.Id);
-            ScreenManagerBase.Instance.CurrentScreen = AppScreen.WAITROOM;
+            await RoomManager.Instance.CreateRoom(selectedQuestionBank.Id);
         }
     }
 
@@ -293,5 +293,10 @@ public class DashboardScreenController : ScreenController
     {
         var response = await NetworkManager.Instance.GetQuestionsFromBank(id);
         return response.IsSuccess ? QuestionMapper.ToModelList(response.Data) : new List<Question>();
+    }
+
+    private void handleRoomCreated()
+    {
+        ScreenManagerBase.Instance.CurrentScreen = AppScreen.WAITROOM;
     }
 }

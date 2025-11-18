@@ -13,40 +13,34 @@ public class WaitroomScreenController : ScreenController
     {
         _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Host Asset Table");
         _ui.Q<Button>("StartGameBtn").clicked += OnStartGameButtonClicked;
-        NetworkManager.Instance.OnRoomCreated += SetRoomId;
-        NetworkManager.Instance.OnPlayerJoined += ClientJoinedHandler;
-        NetworkManager.Instance.OnPlayerDisconnected += ClientDisconnectedHandler;
+        RoomManager.Instance.UserCountChanged += SetConnectedUsers;
+        RoomManager.Instance.RoomCreated += SetRoomId;
 
     }
 
     void OnDisable()
     {
-        if (NetworkManager.Instance != null)
+        if (RoomManager.Instance != null)
         {
-            NetworkManager.Instance.OnRoomCreated -= SetRoomId;
-            NetworkManager.Instance.OnPlayerJoined -= ClientJoinedHandler;
-            NetworkManager.Instance.OnPlayerDisconnected -= ClientDisconnectedHandler;
+            RoomManager.Instance.UserCountChanged -= SetConnectedUsers;
+            RoomManager.Instance.RoomCreated -= SetRoomId;
         }
     }
 
-    private void OnStartGameButtonClicked()
+    private async void OnStartGameButtonClicked()
     {
         // TODO: Notify server to start the game
+        await RoomManager.Instance.StartGame();
         ScreenManagerBase.Instance.CurrentScreen = AppScreen.GAME;
     }
 
-    private void ClientJoinedHandler()
+    private void SetConnectedUsers()
     {
-        _connectedUsers++;
+        _connectedUsers = RoomManager.Instance.ConnectedPlayers;
     }
 
-    private void ClientDisconnectedHandler()
+    private void SetRoomId()
     {
-        _connectedUsers--;
-    }
-
-    private void SetRoomId(int roomId)
-    {
-        _roomID = roomId;
+        _roomID = RoomManager.Instance.RoomID;
     }
 }

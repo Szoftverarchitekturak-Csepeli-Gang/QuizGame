@@ -3,13 +3,20 @@ const room_DAO  = require("../db/room_DAO.js");
 
 module.exports = {
     createRoomHandler,
-    disconnectHandler,
     joinRoomHandler,
     leaveRoomHandler,
+    startGameHandler,
 }
 
 async function createRoomHandler(questionBankId, hostSocket)
 {
+    const existingRoom = await room_DAO.getRoomWithHostId(hostSocket.id);
+    if(existingRoom)
+    {
+        hostSocket.emit("error", "Already has an active room!");
+        return;
+    }
+
     const roomID = await generateRoomId();
     try{
         await room_DAO.createRoom(roomID, hostSocket.id, questionBankId);
@@ -23,11 +30,41 @@ async function createRoomHandler(questionBankId, hostSocket)
     }
 }
 
+async function startGameHandler(hostSocket)
+{
+    const existingRoom = await room_DAO.getRoomWithHostId(hostSocket.id);
+    if(!existingRoom)
+    {
+        hostSocket.emit("error", "No active room with this hostID");
+        return;
+    }
+
+    try{
+        await room_DAO.closeRoom(existingRoom.id);
+        hostSocket.to(existingRoom.id).emit("gameStarted");
+    }
+    catch(error){
+        console.log("Error closing room: ", error.message);
+        hostSocket.emit("error", error.message);
+    }
+}
+
+
 async function joinRoomHandler(roomId, clientSocket)
 {
     const existingRoom = await room_DAO.getRoomWithID(roomId);
     if(existingRoom == null){
         clientSocket.emit("error", "Wrong room ID");
+        return;
+    }
+    else if(!existingRoom.isOpen)
+    {
+        clientSocket.emit("error", "Room is closed");
+        return;
+    }
+    else if(clientSocket.data.roomID)
+    {
+        clientSocket.emit("error", "Already connected to a room");
         return;
     }
 
@@ -37,21 +74,8 @@ async function joinRoomHandler(roomId, clientSocket)
     clientSocket.to(existingRoom.hostId).emit("clientConnected");
 }
 
-async function leaveRoomHandler(roomId, clientSocket)
+async function leaveRoomHandler(socket)
 {
-    const clientRoom = clientSocket.data.roomId;
-    if(roomId != clientRoom){
-        clientSocket.emit("error", "Wrong room ID");
-        return;
-    }
-    clientSocket.to(roomId).emit("clientDisconnected")
-    clientSocket.leave(roomId);
-    clientSocket.data.roomId = null;
-}
-
-async function disconnectHandler(socket) {
-    console.log("Socket disconnected:", socket.id);
-
     const existingRoom = await room_DAO.getRoomWithHostId(socket.id);
     const wasHost = existingRoom != null;
 
@@ -59,6 +83,11 @@ async function disconnectHandler(socket) {
         const roomId = existingRoom.id;
         socket.to(roomId).emit("hostDisconnected");
         await room_DAO.deleteRoom(roomId);
+        const roomSockets = await socket.in(roomId).fetchSockets(); // Socket.IO 4+ – MINDEN socket a szobában
+        for (const playerSocket of roomSockets) {
+            playerSocket.data.roomId = null;
+            playerSocket.leave(roomId);
+        }
         console.log("Room deleted: ", roomId);
     }
     else
@@ -66,6 +95,8 @@ async function disconnectHandler(socket) {
         const roomId = socket.data.roomId;
         if (roomId) {
             socket.to(roomId).emit("clientDisconnected");
+            socket.leave(roomId);
+            socket.data.roomId = null;
         }
     }
 }

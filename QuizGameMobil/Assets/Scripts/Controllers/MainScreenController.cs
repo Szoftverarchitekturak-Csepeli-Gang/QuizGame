@@ -44,7 +44,7 @@ public class MainScreenController : ScreenController
     {
         Debug.Log($"Joined room {roomId}");
         _inputErrorLabel.style.visibility = Visibility.Hidden;
-        ScreenManagerMobil.Instance.ShowScreen(AppScreen.WAITROOM);
+        ScreenManagerMobil.Instance.CurrentScreen = AppScreen.WAITROOM;
     }
 
     private void HandleSocketError(string message)

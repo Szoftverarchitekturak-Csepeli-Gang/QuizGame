@@ -11,16 +11,12 @@ using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEditor.Searcher;
 using SocketIOClient;
 using Assets.SharedAssets.Networking.Websocket;
-using PimDeWitte.UnityMainThreadDispatcher;
-
-public class NetworkManager : MonoBehaviour
+public class NetworkManager : SingletonBase<NetworkManager>
 {
     public event Action<int> OnRoomCreated;
     public event Action<string> OnSocketError;
     public event Action OnPlayerJoined;
     public event Action OnPlayerDisconnected;
-
-    public static NetworkManager Instance { get; private set; }
     public IUnitySocketIOClient socketIOClient { get; private set; }
     public IUnityHttpClient HttpClient { get; private set; }
 
@@ -28,19 +24,10 @@ public class NetworkManager : MonoBehaviour
 
     private async void Awake()
     {
+        base.Awake();
 
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
-        socketIOClient = new UnitySocketIOClient();
         HttpClient = new UnityHttpClient(_apiBaseUrl);
-
+        socketIOClient = new UnitySocketIOClient();
         await socketIOClient.ConnectAsync(_apiBaseUrl);
 
         socketIOClient.On<int>("roomCreated", roomId => OnRoomCreated?.Invoke(roomId));
@@ -65,16 +52,28 @@ public class NetworkManager : MonoBehaviour
         }
     }
 
-    public async Task JoinRoom(int roomId)
+    public async Task LeaveRoom()
     {
-        var response = await HttpClient.PostAsync<int, string>($"/rooms/{roomId}/join", roomId);
-        Debug.Log($"[Network] Joined room: {response}");
+        try
+        {
+            await socketIOClient.SendAsync<object>("leaveRoom", null);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[Network] Failed to leave room: {ex}");
+        }
     }
 
-    public async Task GetRoomPlayers()
+    public async Task StartGame()
     {
-        var players = await HttpClient.GetAsync<string[]>($"/rooms/players");
-        Debug.Log($"[Network] Room players: {string.Join(", ", players)}");
+        try
+        {
+            await socketIOClient.SendAsync<object>("gameStarted", null);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[Network] Failed to start game: {ex}");
+        }
     }
 
     public async Task<Response<List<QuestionBankDto>>> GetQuestionBanks(string search, int ownerId)

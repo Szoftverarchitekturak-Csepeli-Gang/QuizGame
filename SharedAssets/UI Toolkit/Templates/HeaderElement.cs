@@ -53,9 +53,9 @@ public partial class HeaderElement : VisualElement
         _baseElement.Add(langButton);
     }
 
-    private void OnBackButtonClicked(ClickEvent evt)
+    private async void OnBackButtonClicked(ClickEvent evt)
     {
-        // TODO: handle leaving the room if currently inside game or waiting room
+        await NetworkManager.Instance.LeaveRoom();
         ScreenManagerBase.Instance.CurrentScreen = AppScreen.MAIN;
     }
 }

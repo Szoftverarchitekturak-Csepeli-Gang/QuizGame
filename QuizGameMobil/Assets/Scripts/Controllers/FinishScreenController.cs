@@ -10,9 +10,9 @@ public class FinishScreenController : ScreenController
         _ui.Q<Button>("ReturnButton").clicked += OnReturnButtonClicked;
     }
 
-    private void OnReturnButtonClicked()
+    private async void OnReturnButtonClicked()
     {
-        // TODO: leave room
+        await NetworkManager.Instance.LeaveRoom();
         ScreenManagerMobil.Instance.CurrentScreen = AppScreen.MAIN;
     }
 }
