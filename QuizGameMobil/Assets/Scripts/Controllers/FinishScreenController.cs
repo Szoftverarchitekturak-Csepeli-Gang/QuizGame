@@ -13,6 +13,6 @@ public class FinishScreenController : ScreenController
     private void OnReturnButtonClicked()
     {
         // TODO: leave room
-        ScreenManagerMobil.Instance.ShowScreen(AppScreen.MAIN);
+        ScreenManagerMobil.Instance.CurrentScreen = AppScreen.MAIN;
     }
 }
