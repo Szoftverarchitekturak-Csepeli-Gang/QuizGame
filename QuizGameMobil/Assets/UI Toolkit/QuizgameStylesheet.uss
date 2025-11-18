@@ -1,5 +1,13 @@
 :root {
-    --icon-color: rgb(114, 114, 114);
+    --icon-color: rgb(125, 108, 108);
+    --blue: rgb(22, 92, 141);
+    --yellow: rgb(249, 211, 98);
+    --red: rgb(222, 63, 79);
+    --white: rgb(225, 225, 232);
+    --gray: rgb(161, 163, 168);
+    transition-property: border-color;
+    transition-duration: 0.2s;
+    --blue-light: rgb(49, 119, 168);
 }
 
 .main-container {
@@ -31,14 +39,21 @@
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
+    border-color: var(--gray);
     border-top-width: 4px;
     border-right-width: 4px;
     border-bottom-width: 4px;
     border-left-width: 4px;
+    transition-duration: 0.2s;
+}
+
+.unity-base-text-field__input:focus {
+    border-color: var(--blue);
+    border-left-color: rgb(22, 92, 141);
+    border-right-color: rgb(22, 92, 141);
+    border-top-color: rgb(22, 92, 141);
+    border-bottom-color: rgb(22, 92, 141);
+    transition-duration: 0.2s;
 }
 
 Button {
@@ -46,7 +61,21 @@ Button {
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
+    transition-property: font-size, border-color, background-color;
+    transition-duration: 0.2s, 0.2s, 0.2s;
+    border-width: 4px;
     height: 120px;
+}
+
+Button:focus {
+    background-color: var(--blue);
+    color: var(--white);
+    font-size: 52px;
+    border-color: var(--blue);
+    border-bottom-color: var(--yellow);
+    border-right-color: var(--yellow);
+    border-top-color: var(--yellow);
+    border-left-color: var(--yellow);
 }
 
 .error-message {
@@ -61,6 +90,7 @@ Button {
     margin-bottom: 8px;
     margin-left: 8px;
     background-size: 85% 125%;
+    background-color: rgb(255, 251, 251);
 }
 
 .unity-progress-bar__container {
@@ -75,9 +105,125 @@ Button {
 
 .header-container {
     flex-direction: row;
-    background-color: rgb(130, 130, 130);
 }
 
 .hide {
     display: none;
+    transition-property: display, opacity;
+    transition-duration: 0s, 0.2s;
+    transition-delay: 0.2s, 0s;
+    opacity: 0;
+}
+
+.title-font {
+    -unity-font-style: normal;
+    -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Examples%20&%20Extras/Fonts/Anton.ttf?fileID=12800000&guid=997a43b767814dd0a7642ec9b78cba41&type=3#Anton");
+}
+
+#Title {
+    color: var(--blue);
+}
+
+#TitleGame {
+    color: var(--red);
+    -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Examples%20&%20Extras/Fonts/Electronic%20Highway%20Sign.TTF?fileID=12800000&guid=8a2b9e2a607dd2143b58c44bc32410b4&type=3#Electronic Highway Sign");
+    font-size: 64px;
+}
+
+.background-image {
+    background-image: resource('background');
+    -unity-background-image-tint-color: var(--white);
+    background-size: 100% 100%;
+    -unity-background-scale-mode: stretch-to-fill;
+}
+
+.blue-button {
+    background-color: var(--blue);
+    border-width: 4px;
+    border-color: var(--yellow);
+    border-left-width: 4px;
+    border-right-width: 4px;
+    border-top-width: 4px;
+    border-bottom-width: 4px;
+    border-color: var(--blue);
+    color: var(--white);
+}
+
+.blue-button:focus {
+    border-color: var(--blue);
+    background-color: var(--blue-light);
+    border-top-color: var(--blue-light);
+    border-left-color: var(--blue-light);
+    color: var(--yellow);
+}
+
+.red-text {
+    color: var(--red);
+}
+
+.blue-text {
+    color: var(--blue);
+}
+
+.blue-background {
+    background-color: var(--blue);
+}
+
+.yellow-background {
+    background-color: var(--yellow);
+}
+
+.red-background {
+    background-color: var(--red);
+}
+
+.yellow-button {
+    background-color: var(--yellow);
+    border-width: 4px;
+    border-color: var(--yellow);
+    border-left-width: 4px;
+    border-right-width: 4px;
+    border-top-width: 4px;
+    border-bottom-width: 4px;
+    color: var(--blue);
+}
+
+.yellow-button:focus {
+    color: var(--blue);
+    border-color: var(--blue);
+    background-color: var(--yellow);
+    border-left-color: var(--yellow);
+    border-top-color: var(--yellow);
+}
+
+#TimeLeft > .unity-progress-bar__container {
+    min-height: 60px;
+    background-color: var(--white);
+}
+
+.unity-progress-bar__background {
+    background-color: var(--blue-dark);
+}
+
+.unity-progress-bar__progress {
+    transition-property: background-color;
+    transition-duration: 0.5s;
+}
+
+.red-button {
+    background-color: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+    border-left-color: rgb(222, 63, 79);
+    border-right-color: rgb(222, 63, 79);
+    border-top-color: var(--red);
+    border-bottom-color: rgb(222, 63, 79);
+}
+
+.red-button:focus {
+    background-color: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+    border-bottom-color: var(--blue);
+    border-right-color: var(--blue);
 }
