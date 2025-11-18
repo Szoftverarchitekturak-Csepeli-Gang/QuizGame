@@ -4,44 +4,26 @@ public class StatisticsState : IGameState
 {
     public GameStateType Type => GameStateType.Statistics;
 
-    private float _timer;
-
     public void Enter()
     {
-        _timer = 0.0f;
         BlurManager.Instance.ActivateBlurEffect();
         InputManager.Instance.DisableInputControl();
         CameraManager.Instance.UseVillageCamera(RaycastManager.Instance.CurrentSelectedVillage);
-
-        //Show UI
-        //Set continue button action
-
         GameScreenPresenter.Instance.ShowStatisticsPanel(new Question("Ingredient of cheese", new string[] { "moon", "milk", "flour", "rock" }, 1), OnNext);
-
     }
 
     public void Exit()
     {
         GameScreenPresenter.Instance.HideQuestionPanel();
+        //VillageManager.Instance.SetAllVillageToConqueredTest();
     }
 
     public void Update()
     {
-        // _timer += Time.deltaTime;
-        // if (_timer > 5.0f)
-        // {
-
-        // }
     }
 
     private void OnNext()
     {
-        GameStateManager.Instance.ChangeState(GameStateType.Idle);
-    }
-
-    private void Continue()
-    {
-        //Village conquered or not??? Set property
-        //Raycast village to null!
+        GameStateManager.Instance.ChangeState(GameStateType.Start);
     }
 }

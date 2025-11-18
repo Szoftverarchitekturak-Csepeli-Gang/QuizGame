@@ -12,15 +12,23 @@ public class GameEndScreenController : ScreenController
         _exitButton = _ui.Q<Button>("ExitButton");
     }
 
+    void Start()
+    {
+        GameEndScreenPresenter.Instance.AttachScreen(this);
+    }
+
+    void OnDestroy()
+    {
+        GameEndScreenPresenter.Instance.DetachScreen();
+    }
+
     void OnEnable()
     {
-        //GameManager.GameEnded += OnGameEnded;
         _exitButton.clicked += OnExitClicked;
     }
 
     void OnDisable()
     {
-        //GameManager.GameEnded -= OnGameEnded;
         _exitButton.clicked -= OnExitClicked;
     }
 
@@ -29,7 +37,7 @@ public class GameEndScreenController : ScreenController
         ScreenManagerBase.Instance.CurrentScreen = AppScreen.DASHBOARD;
     }
 
-    private void OnGameEnded(int rightAnswers, int totalQuestions)
+    public void OnGameEnded(int rightAnswers, int totalQuestions, int conqueredVillages, int totalVillages)
     {
         ScreenManagerBase.Instance.CurrentScreen = AppScreen.FINISH;
         _conqueredVillagesText = $"{rightAnswers} / {totalQuestions}";

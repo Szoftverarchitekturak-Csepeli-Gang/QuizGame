@@ -37,6 +37,7 @@ public class VillageController : MonoBehaviour
     public VillageState State => _state;
 
     public bool IsConquerable => _state == VillageState.Conquerable;
+    public bool IsConquered => _state == VillageState.Conquered;
 
     public GameObject Ground => _ground;
     public GameObject Camera => _camera;

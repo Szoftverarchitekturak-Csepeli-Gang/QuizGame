@@ -8,10 +8,8 @@ public class FightState : IGameState
     private float _timer;
     public void Enter()
     {
-        _timer = 0.0f;
         BattleManager.Instance.OnBattleFinished += HandleBattleFinished;
         BattleManager.Instance.OnBattleEarlyFinished += HandleBattleEarlyFinished;
-
         RaycastManager.Instance.DisableRaycast(); //To prevent changing current village!
         BlurManager.Instance.DeactivateBlurEffect();
         InputManager.Instance.EnableInputControl();
@@ -29,21 +27,13 @@ public class FightState : IGameState
 
     public void Update()
     {
-        /*
-        //Just for testing
-        _timer += Time.deltaTime;
-        if (_timer > 3.0f)
-        {
-            GameStateManager.Instance.ChangeState(GameStateType.Statistics);
-        }
-        */
     }
 
     private IEnumerator StartBattleDelayed()
     {
         yield return new WaitForSeconds(1.5f);
-
-        //Todo: StartBattle victory from question phase success/failure
+        
+        //Todo: StartBattle victory/defeat state from question phase success/failure
         BattleManager.Instance.StartBattle(RaycastManager.Instance.CurrentSelectedVillage.GetComponent<VillageController>(), true);
     }
 
