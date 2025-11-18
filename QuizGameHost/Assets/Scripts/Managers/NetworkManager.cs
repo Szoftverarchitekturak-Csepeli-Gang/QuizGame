@@ -17,6 +17,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
 {
     public event Action<int> OnRoomCreated;
     public event Action<string> OnSocketError;
+    public event Action<QuestionDto> OnQuestionArrived;
     public event Action OnPlayerJoined;
     public event Action OnPlayerDisconnected;
     public IUnitySocketIOClient socketIOClient { get; private set; }
@@ -35,7 +36,8 @@ public class NetworkManager : SingletonBase<NetworkManager>
         socketIOClient.On<int>("roomCreated", roomId => OnRoomCreated?.Invoke(roomId));
         socketIOClient.On<object>("clientConnected", _ => OnPlayerJoined?.Invoke());
         socketIOClient.On<object>("clientDisconnected", _ => OnPlayerDisconnected?.Invoke());
-        socketIOClient.On<string>("error", message => OnSocketError?.Invoke(message));
+        socketIOClient.On<QuestionDto>("newQuestion", (question) => OnQuestionArrived?.Invoke(question));
+        socketIOClient.On<string>("error", message => SocketErrorHandler(message));
     }
     private async void OnDestroy()
     {
@@ -71,6 +73,18 @@ public class NetworkManager : SingletonBase<NetworkManager>
         try
         {
             await socketIOClient.SendAsync<object>("gameStarted", null);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[Network] Failed to start game: {ex}");
+        }
+    }
+
+    public async Task StartNextRound(int questionIndex)
+    {
+        try
+        {
+            await socketIOClient.SendAsync<int>("nextRoundStarted", questionIndex);
         }
         catch (Exception ex)
         {
@@ -198,5 +212,11 @@ public class NetworkManager : SingletonBase<NetworkManager>
         {
             return Response<List<QuestionDto>>.Failure(ex.Message);
         }
+    }
+
+    private void SocketErrorHandler(string errorMessage)
+    {
+        Debug.Log("[Socket] Error: " + errorMessage);
+        OnSocketError?.Invoke(errorMessage);
     }
 }

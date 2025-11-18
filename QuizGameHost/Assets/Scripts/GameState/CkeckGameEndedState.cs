@@ -13,7 +13,7 @@ public class CheckGameEndedState : IGameState
 
         bool gameEnded = false;
         gameEnded |= VillageManager.Instance.AllVillageConquered;
-        //gameEnded |= QuestionManager.Instance.OutOfQuestions;
+        gameEnded |= (RoomManager.Instance.RoundCounter >= RoomManager.Instance.QuestionCount);
 
         if (gameEnded)
             GameStateManager.Instance.ChangeState(GameStateType.GameEnded);

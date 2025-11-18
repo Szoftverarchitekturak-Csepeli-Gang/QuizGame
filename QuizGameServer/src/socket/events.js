@@ -1,7 +1,8 @@
 const { createRoomHandler,
         joinRoomHandler,
         leaveRoomHandler,
-        startGameHandler  } = require('./event-handlers.js')
+        startGameHandler,
+        startRoundHandler  } = require('./event-handlers.js')
 
 module.exports = (io) => {
   io.on("connection", (socket) => {
@@ -18,13 +19,17 @@ module.exports = (io) => {
     socket.on("leaveRoom", async () => {
       await leaveRoomHandler(socket);
     });
+    
+    socket.on("gameStarted", async () => {
+      await startGameHandler(socket)
+    });
+
+    socket.on("nextRoundStarted", async (roundIdx) => {
+      await startRoundHandler(roundIdx, socket)
+    });
 
     socket.on("disconnect", async () => {
       await leaveRoomHandler(socket)
-    });
-
-    socket.on("gameStarted", async () => {
-      await startGameHandler(socket)
     });
   });
 };

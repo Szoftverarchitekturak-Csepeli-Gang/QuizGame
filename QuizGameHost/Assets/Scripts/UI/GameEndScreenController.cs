@@ -32,8 +32,9 @@ public class GameEndScreenController : ScreenController
         _exitButton.clicked -= OnExitClicked;
     }
 
-    private void OnExitClicked()
+    private async void OnExitClicked()
     {
+        await RoomManager.Instance.LeaveRoom();
         ScreenManagerBase.Instance.CurrentScreen = AppScreen.DASHBOARD;
     }
 

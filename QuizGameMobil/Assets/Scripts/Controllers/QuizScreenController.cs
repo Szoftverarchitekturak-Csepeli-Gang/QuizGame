@@ -1,3 +1,6 @@
+using Assets.Scripts.Networking.Data;
+using System;
+using System.Collections;
 using System.Linq;
 using Unity.Properties;
 using UnityEngine;
@@ -15,6 +18,8 @@ public class QuizScreenController : ScreenController
 
     void OnEnable()
     {
+        NetworkManager.Instance.NewQuestionEvent += QuestionReceivedHandler;
+
         VisualElement answerButtons = _ui.Q<VisualElement>("AnswerButtons");
         VisualElement[] answers = answerButtons.Children().ToArray();
         for (int i = 0; i < answerButtons.childCount; i++)

@@ -56,7 +56,7 @@ async function InitDatabase() {
         },
         {
           questionBankId: formula1Bank.id,
-          text: 'Who is goind to win the 2025 formula 1 driver championship?',
+          text: 'Who is going to win the 2025 formula 1 driver championship?',
           optionA: 'Max Verstappen',
           optionB: 'Lando Norris',
           optionC: 'Oscar Piastri',

@@ -1,11 +1,14 @@
 const { generateRoomId } = require("../utils/room-id-generator.js");
+const { getIO } = require("./socket.js");
 const room_DAO  = require("../db/room_DAO.js");
+const question_DAO  = require("../db/question_DAO.js");
 
 module.exports = {
     createRoomHandler,
     joinRoomHandler,
     leaveRoomHandler,
     startGameHandler,
+    startRoundHandler,
 }
 
 async function createRoomHandler(questionBankId, hostSocket)
@@ -74,6 +77,24 @@ async function joinRoomHandler(roomId, clientSocket)
     clientSocket.to(existingRoom.hostId).emit("clientConnected");
 }
 
+async function startRoundHandler(roundIdx, socket)
+{
+    const existingRoom = await room_DAO.getRoomWithHostId(socket.id);
+    if(existingRoom == null){
+        socket.emit("error", "No room associated with this socket");
+        return;
+    }
+
+    const questionsInBank = await question_DAO.getAllQuestionsFromBank(existingRoom.questionBankId);
+    if(questionsInBank.length <= roundIdx)
+    {
+        socket.emit("error", "Question index was out of bounds");
+        return;
+    }
+    const io = getIO();
+    io.to(existingRoom.id).emit("newQuestion", questionsInBank[roundIdx]);
+}
+
 async function leaveRoomHandler(socket)
 {
     const existingRoom = await room_DAO.getRoomWithHostId(socket.id);
@@ -83,7 +104,7 @@ async function leaveRoomHandler(socket)
         const roomId = existingRoom.id;
         socket.to(roomId).emit("hostDisconnected");
         await room_DAO.deleteRoom(roomId);
-        const roomSockets = await socket.in(roomId).fetchSockets(); // Socket.IO 4+ – MINDEN socket a szobában
+        const roomSockets = await socket.in(roomId).fetchSockets();
         for (const playerSocket of roomSockets) {
             playerSocket.data.roomId = null;
             playerSocket.leave(roomId);

@@ -1,34 +1,26 @@
 using Assets.Scripts.Networking.Http;
 using Assets.SharedAssets.Networking.Websocket;
+using Assets.Scripts.Networking.Data;
 using System;
 using System.Net.Http;
 using UnityEngine;
 using System.Threading.Tasks;
 using PimDeWitte.UnityMainThreadDispatcher;
 
-public class NetworkManager : MonoBehaviour
+public class NetworkManager : SingletonBase<NetworkManager>
 {
     public event Action<string> SocketErrorEvent;
     public event Action<int> RoomJoinedEvent;
+    public event Action<QuestionDto> NewQuestionEvent;
     public event Action GameStartedEvent;
     public event Action HostDisconnectedEvent;
-    public static NetworkManager Instance { get; private set; }
     public IUnitySocketIOClient socketIOClient { get; private set; }
 
     [SerializeField] private string _serverUrl = "http://localhost:3000";
 
     private async void Awake()
     {
-
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-
+        base.Awake();
         socketIOClient = new UnitySocketIOClient();
 
         await socketIOClient.ConnectAsync(_serverUrl);
@@ -37,6 +29,7 @@ public class NetworkManager : MonoBehaviour
         socketIOClient.On<int>("joinedRoom", roomId => OnRoomJoined(roomId));
         socketIOClient.On<object>("gameStarted", _ => OnGameStarted());
         socketIOClient.On<object>("hostDisconnected", _ => OnHostDisconnected());
+        socketIOClient.On<QuestionDto>("newQuestion", (newQuestion) => OnQuestionReceived(newQuestion));
     }
     private async void OnDestroy()
     {
@@ -85,6 +78,11 @@ public class NetworkManager : MonoBehaviour
     private void OnHostDisconnected()
     {
         UnityMainThreadDispatcher.Instance().Enqueue(() => HostDisconnectedEvent?.Invoke());
+    }
+
+    private void OnQuestionReceived(QuestionDto question)
+    {
+        UnityMainThreadDispatcher.Instance().Enqueue(() => NewQuestionEvent?.Invoke(question));
     }
 
 }

@@ -5,24 +5,24 @@ public class QuestionState : IGameState
     public GameStateType Type => GameStateType.Question;
 
     private float _timer;
-    private float _questionTime = 5.0f;
+    private float _questionTime = 10.0f;
 
-    public void Enter()
+    private bool _questionArrived;
+
+    public async void Enter()
     {
         _timer = 0.0f;
+        _questionArrived = false;
         BlurManager.Instance.ActivateBlurEffect();
         InputManager.Instance.DisableInputControl();
         CameraManager.Instance.UseVillageCamera(RaycastManager.Instance.CurrentSelectedVillage);
+        RoomManager.Instance.QuestionReceived += HandleQuestionReceived;
 
-        //Todo: Networking request question here?
+        await RoomManager.Instance.StartNextRound();
+
         //Todo: Subsbscibe: Setup network manager websocket handler to connect received data with UI???? 
+
         //OnQuestionReceived, OnClientAnswerReceived -> Need handlers on the UI side as well
-
-        GameScreenPresenter.Instance.InitTimer(_questionTime);
-        GameScreenPresenter.Instance.ShowQuestionPanel(new Question("Ingredient of cheese", new string[] { "moon", "milk", "flour", "rock" }));
-
-        // TODO: get question index from server
-        GameScreenPresenter.Instance.SetCurrentQuestionIndex(2, 10);
     }
 
     public void Exit()
@@ -31,17 +31,18 @@ public class QuestionState : IGameState
 
         //Todo: Success/Fuilure???
 
-        bool success = true;
+        bool success = true; //good answers > 75%
 
         if(success)
             GameDataManager.Instance.RightAnswers++;
 
-        //Todo: Network handler unsubscribe
+        RoomManager.Instance.QuestionReceived -= HandleQuestionReceived;
     }
 
     public void Update()
     {
-        _timer += Time.deltaTime;
+        if(_questionArrived)
+            _timer += Time.deltaTime;
 
         GameScreenPresenter.Instance.HandleQuestionTimer(_timer);
 
@@ -49,6 +50,14 @@ public class QuestionState : IGameState
         {
             GameStateManager.Instance.ChangeState(GameStateType.Fight);
         }
+    }
+
+    private void HandleQuestionReceived(Question newQuestion)
+    {
+        _questionArrived = true;
+        GameScreenPresenter.Instance.InitTimer(_questionTime);
+        GameScreenPresenter.Instance.ShowQuestionPanel(newQuestion);
+        GameScreenPresenter.Instance.SetCurrentQuestionIndex(RoomManager.Instance.RoundCounter, RoomManager.Instance.QuestionCount);
     }
 
     private void HandleClientAnswerReceived()

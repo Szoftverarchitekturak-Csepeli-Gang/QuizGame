@@ -9,7 +9,7 @@ public class StatisticsState : IGameState
         BlurManager.Instance.ActivateBlurEffect();
         InputManager.Instance.DisableInputControl();
         CameraManager.Instance.UseVillageCamera(RaycastManager.Instance.CurrentSelectedVillage);
-        GameScreenPresenter.Instance.ShowStatisticsPanel(new Question("Ingredient of cheese", new string[] { "moon", "milk", "flour", "rock" }, 1), OnNext);
+        GameScreenPresenter.Instance.ShowStatisticsPanel(RoomManager.Instance.CurrentQuestion, OnNext);
     }
 
     public void Exit()
