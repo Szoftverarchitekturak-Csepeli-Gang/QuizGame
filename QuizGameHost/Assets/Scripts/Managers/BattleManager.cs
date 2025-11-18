@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,6 +17,24 @@ public class BattleManager : SingletonBase<BattleManager>
     private bool _battleRunning;
     private bool _battleFinished;
     private VillageController _currentVillage;
+
+    private bool _enableBattleFinishTimer = false;
+    private float _battleFinishTimer = 0f; //This is a safe timer, in case soldiers get stuck and battle never ends
+    private float _maxBattleFinishTime = 20f;
+    private void Update()
+    {
+        if (_enableBattleFinishTimer && _battleFinished)
+        { 
+            _battleFinishTimer += Time.deltaTime;
+
+            if (_battleFinishTimer > _maxBattleFinishTime)
+            { 
+                Debug.Log("Battle End Timer Finished");
+                CheckBattleEnd(true);
+                DisableBattleEndTimer();
+            }
+        }
+    }
 
     private void CleanupPreviousBattle()
     {
@@ -108,7 +127,7 @@ public class BattleManager : SingletonBase<BattleManager>
 
     public void OnSoldierArrived(SoldierController soldier)
     {
-        CheckBattleEnd();
+        CheckBattleEnd(false);
     }
 
     private void CheckBattleFinished()
@@ -123,9 +142,13 @@ public class BattleManager : SingletonBase<BattleManager>
             return;
 
         _battleFinished = true;
+
+        //Start timer, soldiers "might" get stuck, and BattleEnd will never be called
+        //Tested soldiers seems like they never get stuck, but just in case
+        EnableBattleEndTimer();
     }
 
-    private void CheckBattleEnd()
+    private void CheckBattleEnd(bool timerFinished)
     {
         int attackersAlive = _attackers.Count(a => a != null && !a.IsDead);
         int attackersArrived = _attackers.Count(a => a != null && !a.IsDead && a.ArrivedAtSpawn);
@@ -137,9 +160,10 @@ public class BattleManager : SingletonBase<BattleManager>
 
         bool attackerWin = attackersAlive >= defendersAlive;
 
-        if ((attackerWin && allAttackerArrived) || (!attackerWin && allDefenderArrived))
+        if (timerFinished || ((attackerWin && allAttackerArrived) || (!attackerWin && allDefenderArrived)))
         {
             _battleRunning = false;
+            DisableBattleEndTimer();
             StartCoroutine(BattleEndSequence(attackerWin, attackersAlive, defendersAlive));
         }
     }
@@ -185,6 +209,20 @@ public class BattleManager : SingletonBase<BattleManager>
         }
 
         return result;
+    }
+
+    public void EnableBattleEndTimer()
+    {
+        _enableBattleFinishTimer = true;
+        _battleFinishTimer = 0f;
+        Debug.Log("Battle End Timer Enabled");
+    }
+
+    private void DisableBattleEndTimer()
+    {
+        _enableBattleFinishTimer = false;
+        _battleFinishTimer = 0f;
+        Debug.Log("Battle End Timer Disabled");
     }
 }
 

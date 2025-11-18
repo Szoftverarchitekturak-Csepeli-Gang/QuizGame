@@ -29,6 +29,13 @@ public class QuestionState : IGameState
     {
         GameScreenPresenter.Instance.HideQuestionPanel();
 
+        //Todo: Success/Fuilure???
+
+        bool success = true;
+
+        if(success)
+            GameDataManager.Instance.RightAnswers++;
+
         //Todo: Network handler unsubscribe
     }
 

@@ -2,7 +2,7 @@
 
 public class GameStateManager : SingletonBase<GameStateManager>
 {
-    public GameStateType InitialState = GameStateType.Idle;
+    public GameStateType InitialState = GameStateType.Start;
 
     private Dictionary<GameStateType, IGameState> _states;
 
@@ -14,6 +14,9 @@ public class GameStateManager : SingletonBase<GameStateManager>
 
         _states = new Dictionary<GameStateType, IGameState>
         {
+            { GameStateType.Start, new StartState()  },
+            { GameStateType.CheckGameEnded, new CheckGameEndedState() },
+            { GameStateType.GameEnded, new GameEndedState() },
             { GameStateType.Idle, new IdleState() },
             { GameStateType.VillageSelected, new VillageSelectedState() },
             { GameStateType.VillageConquer, new VillageConquerState() },

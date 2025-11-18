@@ -250,9 +250,7 @@ public class DashboardScreenController : ScreenController
 
     private async void LoadBanksOfUser()
     {
-
         _questionBanksOfUser = await FetchQuestionBanks(userID:1);
-
 
         var dropdownList = _questionBanksOfUser.Select(r => r.Name).ToList();
         _questionBanksOfUserDropdown.choices = dropdownList;
