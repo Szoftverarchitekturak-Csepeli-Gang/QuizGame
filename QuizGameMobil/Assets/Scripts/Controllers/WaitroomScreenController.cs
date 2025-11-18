@@ -26,11 +26,4 @@ public class WaitroomScreenController : ScreenController
     {
         ScreenManagerMobil.Instance.CurrentScreen = AppScreen.QUIZ;
     }
-
-    public void SetConnectedPlayers(int players)
-    {
-        _connectedPlayers = players;
-        IntVariable playerNum = _connectedPlayersText["playerNum"] as IntVariable;
-        playerNum.Value = _connectedPlayers;
-    }
 }
