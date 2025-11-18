@@ -160,7 +160,7 @@ Button:focus {
 }
 
 .background-image {
-    background-image: resource('Cursors/background');
+    background-image: resource('background');
     -unity-background-image-tint-color: var(--white);
     background-size: 100% 100%;
     -unity-background-scale-mode: stretch-to-fill;
