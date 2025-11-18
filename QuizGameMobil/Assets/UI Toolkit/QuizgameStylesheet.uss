@@ -209,3 +209,21 @@ Button:focus {
     transition-property: background-color;
     transition-duration: 0.5s;
 }
+
+.red-button {
+    background-color: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+    border-left-color: rgb(222, 63, 79);
+    border-right-color: rgb(222, 63, 79);
+    border-top-color: var(--red);
+    border-bottom-color: rgb(222, 63, 79);
+}
+
+.red-button:focus {
+    background-color: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+    border-bottom-color: var(--blue);
+    border-right-color: var(--blue);
+}

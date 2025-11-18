@@ -1,12 +1,12 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/QuizgameStylesheet.uss?fileID=7433441132597879392&amp;guid=b3fc00a12efea744bad7708d177617e2&amp;type=3#QuizgameStylesheet" />
-    <ui:VisualElement data-source-type="FinishScreenController, Assembly-CSharp" class="main-container" style="flex-grow: 1;">
-        <ui:Label text="Quiz Ended" name="Label" style="-unity-text-align: upper-center;">
+    <ui:VisualElement data-source-type="FinishScreenController, Assembly-CSharp" class="main-container background-image" style="flex-grow: 1; background-color: rgb(249, 244, 244); background-repeat: space space; background-size: contain;">
+        <ui:Label text="Quiz Ended" name="Label" class="title-font blue-text" style="-unity-text-align: upper-center; font-size: 120px;">
             <Bindings>
                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:ca5fcf7e0d0f0d349acb0419a1deb995" entry="Id(2598493532160)" />
             </Bindings>
         </ui:Label>
-        <ui:Button text="Return" name="ReturnButton">
+        <ui:Button text="Return" name="ReturnButton" class="red-button">
             <Bindings>
                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:ca5fcf7e0d0f0d349acb0419a1deb995" entry="Id(2819264917504)" />
             </Bindings>
