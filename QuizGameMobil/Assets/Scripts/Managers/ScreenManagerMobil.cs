@@ -14,7 +14,7 @@ public class ScreenManagerMobil : ScreenManagerBase
     protected override void Start()
     {
         base.Start();
-        CurrentScreen = AppScreen.QUIZ;
+        CurrentScreen = AppScreen.MAIN;
     }
 
     protected override void LoadScreens()

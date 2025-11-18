@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI%20Toolkit/QuizgameStylesheet.uss?fileID=7433441132597879392&amp;guid=b3fc00a12efea744bad7708d177617e2&amp;type=3#QuizgameStylesheet" />
     <ui:VisualElement name="VisualElement" style="flex-grow: 1; justify-content: center; align-items: stretch; align-content: center;">
         <ui:VisualElement name="Header" style="background-color: rgb(147, 147, 147);">
-            <HeaderElement back-icon-color="#3B4FFFFF" class="red-background" style="padding-bottom: 10px;" />
+            <HeaderElement back-icon-color="#3B4FFFFF" class="red-background" style="padding-bottom: 10px; border-bottom-color: rgb(22, 92, 141); border-top-width: 0; border-right-width: 0; border-bottom-width: 5px; border-left-width: 0;" />
             <ui:ProgressBar value="22" name="TimeLeft" data-source-type="QuizScreenController, Assembly-CSharp" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
                 <Bindings>
                     <ui:DataBinding property="highValue" data-source-path="_maxTime" binding-mode="ToTarget" />

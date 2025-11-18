@@ -70,7 +70,7 @@ Button {
 Button:focus {
     background-color: var(--blue);
     color: var(--white);
-    font-size: 33px;
+    font-size: 52px;
     border-color: var(--blue);
     border-bottom-color: var(--yellow);
     border-right-color: var(--yellow);
@@ -126,6 +126,8 @@ Button:focus {
 
 #TitleGame {
     color: var(--red);
+    -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Examples%20&%20Extras/Fonts/Electronic%20Highway%20Sign.TTF?fileID=12800000&guid=8a2b9e2a607dd2143b58c44bc32410b4&type=3#Electronic Highway Sign");
+    font-size: 64px;
 }
 
 .background-image {
