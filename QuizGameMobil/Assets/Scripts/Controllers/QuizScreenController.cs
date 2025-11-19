@@ -100,7 +100,11 @@ public class QuizScreenController : ScreenController
 
     public override void ResetUIState()
     {
-        LoadQuestion(new Question());
+        _question = "";
+        for (int i = 0; i < _answers.Length; i++)
+        {
+            _answers[i] = "";
+        }
         _currentTime = 0;
         _timerRunning = false;
     }

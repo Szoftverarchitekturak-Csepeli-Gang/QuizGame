@@ -1,6 +1,3 @@
-using System;
-using UnityEngine.Localization;
-using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using UnityEngine.UIElements;
 
 public class WaitroomScreenController : ScreenController
@@ -8,7 +5,6 @@ public class WaitroomScreenController : ScreenController
     void OnEnable()
     {
         _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Mobil Assets Table");
-        ScreenManagerMobil.Instance.ShowScreen(AppScreen.MAIN);
         NetworkManager.Instance.GameStartedEvent += HandleGameStarted;
     }
 
