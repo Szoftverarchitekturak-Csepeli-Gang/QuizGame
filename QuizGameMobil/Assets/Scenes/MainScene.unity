@@ -895,7 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6afd949f6a23c499aa49f4a1097c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NetworkManager
-  _serverUrl: https://unpurchasable-hyetographical-mack.ngrok-free.dev
+  _serverUrl: http://localhost:3000
 --- !u!114 &1995805593
 MonoBehaviour:
   m_ObjectHideFlags: 0
