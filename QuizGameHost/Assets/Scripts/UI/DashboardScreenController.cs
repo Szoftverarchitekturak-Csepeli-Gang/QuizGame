@@ -35,6 +35,7 @@ public class DashboardScreenController : ScreenController
     private DropdownField _questionBanksOfUserDropdownCreateRoom;
     [SerializeField, HideInInspector] private string _searchInput;
     private List<QuestionBank> _searchedQuestionBanks = new();
+    private ListView _bankSearchList;
 
     // fetched data
     [SerializeField, HideInInspector] private string _bankName;
@@ -62,6 +63,7 @@ public class DashboardScreenController : ScreenController
             {
                 QuestionBank selected = _questionBanksOfUser[selectedIndex];
                 _bankName = selected.Name;
+                _bankSearchList.selectedIndex = -1;
                 Debug.Log($"Selected '{selected.Name}' with ID = {selected.Id}");
             }
         });
@@ -74,23 +76,25 @@ public class DashboardScreenController : ScreenController
     private void SetupBankSearch()
     {
         TextField searchInputField = _ui.Q<TextField>("SearchInputField");
-        ListView bankSearchList = _ui.Q<ListView>("QuestionBankSearchList");
-        bankSearchList.fixedItemHeight = 42;
-        bankSearchList.makeItem = () =>
+        _bankSearchList = _ui.Q<ListView>("QuestionBankSearchList");
+        _bankSearchList.fixedItemHeight = 42;
+        _bankSearchList.makeItem = () =>
         {
             Label label = new Label();
             label.AddToClassList("list-element");
             return label;
         };
 
-        bankSearchList.bindItem = (element, index) =>
+        _bankSearchList.bindItem = (element, index) =>
         {
             Label label = (Label)element;
             label.AddToClassList("list-element");
             label.text = _searchedQuestionBanks[index].Name;
         };
 
-        bankSearchList.itemsSource = _searchedQuestionBanks;
+        _bankSearchList.itemsSource = _searchedQuestionBanks;
+
+        _bankSearchList.selectionChanged += OnBankSearchListSelection;
 
         searchInputField.RegisterValueChangedCallback(async evt =>
         {
@@ -99,8 +103,19 @@ public class DashboardScreenController : ScreenController
             var results = await FetchQuestionBanks(_searchInput);
             _searchedQuestionBanks.AddRange(results);
 
-            bankSearchList.Rebuild();
+            _bankSearchList.Rebuild();
         });
+    }
+
+    private void OnBankSearchListSelection(IEnumerable<object> enumerable)
+    {
+        int selectedIndex = _bankSearchList.selectedIndex;
+        if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
+        {
+            QuestionBank selected = _searchedQuestionBanks[selectedIndex];
+            _bankName = selected.Name;
+            _questionBanksOfUserDropdownCreateRoom.index = -1;
+        }
     }
 
     private async void OnCreateRoomClicked()
@@ -256,7 +271,7 @@ public class DashboardScreenController : ScreenController
 
     private async void LoadBanksOfUser()
     {
-        _questionBanksOfUser = await FetchQuestionBanks(userID:1);
+        _questionBanksOfUser = await FetchQuestionBanks(userID: 1);
 
         var dropdownList = _questionBanksOfUser.Select(r => r.Name).ToList();
         _questionBanksOfUserDropdown.choices = dropdownList;
