@@ -23,7 +23,7 @@
                 <ui:VisualElement name="VillageInfo" style="flex-grow: 0; align-items: stretch; justify-content: center; width: 50%;">
                     <ui:Label text="Village 2" class="title-font blue-text" style="flex-grow: 1; -unity-text-align: lower-center; font-size: 48px;">
                         <Bindings>
-                            <ui:DataBinding property="text" data-source-path="_villageName" data-source-type="GameScreenController, Assembly-CSharp" binding-mode="ToTarget" />
+                            <ui:DataBinding property="text" data-source-path="_villageName" data-source-type="GameScreenController, Assembly-CSharp" binding-mode="TwoWay" />
                         </Bindings>
                     </ui:Label>
                     <ui:Label text="info" style="flex-grow: 1; -unity-text-align: upper-center;" />

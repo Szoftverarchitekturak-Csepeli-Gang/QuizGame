@@ -131,6 +131,7 @@ public class GameScreenController : ScreenController
 
     private void QuestionPanelEnable()
     {
+        ResetUIState();
     }
 
     private void QuestionPanelDisable()
@@ -251,5 +252,10 @@ public class GameScreenController : ScreenController
 
         HideResultText();
         _questionDisplayElement.SetOnNext(onNext);
+    }
+
+    public override void ResetUIState()
+    {
+        _questionDisplayElement.Reset();
     }
 }

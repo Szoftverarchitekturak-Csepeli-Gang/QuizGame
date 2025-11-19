@@ -1,9 +1,12 @@
-using System;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 public class FinishScreenController : ScreenController
 {
+    public override void ResetUIState()
+    {
+
+    }
+
     void OnEnable()
     {
         _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Mobil Assets Table");

@@ -97,4 +97,15 @@ public class QuizScreenController : ScreenController
     {
         UpdateTimer();
     }
+
+    public override void ResetUIState()
+    {
+        _question = "";
+        for (int i = 0; i < _answers.Length; i++)
+        {
+            _answers[i] = "";
+        }
+        _currentTime = 0;
+        _timerRunning = false;
+    }
 }

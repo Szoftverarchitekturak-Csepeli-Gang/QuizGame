@@ -63,6 +63,7 @@ public abstract class ScreenManagerBase : SingletonBase<ScreenManagerBase>
         if (_currentScreen != screen && _screens.TryGetValue(_currentScreen, out ScreenController curScreen))
         {
             curScreen.IsVisible = false;
+            curScreen.ResetUIState();
         }
 
         if (_screens.TryGetValue(screen, out ScreenController newScreen))

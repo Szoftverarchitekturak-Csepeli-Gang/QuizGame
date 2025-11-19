@@ -14,7 +14,7 @@
             </ui:Label>
             <ui:Label text="123456" name="RoomID" class="red-text" style="-unity-font-style: bold; font-size: 46px;">
                 <Bindings>
-                    <ui:DataBinding property="text" data-source-path="_roomID" binding-mode="ToTarget" />
+                    <ui:DataBinding property="text" data-source-path="_roomID" binding-mode="TwoWay" />
                 </Bindings>
             </ui:Label>
         </ui:VisualElement>
@@ -31,7 +31,7 @@
             </ui:Label>
             <ui:Label text="23" style="-unity-font-style: bold;">
                 <Bindings>
-                    <ui:DataBinding property="text" data-source-path="_connectedUsers" binding-mode="ToTarget" />
+                    <ui:DataBinding property="text" data-source-path="_connectedUsers" binding-mode="TwoWay" />
                 </Bindings>
             </ui:Label>
         </ui:VisualElement>

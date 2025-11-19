@@ -7,17 +7,6 @@
                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:ca5fcf7e0d0f0d349acb0419a1deb995" entry="Id(3136706621440)" />
             </Bindings>
         </ui:Label>
-        <ui:Label text="Connected players: 0" name="ConnectedPlayers" data-source-type="WaitroomScreenController, Assembly-CSharp" data-source-path="_connectedPlayersText" style="-unity-text-align: upper-center;">
-            <Bindings>
-                <UnityEngine.Localization.LocalizedString property="text" table="GUID:ca5fcf7e0d0f0d349acb0419a1deb995" entry="Id(3968856535040)">
-                    <variables>
-                        <UnityEngine.Localization.LocalVariable name="playerNum">
-                            <UnityEngine.Localization.SmartFormat.PersistentVariables.IntVariable />
-                        </UnityEngine.Localization.LocalVariable>
-                    </variables>
-                </UnityEngine.Localization.LocalizedString>
-            </Bindings>
-        </ui:Label>
     </ui:VisualElement>
     <LangButtonElement name="LangButton" style="position: absolute; bottom: 100px; right: 100px;" />
 </ui:UXML>

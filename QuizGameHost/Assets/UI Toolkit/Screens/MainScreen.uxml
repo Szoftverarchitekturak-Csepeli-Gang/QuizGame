@@ -8,19 +8,19 @@
         <ui:VisualElement name="InputContainer" style="flex-grow: 1.5; padding-top: 0; padding-right: 30px; padding-bottom: 60px; padding-left: 30px; margin-top: 0;">
             <ui:TextField label="Username" name="UsernameField">
                 <Bindings>
-                    <ui:DataBinding property="value" data-source-path="_username" binding-mode="ToSource" />
+                    <ui:DataBinding property="value" data-source-path="_username" binding-mode="TwoWay" />
                     <UnityEngine.Localization.LocalizedString property="label" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(94355632128)" />
                 </Bindings>
             </ui:TextField>
             <ui:TextField label="Password" password="true" name="PasswordField">
                 <Bindings>
-                    <ui:DataBinding property="value" data-source-path="_password" binding-mode="ToSource" />
+                    <ui:DataBinding property="value" data-source-path="_password" binding-mode="TwoWay" />
                     <UnityEngine.Localization.LocalizedString property="label" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(210227474432)" />
                 </Bindings>
             </ui:TextField>
             <ui:TextField label="Confirm Password" password="true" name="ConfirmField" class="hide">
                 <Bindings>
-                    <ui:DataBinding property="value" data-source-path="_confirmPassword" binding-mode="ToSource" />
+                    <ui:DataBinding property="value" data-source-path="_confirmPassword" binding-mode="TwoWay" />
                     <UnityEngine.Localization.LocalizedString property="label" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(334127214592)" />
                 </Bindings>
             </ui:TextField>

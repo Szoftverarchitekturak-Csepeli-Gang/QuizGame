@@ -105,6 +105,12 @@ public class MainScreenController : ScreenController
         }
     }
 
+    public override void ResetUIState()
+    {
+        CurrentLayout = ScreenLayout.LOGIN;
+        _username = _password = _confirmPassword = "";
+    }
+
     // private void BindLabel(TextElement element, LocalizedString localized)
     // {
     //     localized.StringChanged += s => element.text = s;
