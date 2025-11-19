@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 
 
@@ -52,8 +53,7 @@ public class GameScreenPresenter : SingletonBase<GameScreenPresenter>, IPresente
 
     public void ShowStatisticsPanel(Question question, Action onNext)
     {
-        //Todo: Bind statistics panel
-        _screen?.ShowResultsStatistics(question, new float[] { 0.5f, 0.1f, 0.2f, 0.2f }, onNext);
+        _screen?.ShowResultsStatistics(question, RoomManager.Instance.GetAnswerPercentages(), onNext);
     }
 
     public void HideStatisticsPanel()

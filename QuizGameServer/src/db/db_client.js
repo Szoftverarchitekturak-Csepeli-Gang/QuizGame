@@ -61,7 +61,7 @@ async function InitDatabase() {
           optionB: 'Lando Norris',
           optionC: 'Oscar Piastri',
           optionD: 'Lance Stroll',
-          correctAnswer: 4,
+          correctAnswer: 2,
         },
         {
           questionBankId: formula1Bank.id,

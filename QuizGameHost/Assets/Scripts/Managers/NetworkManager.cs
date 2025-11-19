@@ -16,6 +16,7 @@ using PimDeWitte.UnityMainThreadDispatcher;
 public class NetworkManager : SingletonBase<NetworkManager>
 {
     public event Action<int> OnRoomCreated;
+    public event Action<int> OnAnswerReceived;
     public event Action<string> OnSocketError;
     public event Action<QuestionDto> OnQuestionArrived;
     public event Action OnPlayerJoined;
@@ -38,6 +39,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         socketIOClient.On<object>("clientDisconnected", _ => OnPlayerDisconnected?.Invoke());
         socketIOClient.On<QuestionDto>("newQuestion", (question) => OnQuestionArrived?.Invoke(question));
         socketIOClient.On<string>("error", message => SocketErrorHandler(message));
+        socketIOClient.On<int>("answerReceived", answer => OnAnswerReceived?.Invoke(answer-1));
     }
     private async void OnDestroy()
     {

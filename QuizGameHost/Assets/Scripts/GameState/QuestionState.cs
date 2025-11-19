@@ -17,6 +17,7 @@ public class QuestionState : IGameState
         InputManager.Instance.DisableInputControl();
         CameraManager.Instance.UseVillageCamera(RaycastManager.Instance.CurrentSelectedVillage);
         RoomManager.Instance.QuestionReceived += HandleQuestionReceived;
+        RoomManager.Instance.questionPhaseEnded += Exit;
 
         await RoomManager.Instance.StartNextRound();
 
@@ -29,14 +30,21 @@ public class QuestionState : IGameState
     {
         GameScreenPresenter.Instance.HideQuestionPanel();
 
-        //Todo: Success/Fuilure???
+        int correctAnswer = RoomManager.Instance.CurrentQuestion.CorrectAnswerIdx;
+        int correctSubmissions = RoomManager.Instance.playerAnswers[correctAnswer];
+        int playerCount = RoomManager.Instance.ConnectedPlayers;
 
-        bool success = true; //good answers > 75%
+        bool success = playerCount == 0 ? false : correctSubmissions / (float)playerCount > 0.75;
 
+        //TODO: victory panel shows even if success was false
         if(success)
             GameDataManager.Instance.RightAnswers++;
 
         RoomManager.Instance.QuestionReceived -= HandleQuestionReceived;
+        RoomManager.Instance.questionPhaseEnded -= Exit;
+
+        _timer = _questionTime;
+
     }
 
     public void Update()

@@ -16,6 +16,8 @@ public class QuizScreenController : ScreenController
 
     private VisualElement _progressBarColor;
 
+    private bool _answerSubmitted = false;
+
     void OnEnable()
     {
         NetworkManager.Instance.NewQuestionEvent += QuestionReceivedHandler;
@@ -39,6 +41,17 @@ public class QuizScreenController : ScreenController
         {
             _answers[i] = question.Answers[i];
         }
+        _ui.Q<Button>("Answer1").clicked += () => OnAnswerClicked(1);
+        _ui.Q<Button>("Answer2").clicked += () => OnAnswerClicked(2);
+        _ui.Q<Button>("Answer3").clicked += () => OnAnswerClicked(3);
+        _ui.Q<Button>("Answer4").clicked += () => OnAnswerClicked(4);
+    }
+
+    public async void OnAnswerClicked(int answerIdx)
+    {
+        if (_answerSubmitted) return;
+        _answerSubmitted = true;
+        await NetworkManager.Instance.SendAnswer(answerIdx);
     }
 
     public void StartTimer(int maxTime)

@@ -60,8 +60,21 @@ public class NetworkManager : SingletonBase<NetworkManager>
         }
     }
 
+    public async Task SendAnswer(int answer)
+    {
+        try
+        {
+            await socketIOClient.SendAsync<int>("submitAnswer", answer);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"[Network] Failed to leave room: {ex}");
+        }
+    }
+
     private void OnSocketError(string message)
     {
+        Debug.Log("[Socket] Error: " + message);
         UnityMainThreadDispatcher.Instance().Enqueue(() => SocketErrorEvent?.Invoke(message));
     }
 

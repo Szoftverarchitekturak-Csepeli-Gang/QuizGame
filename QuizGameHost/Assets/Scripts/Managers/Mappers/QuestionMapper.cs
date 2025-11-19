@@ -21,7 +21,7 @@ namespace Assets.SharedAssets.Networking.Mappers
                 dto.optionD ?? ""
             };
 
-            return new Question(dto.text, answers, dto.correctAnswer);
+            return new Question(dto.text, answers, dto.correctAnswer-1);
         }
 
         public static List<Question> ToModelList(this List<QuestionDto> dtos)
@@ -40,7 +40,7 @@ namespace Assets.SharedAssets.Networking.Mappers
                 optionB = model.Answers.Length > 1 ? model.Answers[1] : "",
                 optionC = model.Answers.Length > 2 ? model.Answers[2] : "",
                 optionD = model.Answers.Length > 3 ? model.Answers[3] : "",
-                correctAnswer = model.CorrectAnswerIdx
+                correctAnswer = model.CorrectAnswerIdx+1
             };
         }
     }

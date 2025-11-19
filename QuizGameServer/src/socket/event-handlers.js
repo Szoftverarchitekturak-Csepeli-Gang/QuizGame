@@ -9,6 +9,7 @@ module.exports = {
     leaveRoomHandler,
     startGameHandler,
     startRoundHandler,
+    answerReceivedHandler,
 }
 
 async function createRoomHandler(questionBankId, hostSocket)
@@ -93,6 +94,29 @@ async function startRoundHandler(roundIdx, socket)
     }
     const io = getIO();
     io.to(existingRoom.id).emit("newQuestion", questionsInBank[roundIdx]);
+}
+
+async function answerReceivedHandler(answer, socket)
+{
+    if (!Number.isInteger(answer) || answer < 1 || answer > 4) {
+        socket.emit("error", "Invalid answer: must be a number between 1 and 4");
+        return;
+    }
+
+    const roomID = socket.data.roomId;
+    if(!roomID)
+    {
+        socket.emit("error", "No room associated with this socket");
+        return;
+    }
+
+    const existingRoom = await room_DAO.getRoomWithID(roomID);
+    if(existingRoom == null){
+        socket.emit("error", "No room associated with this socket");
+        return;
+    }
+    const hostSocketId = existingRoom.hostId;
+    socket.to(hostSocketId).emit("answerReceived",answer);
 }
 
 async function leaveRoomHandler(socket)
