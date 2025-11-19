@@ -1005,37 +1005,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a533d6d2164a8974c856e26a004bbf4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputManager
---- !u!1 &573238958
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 573238959}
-  m_Layer: 0
-  m_Name: AudioSourceParent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &573238959
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 573238958}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1475862294}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &588970242 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7164896331276501604, guid: 435d261c1fe73ba46883b819e578219d, type: 3}
@@ -1112,7 +1081,6 @@ Transform:
   - {fileID: 208404399}
   - {fileID: 1108823715}
   - {fileID: 284458066}
-  - {fileID: 1475862294}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705529571
@@ -2883,64 +2851,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!1 &1475862293
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1475862294}
-  - component: {fileID: 1475862295}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1475862294
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475862293}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 573238959}
-  m_Father: {fileID: 634022213}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1475862295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475862293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30e9102b0b5f6cf4c8245de4061d789a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
-  _audioSourceParent: {fileID: 573238958}
-  _deathSounds:
-  - {fileID: 8300000, guid: bf293749b7fec624d93bcaf3638df302, type: 3}
-  - {fileID: 8300000, guid: 4232c169120c6694faef048c84b2ff1e, type: 3}
-  - {fileID: 8300000, guid: eec85b34703e79b43a18119329583b57, type: 3}
-  - {fileID: 8300000, guid: c87f2d592591dce4b8939b4d7d9e6c10, type: 3}
-  - {fileID: 8300000, guid: 1215cb1c72de6104dac89397ba78432c, type: 3}
-  - {fileID: 8300000, guid: 00a143634e5974e4d8431078feb455b7, type: 3}
-  _attackSounds:
-  - {fileID: 8300000, guid: 640e7d5c1a3cf7349a82dac9bf11b5ec, type: 3}
-  - {fileID: 8300000, guid: 933a8219ef3d5fe479f0e1560f01ad3a, type: 3}
-  - {fileID: 8300000, guid: 5df65b1ab9518c047aa05a3db84b4378, type: 3}
-  - {fileID: 8300000, guid: c199f96672428634d8c11a15024754a2, type: 3}
 --- !u!1 &1495530919
 GameObject:
   m_ObjectHideFlags: 0

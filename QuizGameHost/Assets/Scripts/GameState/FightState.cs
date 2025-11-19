@@ -15,6 +15,7 @@ public class FightState : IGameState
         InputManager.Instance.EnableInputControl();
         CameraManager.Instance.UseVillageCamera(RaycastManager.Instance.CurrentSelectedVillage);
         BattleManager.Instance.StartCoroutine(StartBattleDelayed());
+        AudioManager.Instance.PlayFightStartSound();
     }
 
     public void Exit()
@@ -50,10 +51,17 @@ public class FightState : IGameState
         var villagePos = RaycastManager.Instance.CurrentSelectedVillage.transform.position + new Vector3(0.0f, 5.0f, 0.0f);
 
         if (result.attackerWon)
+        {
             ParticleManager.Instance.PlayVictoryParticleSystem(villagePos);
+            AudioManager.Instance.PlayVictorySound();
+        }
         else
+        {
             ParticleManager.Instance.PlayDefeatParticleSystem(villagePos);
+            AudioManager.Instance.PlayDefeatSound();
+        }
 
         GameScreenPresenter.Instance.ShowBattleEndPanel(result.attackerWon);
+
     }
 }
