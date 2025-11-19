@@ -20,31 +20,19 @@ public class QuestionState : IGameState
         RoomManager.Instance.questionPhaseEnded += Exit;
 
         await RoomManager.Instance.StartNextRound();
-
-        //Todo: Subsbscibe: Setup network manager websocket handler to connect received data with UI???? 
-
-        //OnQuestionReceived, OnClientAnswerReceived -> Need handlers on the UI side as well
     }
 
     public void Exit()
     {
         GameScreenPresenter.Instance.HideQuestionPanel();
 
-        int correctAnswer = RoomManager.Instance.CurrentQuestion.CorrectAnswerIdx;
-        int correctSubmissions = RoomManager.Instance.playerAnswers[correctAnswer];
-        int playerCount = RoomManager.Instance.ConnectedPlayers;
-
-        bool success = playerCount == 0 ? false : correctSubmissions / (float)playerCount > 0.75;
-
-        //TODO: victory panel shows even if success was false
-        if(success)
+        if (RoomManager.Instance.CheckSuccess(RaycastManager.Instance.CurrentSelectedVillage.GetComponent<VillageController>().SuccessThreshold))
             GameDataManager.Instance.RightAnswers++;
-
+            
         RoomManager.Instance.QuestionReceived -= HandleQuestionReceived;
         RoomManager.Instance.questionPhaseEnded -= Exit;
 
         _timer = _questionTime;
-
     }
 
     public void Update()
@@ -66,10 +54,5 @@ public class QuestionState : IGameState
         GameScreenPresenter.Instance.InitTimer(_questionTime);
         GameScreenPresenter.Instance.ShowQuestionPanel(newQuestion);
         GameScreenPresenter.Instance.SetCurrentQuestionIndex(RoomManager.Instance.RoundCounter, RoomManager.Instance.QuestionCount);
-    }
-
-    private void HandleClientAnswerReceived()
-    {
-        //Call UI update + Save answers???
     }
 }

@@ -45,6 +45,7 @@ public class VillageManager : SingletonBase<VillageManager>
         } 
     }
 
+    /*
     //Test function to test game ended state
     public void SetAllVillageToConqueredTest()
     {
@@ -59,4 +60,5 @@ public class VillageManager : SingletonBase<VillageManager>
             }
         }
     }
+    */
 }

@@ -12,8 +12,6 @@ public class VillageConquerState : IGameState
         BlurManager.Instance.DeactivateBlurEffect();
         InputManager.Instance.DisableInputControl();
         CameraManager.Instance.UseVillageCamera(RaycastManager.Instance.CurrentSelectedVillage);
-
-        //Todo: Networking send conquer request???
     }
 
     public void Exit()

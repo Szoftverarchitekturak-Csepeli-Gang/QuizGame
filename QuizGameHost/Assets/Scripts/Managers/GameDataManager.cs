@@ -12,7 +12,7 @@ public class GameDataManager : SingletonBase<GameDataManager>
         base.Awake();
 
         RightAnswers = 0;
-        TotalQuestions = 15; //Todo change this to bank size
+        TotalQuestions = 0;
         ConqueredVillages = 0;
         TotalVillages = GameObject.FindGameObjectsWithTag("Village").Length;
     }

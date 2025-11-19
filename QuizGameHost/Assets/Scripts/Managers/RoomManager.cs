@@ -113,4 +113,13 @@ public class RoomManager : SingletonBase<RoomManager>
         ConnectedPlayers--;
         UserCountChanged?.Invoke();
     }
+
+    public bool CheckSuccess(float threshold)
+    {
+        int correctAnswer = CurrentQuestion.CorrectAnswerIdx;
+        int correctSubmissions = playerAnswers[correctAnswer];
+        int playerCount = ConnectedPlayers;
+
+        return playerCount == 0 ? false : correctSubmissions / (float)playerCount > threshold;
+    }
 }

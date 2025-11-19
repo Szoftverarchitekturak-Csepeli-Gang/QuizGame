@@ -670,6 +670,10 @@ PrefabInstance:
       value: Snowhold
       objectReference: {fileID: 0}
     - target: {fileID: 8265638782979296416, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: _successThreshold
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265638782979296416, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
       propertyPath: _config.defenderPrefab
       value: 
       objectReference: {fileID: 8555908768156032994, guid: 4321a6428fdab1d40bf3cee7dab8d43e, type: 3}

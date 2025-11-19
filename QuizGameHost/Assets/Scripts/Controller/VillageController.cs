@@ -16,6 +16,7 @@ public class VillageController : MonoBehaviour
 
     [Header("Village Config")]
     [SerializeField] private VillageConfig _config;
+    [SerializeField] private float _successThreshold = 0.75f;
 
     [Header("Attachments")]
     [SerializeField] private GameObject _camera;
@@ -45,6 +46,8 @@ public class VillageController : MonoBehaviour
     public GameObject AttackerSpawnPointParent => _attackerSpawnPointParent;
     public GameObject DefenderSpawnPointParent => _defenderSpawnPointParent;
     public GameObject CharacterContainer { get => _characterContainer; set => _characterContainer = value; }
+
+    public float SuccessThreshold => _successThreshold;
 
     public void Awake()
     {

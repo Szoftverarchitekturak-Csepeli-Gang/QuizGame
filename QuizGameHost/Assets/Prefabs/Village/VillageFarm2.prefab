@@ -1974,6 +1974,10 @@ PrefabInstance:
       value: Fieldmere
       objectReference: {fileID: 0}
     - target: {fileID: 8265638782979296416, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
+      propertyPath: _successThreshold
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265638782979296416, guid: 56e75bcb8d8db9d48ad3494c364ba9c3, type: 3}
       propertyPath: _config.attackerPrefab
       value: 
       objectReference: {fileID: 1037915984379246227, guid: d408b601171026846b74e0aeb95aae14, type: 3}

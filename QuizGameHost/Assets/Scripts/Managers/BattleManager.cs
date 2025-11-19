@@ -155,7 +155,7 @@ public class BattleManager : SingletonBase<BattleManager>
         bool allAttackerArrived = attackersArrived == attackersAlive;
 
         int defendersAlive = _defenders.Count(d => d != null && !d.IsDead);
-        int defendersArrived = _attackers.Count(a => a != null && !a.IsDead && a.ArrivedAtSpawn);
+        int defendersArrived = _defenders.Count(a => a != null && !a.IsDead && a.ArrivedAtSpawn);
         bool allDefenderArrived = defendersArrived == defendersAlive;
 
         bool attackerWin = attackersAlive >= defendersAlive;

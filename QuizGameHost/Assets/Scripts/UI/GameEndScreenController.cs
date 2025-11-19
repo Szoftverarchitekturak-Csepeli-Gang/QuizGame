@@ -41,6 +41,6 @@ public class GameEndScreenController : ScreenController
     public void OnGameEnded(int rightAnswers, int totalQuestions, int conqueredVillages, int totalVillages)
     {
         ScreenManagerBase.Instance.CurrentScreen = AppScreen.FINISH;
-        _conqueredVillagesText = $"{rightAnswers} / {totalQuestions}";
+        _conqueredVillagesText = $"{conqueredVillages} / {totalVillages}";
     }
 }

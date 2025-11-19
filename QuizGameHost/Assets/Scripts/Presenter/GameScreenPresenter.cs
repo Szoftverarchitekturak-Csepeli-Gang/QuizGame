@@ -58,7 +58,6 @@ public class GameScreenPresenter : SingletonBase<GameScreenPresenter>, IPresente
 
     public void HideStatisticsPanel()
     {
-        //Todo: Bind statistics panel
         _screen?.HideQuestionDisplay();
     }
 
@@ -69,6 +68,5 @@ public class GameScreenPresenter : SingletonBase<GameScreenPresenter>, IPresente
 
     public void HideBattleEndPanel()
     {
-        //_screen?.ResetResultText();
     }
 }

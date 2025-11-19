@@ -15,7 +15,7 @@ public class GameEndedState : IGameState
 
         GameEndScreenPresenter.Instance.ShowGameEndScreen(
             GameDataManager.Instance.RightAnswers,
-            GameDataManager.Instance.TotalQuestions,
+            RoomManager.Instance.QuestionCount,
             GameDataManager.Instance.ConqueredVillages,
             GameDataManager.Instance.TotalVillages
         );
