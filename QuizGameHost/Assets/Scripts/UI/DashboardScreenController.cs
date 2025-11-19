@@ -314,4 +314,21 @@ public class DashboardScreenController : ScreenController
     {
         ScreenManagerBase.Instance.CurrentScreen = AppScreen.WAITROOM;
     }
+
+    public override void ResetUIState()
+    {
+        _searchInput = _bankName = "";
+
+        if (_bankSearchList != null)
+        {
+            _bankSearchList.selectedIndex = -1;
+        }
+
+        if (_questionBanksOfUserDropdown != null)
+        {
+            _questionBanksOfUserDropdown.index = -1;
+        }
+
+        ResetQuestionScrollView();
+    }
 }

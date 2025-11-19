@@ -9,6 +9,12 @@ public class WaitroomScreenController : ScreenController
     public int RoomID { set => _roomID = value; }
     public int ConnectedUsers { set => _connectedUsers = value; }
 
+    public override void ResetUIState()
+    {
+        RoomID = 0;
+        ConnectedUsers = 0;
+    }
+
     void OnEnable()
     {
         _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Host Asset Table");

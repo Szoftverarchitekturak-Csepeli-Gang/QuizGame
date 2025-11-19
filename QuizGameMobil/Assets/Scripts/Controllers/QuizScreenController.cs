@@ -97,4 +97,11 @@ public class QuizScreenController : ScreenController
     {
         UpdateTimer();
     }
+
+    public override void ResetUIState()
+    {
+        LoadQuestion(new Question());
+        _currentTime = 0;
+        _timerRunning = false;
+    }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(UIDocument))]
-public class ScreenController : MonoBehaviour
+public abstract class ScreenController : MonoBehaviour
 {
     protected VisualElement _ui;
     protected virtual void Awake()
@@ -21,4 +21,6 @@ public class ScreenController : MonoBehaviour
                 _ui.AddToClassList("hide");
         }
     }
+
+    public abstract void ResetUIState();
 }

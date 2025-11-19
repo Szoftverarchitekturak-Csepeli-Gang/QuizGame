@@ -18,16 +18,15 @@ public class Question
 
     public Question()
     {
-        QuestionText = "Question";
-        Answers = new string[4] { "a", "b", "c", "d" };
-        CorrectAnswerIdx = 1;
+        QuestionText = "";
+        Answers = new string[4] { "", "", "", "" };
+        CorrectAnswerIdx = -1;
     }
 
-    public Question(string questionText, string[] answers)
+    public Question(string questionText, string[] answers) : this()
     {
         QuestionText = questionText;
         Answers = answers;
-        CorrectAnswerIdx = -1;
     }
 
     public Question(string questionText, string[] answers, int correctAnswerIdx) : this(questionText, answers)

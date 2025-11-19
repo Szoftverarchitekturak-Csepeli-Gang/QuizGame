@@ -43,4 +43,9 @@ public class GameEndScreenController : ScreenController
         ScreenManagerBase.Instance.CurrentScreen = AppScreen.FINISH;
         _conqueredVillagesText = $"{conqueredVillages} / {totalVillages}";
     }
+
+    public override void ResetUIState()
+    {
+        _conqueredVillagesText = "";
+    }
 }

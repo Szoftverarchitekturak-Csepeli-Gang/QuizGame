@@ -53,4 +53,10 @@ public class MainScreenController : ScreenController
         _errorMessage = message;
         _inputErrorLabel.style.visibility = Visibility.Visible;
     }
+
+    public override void ResetUIState()
+    {
+        _roomID = 0;
+        _roomPassword = "";
+    }
 }

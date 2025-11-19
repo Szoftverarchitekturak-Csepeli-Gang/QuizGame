@@ -63,6 +63,7 @@ public partial class QuestionDisplayElement : VisualElement
         {
             _onNext?.Invoke();
             AddToClassList("hide");
+            Reset();
         };
     }
 
@@ -141,5 +142,11 @@ public partial class QuestionDisplayElement : VisualElement
     public void ResetPercentages()
     {
         LoadPercentages(new float[] { 0f, 0f, 0f, 0f });
+    }
+
+    public void Reset()
+    {
+        ResetPercentages();
+        _questionText = _answerA = _answerB = _answerC = _answerD = _currentQuestionIndexText = "";
     }
 }

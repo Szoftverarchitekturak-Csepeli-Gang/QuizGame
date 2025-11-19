@@ -14,7 +14,7 @@
             </ui:Label>
             <ui:Label text="4/5" class="red-text" style="-unity-font-style: bold; font-size: 52px;">
                 <Bindings>
-                    <ui:DataBinding property="text" data-source-path="_conqueredVillagesText" data-source-type="GameEndScreenController, Assembly-CSharp" binding-mode="ToTarget" />
+                    <ui:DataBinding property="text" data-source-path="_conqueredVillagesText" data-source-type="GameEndScreenController, Assembly-CSharp" binding-mode="TwoWay" />
                 </Bindings>
             </ui:Label>
         </ui:VisualElement>

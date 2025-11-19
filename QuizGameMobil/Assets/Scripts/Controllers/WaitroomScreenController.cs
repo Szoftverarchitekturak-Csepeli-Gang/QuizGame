@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.SmartFormat.PersistentVariables;
 using UnityEngine.UIElements;
@@ -25,5 +24,10 @@ public class WaitroomScreenController : ScreenController
     private void HandleGameStarted()
     {
         ScreenManagerMobil.Instance.CurrentScreen = AppScreen.QUIZ;
+    }
+
+    public override void ResetUIState()
+    {
+
     }
 }
