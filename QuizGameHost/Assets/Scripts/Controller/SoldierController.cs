@@ -113,6 +113,8 @@ public class SoldierController : MonoBehaviour
 
         _animator.SetInteger("AttackType", Random.Range(0, 3));
         _animator.SetTrigger("AttackTriggered");
+
+        AudioManager.Instance.PlayRandomAttackSound(transform.position);
     }
 
     private void StopMovement()
@@ -223,6 +225,8 @@ public class SoldierController : MonoBehaviour
 
         _battle.OnSoldierDied(this);
         HideTeamMarker();
+
+        AudioManager.Instance.PlayRandomDeathSound(transform.position);
     }
 
     public void SetDamagePerHit(float damage)
