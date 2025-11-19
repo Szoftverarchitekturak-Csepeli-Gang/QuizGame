@@ -34,17 +34,23 @@ public class QuizScreenController : ScreenController
         _progressBarColor.AddToClassList("blue-background");
     }
 
-    public void LoadQuestion(Question question)
+    private void QuestionReceivedHandler(QuestionDto newQuestion)
     {
-        _question = question.QuestionText;
-        for (int i = 0; i < _answers.Length; i++)
-        {
-            _answers[i] = question.Answers[i];
-        }
+        _question = newQuestion.text;
+
+        _answers[0] = newQuestion.optionA;
+        _answers[1] = newQuestion.optionB;
+        _answers[2] = newQuestion.optionC;
+        _answers[3] = newQuestion.optionD;
+
         _ui.Q<Button>("Answer1").clicked += () => OnAnswerClicked(1);
         _ui.Q<Button>("Answer2").clicked += () => OnAnswerClicked(2);
         _ui.Q<Button>("Answer3").clicked += () => OnAnswerClicked(3);
         _ui.Q<Button>("Answer4").clicked += () => OnAnswerClicked(4);
+
+        _answerSubmitted = false;
+
+        StartTimer(10);
     }
 
     public async void OnAnswerClicked(int answerIdx)
