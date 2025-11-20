@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public enum AppScreen
 {
-    MAIN, WAITROOM, QUIZ, FINISH, DASHBOARD, GAME
+    MAIN, WAITROOM, QUIZ, FINISH, DASHBOARD, GAME, ANSWER_SENT
 }
 
 public abstract class ScreenManagerBase : SingletonBase<ScreenManagerBase>

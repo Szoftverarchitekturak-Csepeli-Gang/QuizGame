@@ -12,6 +12,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
     public event Action<string> SocketErrorEvent;
     public event Action<int> RoomJoinedEvent;
     public event Action<QuestionDto> NewQuestionEvent;
+    public event Action<string, string> AnswerSentEvent;
     public event Action GameStartedEvent;
     public event Action HostDisconnectedEvent;
     public IUnitySocketIOClient socketIOClient { get; private set; }
@@ -42,7 +43,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         {
             await socketIOClient.SendAsync<int>("joinRoom", roomID);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Debug.LogError($"[Network] Failed join room: {ex}");
         }
@@ -96,6 +97,11 @@ public class NetworkManager : SingletonBase<NetworkManager>
     private void OnQuestionReceived(QuestionDto question)
     {
         UnityMainThreadDispatcher.Instance().Enqueue(() => NewQuestionEvent?.Invoke(question));
+    }
+
+    public void RaiseAnswerSent(string question, string answer)
+    {
+        UnityMainThreadDispatcher.Instance().Enqueue(() => AnswerSentEvent?.Invoke(question, answer));
     }
 
 }
