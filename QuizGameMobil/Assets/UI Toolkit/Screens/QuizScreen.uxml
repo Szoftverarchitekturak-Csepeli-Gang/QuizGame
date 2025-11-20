@@ -11,28 +11,28 @@
             </ui:ProgressBar>
         </ui:VisualElement>
         <ui:VisualElement class="main-container background-image" style="flex-grow: 1; padding-right: 40px; padding-left: 40px; padding-bottom: 40px; -unity-background-image-tint-color: rgb(214, 214, 214); -unity-background-scale-mode: scale-and-crop; background-size: contain; background-repeat: round round;">
-            <ui:Label text="Question" name="Question" data-source-type="QuizScreenController, Assembly-CSharp" style="-unity-text-align: middle-center; height: 300px;">
+            <ui:Label text="Question" name="Question" data-source-type="QuizScreenController, Assembly-CSharp" style="-unity-text-align: middle-center; height: 300px; white-space: normal;">
                 <Bindings>
                     <ui:DataBinding property="text" data-source-path="_question" binding-mode="ToTarget" />
                 </Bindings>
             </ui:Label>
             <ui:VisualElement name="AnswerButtons" data-source-type="QuizScreenController, Assembly-CSharp" data-source-path="_answers" style="flex-grow: 1; justify-content: space-evenly;">
-                <ui:Button text="Answer1" name="Answer1" class="blue-button">
+                <ui:Button text="Answer1" name="Answer1" class="blue-button" style="white-space: normal;">
                     <Bindings>
                         <ui:DataBinding property="text" binding-mode="ToTarget" />
                     </Bindings>
                 </ui:Button>
-                <ui:Button text="Answer2" name="Answer2" class="blue-button">
+                <ui:Button text="Answer2" name="Answer2" class="blue-button" style="white-space: normal;">
                     <Bindings>
                         <ui:DataBinding property="text" binding-mode="ToTarget" />
                     </Bindings>
                 </ui:Button>
-                <ui:Button text="Answer3" name="Answer3" class="blue-button">
+                <ui:Button text="Answer3" name="Answer3" class="blue-button" style="white-space: normal;">
                     <Bindings>
                         <ui:DataBinding property="text" binding-mode="ToTarget" />
                     </Bindings>
                 </ui:Button>
-                <ui:Button text="Answer4" name="Answer4" class="blue-button">
+                <ui:Button text="Answer4" name="Answer4" class="blue-button" style="white-space: normal;">
                     <Bindings>
                         <ui:DataBinding property="text" binding-mode="ToTarget" />
                     </Bindings>
