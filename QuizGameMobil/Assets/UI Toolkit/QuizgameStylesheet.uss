@@ -227,3 +227,16 @@ Button:focus {
     border-bottom-color: var(--blue);
     border-right-color: var(--blue);
 }
+
+.no-opacity {
+    opacity: 0;
+    flex-grow: 0.1;
+}
+
+.screen-data-init {
+    flex-grow: 1.2;
+}
+
+#ScreenData > * {
+    margin-bottom: 30px;
+}

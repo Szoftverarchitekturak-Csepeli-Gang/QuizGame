@@ -43,6 +43,14 @@ MonoBehaviour:
     m_Key: ConnectedPlayers
     m_Metadata:
       m_Items: []
+  - m_Id: 9423333807591424
+    m_Key: WaitForRoundEnd
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9424645626499072
+    m_Key: YourAnswer
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

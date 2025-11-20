@@ -48,6 +48,14 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 5564545359597797763
+  - m_Id: 9423333807591424
+    m_Localized: Waiting for the next question to arrive...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9424645626499072
+    m_Localized: 'Your answer:'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

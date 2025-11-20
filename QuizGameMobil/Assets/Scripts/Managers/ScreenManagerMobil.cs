@@ -10,6 +10,7 @@ public class ScreenManagerMobil : ScreenManagerBase
     [SerializeField] GameObject QuizScreenPrefab;
     [SerializeField] GameObject WaitroomScreenPrefab;
     [SerializeField] GameObject FinishScreenPrefab;
+    [SerializeField] GameObject AnswerSentScreenPrefab;
 
     protected override void Start()
     {
@@ -25,6 +26,7 @@ public class ScreenManagerMobil : ScreenManagerBase
         RegisterScreen(AppScreen.QUIZ, LoadPrefab(QuizScreenPrefab));
         RegisterScreen(AppScreen.WAITROOM, LoadPrefab(WaitroomScreenPrefab));
         RegisterScreen(AppScreen.FINISH, LoadPrefab(FinishScreenPrefab));
+        RegisterScreen(AppScreen.ANSWER_SENT, LoadPrefab(AnswerSentScreenPrefab));
     }
 
     protected void HandleHostDisconnected()

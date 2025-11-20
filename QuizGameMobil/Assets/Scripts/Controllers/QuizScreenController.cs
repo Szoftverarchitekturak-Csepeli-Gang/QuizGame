@@ -58,6 +58,8 @@ public class QuizScreenController : ScreenController
         if (_answerSubmitted) return;
         _answerSubmitted = true;
         await NetworkManager.Instance.SendAnswer(answerIdx);
+        NetworkManager.Instance.RaiseAnswerSent(_question, _answers[answerIdx - 1]);
+        ScreenManagerBase.Instance.CurrentScreen = AppScreen.ANSWER_SENT;
     }
 
     public void StartTimer(int maxTime)

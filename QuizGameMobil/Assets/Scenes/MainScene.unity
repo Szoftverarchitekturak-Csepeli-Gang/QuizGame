@@ -849,6 +849,7 @@ MonoBehaviour:
   QuizScreenPrefab: {fileID: 8529885084400082644, guid: 3786e119fd9d6ec4a93bd05935679769, type: 3}
   WaitroomScreenPrefab: {fileID: 8829292698317270975, guid: eedb7a756cb6ccc4394cc6f2732e6c74, type: 3}
   FinishScreenPrefab: {fileID: 7490084409411411647, guid: 42b2a0e06e48618479f65e734353e125, type: 3}
+  AnswerSentScreenPrefab: {fileID: 6614873703859996348, guid: 871ca7cf888c9df4190da9fb0ea1fe28, type: 3}
 --- !u!1 &1995805590
 GameObject:
   m_ObjectHideFlags: 0
