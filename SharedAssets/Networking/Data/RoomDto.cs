@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Networking.Data
+namespace Assets.SharedAssets.Networking.Data
 {
     [Serializable]
     public class RoomDto

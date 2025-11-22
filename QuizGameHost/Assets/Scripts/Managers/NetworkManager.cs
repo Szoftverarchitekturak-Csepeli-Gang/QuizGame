@@ -1,7 +1,3 @@
-using Assets.Scripts.Networking.Data;
-using Assets.Scripts.Networking.Http;
-using Assets.Scripts.Networking.Websocket;
-using Assets.SharedAssets.Networking.Http;
 using UnityEngine.Networking;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,6 +6,8 @@ using UnityEngine;
 using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEditor.Searcher;
 using SocketIOClient;
+using Assets.SharedAssets.Networking.Http;
+using Assets.SharedAssets.Networking.Data;
 using Assets.SharedAssets.Networking.Websocket;
 using Assets.SharedAssets.Networking.Mappers;
 using Assets.SharedAssets.Networking.Validators;

@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Networking.Data;
-using Assets.Scripts.Networking.Http;
+﻿using Assets.SharedAssets.Networking.Data;
 using Assets.SharedAssets.Networking.Http;
 using Assets.SharedAssets.Networking.Mappers;
 using Assets.SharedAssets.Networking.Websocket;

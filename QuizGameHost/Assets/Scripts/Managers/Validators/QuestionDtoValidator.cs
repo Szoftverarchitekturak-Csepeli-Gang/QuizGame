@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Assets.Scripts.Networking.Data;
+using Assets.SharedAssets.Networking.Data;
 
 namespace Assets.SharedAssets.Networking.Validators
 {

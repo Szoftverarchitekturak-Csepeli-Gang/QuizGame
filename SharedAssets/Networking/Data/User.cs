@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Networking.Data
+namespace Assets.SharedAssets.Networking.Data
 {
     public class User
     {

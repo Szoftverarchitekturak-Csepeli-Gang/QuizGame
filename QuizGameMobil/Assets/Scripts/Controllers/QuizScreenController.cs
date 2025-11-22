@@ -1,4 +1,4 @@
-using Assets.Scripts.Networking.Data;
+using Assets.SharedAssets.Networking.Data;
 using System;
 using System.Collections;
 using System.Linq;
