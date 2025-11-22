@@ -512,18 +512,27 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 933a8219ef3d5fe479f0e1560f01ad3a, type: 3}
   - {fileID: 8300000, guid: 5df65b1ab9518c047aa05a3db84b4378, type: 3}
   - {fileID: 8300000, guid: c199f96672428634d8c11a15024754a2, type: 3}
-  _victorySound: {fileID: 8300000, guid: 66de741c16aaf5a4399d1cbbe1d45857, type: 3}
+  _fightStartSounds:
+  - {fileID: 8300000, guid: 541f51598e74be147b410b806bbacfee, type: 3}
+  - {fileID: 8300000, guid: f277a0f5ecba1594c9e8adcbc21903d9, type: 3}
+  - {fileID: 8300000, guid: aee03821a6e42ee478316e78f5c099a3, type: 3}
   _defeatSound: {fileID: 8300000, guid: 9d8b8aa8d4ee2224d9166e1714306be5, type: 3}
-  _fightStartSound: {fileID: 8300000, guid: f277a0f5ecba1594c9e8adcbc21903d9, type: 3}
+  _victorySound: {fileID: 8300000, guid: 3a6e88c6d2882a243b1a629551d96728, type: 3}
+  _waitingRoomBackgroundSound:
+    clip: {fileID: 8300000, guid: 84e4343aaa77f6344b879889bfb42ba7, type: 3}
+    volume: 1
   _questionStateSound:
     clip: {fileID: 8300000, guid: 1fbfb0a702a422640b324ab6934dd706, type: 3}
     volume: 1
   _gameBackgroundSound:
-    clip: {fileID: 8300000, guid: 84e4343aaa77f6344b879889bfb42ba7, type: 3}
-    volume: 0.1
-  _battleBackgroundSound:
-    clip: {fileID: 0}
-    volume: 1
+    clip: {fileID: 8300000, guid: 91a246538d1c97142aeafe5f1a1da026, type: 3}
+    volume: 0.05
+  _victoryBackgroundSound:
+    clip: {fileID: 8300000, guid: 66de741c16aaf5a4399d1cbbe1d45857, type: 3}
+    volume: 0.25
+  _defeatBackgroundSound:
+    clip: {fileID: 8300000, guid: 3a6818f1e27d87a4cb5f513680cad65e, type: 3}
+    volume: 0.25
   _cameraFlySound: {fileID: 8300000, guid: eb6be731d50300e44af0ac7c8a6fbf07, type: 3}
 --- !u!1 &1217361808
 GameObject:
@@ -536,9 +545,10 @@ GameObject:
   - component: {fileID: 1217361811}
   - component: {fileID: 1217361810}
   - component: {fileID: 1217361812}
+  - component: {fileID: 1217361813}
   m_Layer: 0
   m_Name: UICamera
-  m_TagString: Untagged
+  m_TagString: UICamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -653,6 +663,14 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!81 &1217361813
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217361808}
+  m_Enabled: 1
 --- !u!1 &1505554674
 GameObject:
   m_ObjectHideFlags: 0
