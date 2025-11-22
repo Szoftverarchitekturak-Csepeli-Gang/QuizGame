@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Assets.Scripts.Networking.Data
+namespace Assets.SharedAssets.Networking.Data
 {
     [Serializable]
     public class QuestionBankDto

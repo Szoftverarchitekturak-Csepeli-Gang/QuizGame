@@ -1,6 +1,6 @@
-using Assets.Scripts.Networking.Http;
+using Assets.SharedAssets.Networking.Http;
 using Assets.SharedAssets.Networking.Websocket;
-using Assets.Scripts.Networking.Data;
+using Assets.SharedAssets.Networking.Data;
 using System;
 using System.Net.Http;
 using UnityEngine;

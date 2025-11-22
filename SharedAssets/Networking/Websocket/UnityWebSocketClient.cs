@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Networking.Data;
+﻿using Assets.SharedAssets.Networking.Data;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Networking.Websocket
+namespace Assets.SharedAssets.Networking.Websocket
 {
     public class UnityWebSocketClient : IUnityWebSocketClient
     {

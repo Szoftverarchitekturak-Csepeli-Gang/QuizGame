@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace Assets.Scripts.Networking.Http
+namespace Assets.SharedAssets.Networking.Http
 {
     public class UnityHttpClient : IUnityHttpClient
     {

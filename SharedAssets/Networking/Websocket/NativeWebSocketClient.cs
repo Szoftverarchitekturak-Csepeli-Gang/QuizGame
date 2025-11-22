@@ -3,7 +3,7 @@ using System;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Networking.Websocket
+namespace Assets.SharedAssets.Networking.Websocket
 {
     public class NativeWebSocketClient : ISocketClient
     {

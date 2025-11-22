@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Networking.Http
+namespace Assets.SharedAssets.Networking.Http
 {
     public interface IHttpClient
     {

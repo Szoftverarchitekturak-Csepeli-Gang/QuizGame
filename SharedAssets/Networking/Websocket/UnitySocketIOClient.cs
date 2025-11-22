@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Networking.Websocket;
+﻿using Assets.SharedAssets.Networking.Websocket;
 using Newtonsoft.Json;
 using SocketIOClient;
 using System;

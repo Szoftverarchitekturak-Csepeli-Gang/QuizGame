@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace Assets.Scripts.Networking.Data
+namespace Assets.SharedAssets.Networking.Data
 {
     [Serializable]
     public class QuestionDto
