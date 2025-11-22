@@ -21,12 +21,16 @@
         <ui:VisualElement name="SelectVillageElement" enabled="true" class="background-image hide" style="flex-grow: 0; justify-content: space-between; width: 60%; height: 80%; align-content: flex-start; align-self: center;">
             <ui:VisualElement name="VillageCard" style="flex-grow: 0; flex-direction: row; height: 80%; padding-top: 8px; padding-right: 16px; padding-bottom: 8px; padding-left: 16px; align-items: stretch; align-self: auto;">
                 <ui:VisualElement name="VillageInfo" style="flex-grow: 0; align-items: stretch; justify-content: center; width: 50%;">
-                    <ui:Label text="Village 2" class="title-font blue-text" style="flex-grow: 1; -unity-text-align: lower-center; font-size: 48px;">
+                    <ui:Label text="Village 2" name="VillageName" class="title-font blue-text" style="flex-grow: 1; -unity-text-align: lower-center; font-size: 48px;">
                         <Bindings>
                             <ui:DataBinding property="text" data-source-path="_villageName" data-source-type="GameScreenController, Assembly-CSharp" binding-mode="TwoWay" />
                         </Bindings>
                     </ui:Label>
-                    <ui:Label style="flex-grow: 1; -unity-text-align: upper-center;" />
+                    <ui:Label text="info" name="VillageDetails" style="flex-grow: 1; -unity-text-align: upper-center;">
+                        <Bindings>
+                            <ui:DataBinding property="text" data-source-path="_villageInfo" binding-mode="TwoWay" />
+                        </Bindings>
+                    </ui:Label>
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 0; padding-top: 100px; padding-right: 80px; padding-bottom: 40px; padding-left: 20px; width: 50%;">
                     <ui:VisualElement name="VillageImage" style="flex-grow: 1; background-image: resource(&apos;village1&apos;);" />

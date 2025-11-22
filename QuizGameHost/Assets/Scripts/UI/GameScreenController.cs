@@ -53,6 +53,8 @@ public class GameScreenController : ScreenController
 
     [SerializeField, HideInInspector]
     private string _villageName;
+    [SerializeField, HideInInspector]
+    private string _villageInfo;
     private VisualElement _villageImage;
     private VisualElement _selectVillageElement;
 
@@ -95,6 +97,7 @@ public class GameScreenController : ScreenController
 
         Texture2D villageImg = Resources.Load<Texture2D>(villageName);
         _villageName = villageName;
+        _villageInfo = $"{villageController.SuccessThreshold * 100}%";
         _villageImage.style.backgroundImage = villageImg;
 
         _selectVillageElement.RemoveFromClassList("hide");
