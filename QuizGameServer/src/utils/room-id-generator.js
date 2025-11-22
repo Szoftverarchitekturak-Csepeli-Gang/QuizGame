@@ -1,4 +1,4 @@
-const {getRoomWithID} = require("../db/room_DAO");
+const {getRoomWithID} = require("../db/room.dao.js");
 
 exports.generateRoomId = async () => {
     let roomId;

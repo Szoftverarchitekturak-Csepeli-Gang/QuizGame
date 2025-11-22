@@ -1,7 +1,7 @@
 const { generateRoomId } = require("../utils/room-id-generator.js");
 const { getIO } = require("./socket.js");
-const room_DAO  = require("../db/room_DAO.js");
-const question_DAO  = require("../db/question_DAO.js");
+const room_DAO  = require("../db/room.dao.js");
+const question_DAO  = require("../db/question.dao.js");
 
 module.exports = {
     createRoomHandler,

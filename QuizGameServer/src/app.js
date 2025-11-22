@@ -2,7 +2,7 @@ const express = require('express');
 const http = require('http');
 const router = require('./router.js');
 const { errorHandler } = require('./middlewares/error.middleware.js')
-const dbClient = require('./db/db_client.js')
+const dbClient = require('./db/db-client.js')
 const socket = require('./socket/socket.js')
 const registerSocketEvents = require('./socket/events.js')
 
@@ -19,9 +19,10 @@ app.use(errorHandler);
 
 async function startServer() {
   try{
-    await dbClient.InitDatabase();
-    server.listen(port, () => {
-      console.log(`QuizGameServer running at http://localhost:${port}`);
+    await dbClient.initDatabase();
+
+    app.listen(port, () => {
+      console.log(`QuizGameServer listening at http://localhost:${port}`);
     });
   }
   catch(error){

@@ -12,11 +12,12 @@ datasource db {
 
 model Question_Bank {
   id            Int       @id @default(autoincrement())
-  ownerId       Int       // No auth for now
+  ownerId       Int       // Foreign key linking to User
   title         String
   public        Boolean   // Whether the bank could be used by users other than the owner
   questions     Question[]
   rooms         Room[]
+  user          User @relation(fields :[ownerId], references: [id])
 }
 
 model Question {
@@ -37,4 +38,11 @@ model Room {
   questionBankId    Int
   isOpen            Boolean
   bank              Question_Bank @relation(fields: [questionBankId], references: [id])
+}
+
+model User {
+  id                Int    @id @default(autoincrement())
+  username          String @unique
+  password          String
+  questionBanks     Question_Bank[]
 }

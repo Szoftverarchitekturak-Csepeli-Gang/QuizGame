@@ -6,6 +6,10 @@ const message = {
 }
 
 const createUpdateSchema = Joi.object({
+    id: Joi.number()
+        .integer()
+        .min(0)
+        .optional(),
     text: Joi.string()
         .trim()
         .min(5)
@@ -38,4 +42,4 @@ const createUpdateSchema = Joi.object({
         .required(),
 });
 
-exports.createUpdateValidator = validator(createUpdateSchema);
+exports.questionCUValidator = validator(createUpdateSchema);
