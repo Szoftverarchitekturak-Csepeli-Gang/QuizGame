@@ -21,7 +21,7 @@ async function startServer() {
   try{
     await dbClient.initDatabase();
 
-    app.listen(port, () => {
+    server.listen(port, () => {
       console.log(`QuizGameServer listening at http://localhost:${port}`);
     });
   }

@@ -36,12 +36,12 @@ public class QuizScreenController : ScreenController
 
     private void QuestionReceivedHandler(QuestionDto newQuestion)
     {
-        _question = newQuestion.text;
+        _question = newQuestion.Text;
 
-        _answers[0] = newQuestion.optionA;
-        _answers[1] = newQuestion.optionB;
-        _answers[2] = newQuestion.optionC;
-        _answers[3] = newQuestion.optionD;
+        _answers[0] = newQuestion.OptionA;
+        _answers[1] = newQuestion.OptionB;
+        _answers[2] = newQuestion.OptionC;
+        _answers[3] = newQuestion.OptionD;
 
         _ui.Q<Button>("Answer1").clicked += () => OnAnswerClicked(1);
         _ui.Q<Button>("Answer2").clicked += () => OnAnswerClicked(2);
