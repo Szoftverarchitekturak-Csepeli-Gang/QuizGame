@@ -3,19 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Assets.Scripts.Networking.Data
 {
     [Serializable]
     public class QuestionDto
     {
-        public int id { get; set; }
-        public int questionBankId { get; set; }
-        public string text { get; set; }
-        public string optionA { get; set; }
-        public string optionB { get; set; }
-        public string optionC { get; set; }
-        public string optionD { get; set; }
-        public int correctAnswer { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("text")]
+        public string Text { get; set; }
+        [JsonProperty("optionA")]
+        public string OptionA { get; set; }
+        [JsonProperty("optionB")]
+        public string OptionB { get; set; }
+        [JsonProperty("optionC")]
+        public string OptionC { get; set; }
+        [JsonProperty("optionD")]
+        public string OptionD { get; set; }
+        [JsonProperty("correctAnswer")]
+        public int CorrectAnswer { get; set; }
     }
 }

@@ -1,5 +1,5 @@
-const { prisma } = require('./db_client.js');
-const { getQuestionBankWithId } = require('./question_bank_DAO.js')
+const { prisma } = require('./db-client.js');
+const { getQuestionBankWithId } = require('./question-bank.dao.js');
 
 module.exports = {
   createRoom,

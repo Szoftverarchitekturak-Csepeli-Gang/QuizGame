@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 [UxmlElement]
 public partial class QuestionEditElement : VisualElement
 {
+    private int Id;
     [SerializeField] public string QuestionText;
     [SerializeField] public string AnswerA, AnswerB, AnswerC, AnswerD;
     [SerializeField] private int CorrectAnswerIdx;
@@ -104,6 +105,7 @@ public partial class QuestionEditElement : VisualElement
 
     public void BindQuestion(Question question)
     {
+        Id = question.Id;
         QuestionText = question.QuestionText;
         AnswerA = question.Answers[0];
         AnswerB = question.Answers[1];
@@ -116,7 +118,7 @@ public partial class QuestionEditElement : VisualElement
 
     public Question GetQuestion()
     {
-        return new Question(QuestionText, new string[] { AnswerA, AnswerB, AnswerC, AnswerD }, CorrectAnswerIdx);
+        return new Question(Id, QuestionText, new string[] { AnswerA, AnswerB, AnswerC, AnswerD }, CorrectAnswerIdx);
     }
 }
 

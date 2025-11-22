@@ -235,10 +235,29 @@ public class DashboardScreenController : ScreenController
         _noQuestionBanksText.AddToClassList("hide");
     }
 
-    private void OnSaveButtonClicked()
+    private async void OnSaveButtonClicked()
     {
-        // TODO: send question bank to server
-        throw new NotImplementedException();
+        int selectedIndex = _questionBanksOfUserDropdown.index;
+        if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
+        {
+            QuestionBank selected = _questionBanksOfUser[selectedIndex];
+            var response = await NetworkManager.Instance.UpdateQuestionBank(selected.Id, 1,selected.Name, questions.Select(q => q.GetQuestion()).ToList(), true);
+            if(!response.IsSuccess)
+            {
+                return;
+            }
+        }
+        else
+        {
+            var response = await NetworkManager.Instance.CreateQuestionBank(1, "tesztbank", questions.Select(q => q.GetQuestion()).ToList(), true);
+            if(!response.IsSuccess)
+            {
+                return;
+            }
+        }
+
+        _questionBanksOfUserDropdown.index = -1;
+        SetupQuestionBankTab();
     }
 
     private void DeleteQuestion(QuestionEditElement element)
@@ -266,7 +285,7 @@ public class DashboardScreenController : ScreenController
     {
         //TODO: show error message on UI (response.ErrorMessage is !response.isSuccess)
         var response = await NetworkManager.Instance.GetQuestionBanks(search, userID);
-        return response.IsSuccess ? QuestionBankMapper.ToModelList(response.Data) : new List<QuestionBank>();
+        return response.IsSuccess ? response.Data : new List<QuestionBank>();
     }
 
     private async void LoadBanksOfUser()
@@ -307,7 +326,7 @@ public class DashboardScreenController : ScreenController
     private async Task<List<Question>> FetchQuestions(int id)
     {
         var response = await NetworkManager.Instance.GetQuestionsFromBank(id);
-        return response.IsSuccess ? QuestionMapper.ToModelList(response.Data) : new List<Question>();
+        return response.IsSuccess ? response.Data : new List<Question>();
     }
 
     private void handleRoomCreated()
