@@ -26,15 +26,18 @@ public class AudioManager : SingletonBase<AudioManager>
     [Header("Battle Sounds")]
     [SerializeField] private AudioClip[] _deathSounds;
     [SerializeField] private AudioClip[] _attackSounds;
-    [SerializeField] private AudioClip _victorySound;
+    [SerializeField] private AudioClip[] _fightStartSounds;
+
     [SerializeField] private AudioClip _defeatSound;
-    [SerializeField] private AudioClip _fightStartSound;
+    [SerializeField] private AudioClip _victorySound;
 
     [Header("Background Sounds")]
     private AudioSource _backgroundSoundSource;
+    [SerializeField] private AudioClipInfo _waitingRoomBackgroundSound;
     [SerializeField] private AudioClipInfo _questionStateSound;
     [SerializeField] private AudioClipInfo _gameBackgroundSound;
-    [SerializeField] private AudioClipInfo _battleBackgroundSound;
+    [SerializeField] private AudioClipInfo _victoryBackgroundSound;
+    [SerializeField] private AudioClipInfo _defeatBackgroundSound;
 
     [Header("Other Sounds")]
     [SerializeField] private AudioClip _cameraFlySound;
@@ -86,6 +89,15 @@ public class AudioManager : SingletonBase<AudioManager>
         PlaySound3D(clips[randomIndex], position);
     }
 
+    private void PlayRandomSound2D(AudioClip[] clips)
+    {
+        if (clips.Length == 0)
+            return;
+
+        var randomIndex = Random.Range(0, clips.Length);
+        PlaySound2D(clips[randomIndex]);
+    }
+
     private void PlayBackgroundSound(AudioClipInfo clipInfo)
     {
         if (clipInfo.clip == null)
@@ -96,7 +108,7 @@ public class AudioManager : SingletonBase<AudioManager>
         _backgroundSoundSource.Play();
     }
 
-    private void StopBackgroundSound()
+    public void StopBackgroundSound()
     {
         if (_backgroundSoundSource.clip == null)
             return;
@@ -120,20 +132,9 @@ public class AudioManager : SingletonBase<AudioManager>
         PlayBackgroundSound(_questionStateSound);
     }
 
-    public void StopQuestionStateSound()
-    {
-        StopBackgroundSound();
-    }
-
     public void PlayGameBackgroundSound()
     {
-        _backgroundSoundSource.volume = 0.5f;
         PlayBackgroundSound(_gameBackgroundSound);
-    }
-
-    public void StopGameBackgroundSound()
-    {
-        StopBackgroundSound();
     }
 
     public void PlayVictorySound()
@@ -141,18 +142,33 @@ public class AudioManager : SingletonBase<AudioManager>
         PlaySound2D(_victorySound);
     }
 
+    public void PlayVictoryBackgroundSound()
+    {
+        PlayBackgroundSound(_victoryBackgroundSound);
+    }
+
     public void PlayDefeatSound()
     {
         PlaySound2D(_defeatSound);
     }
 
+    public void PlayDefeatBackgroundSound()
+    {
+        PlayBackgroundSound(_defeatBackgroundSound);
+    }
+
     public void PlayFightStartSound()
     {
-        PlaySound2D(_fightStartSound);
+        PlayRandomSound2D(_fightStartSounds);
     }
 
     public void PlayCameraFlySound()
     {
         PlaySound2D(_cameraFlySound);
+    }
+
+    public void PlayWaitingRoomBackgroundSound()
+    {
+        PlayBackgroundSound(_waitingRoomBackgroundSound);
     }
 }

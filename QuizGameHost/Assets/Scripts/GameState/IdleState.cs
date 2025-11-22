@@ -17,7 +17,7 @@ public class IdleState : IGameState
 
     public void Exit()
     {
-        AudioManager.Instance.StopGameBackgroundSound();
+        AudioManager.Instance.StopBackgroundSound();
         RaycastManager.Instance.OnVillageSelectChanged -= NextState;
     }
 

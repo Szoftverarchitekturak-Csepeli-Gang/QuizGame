@@ -22,6 +22,7 @@ public class WaitroomScreenController : ScreenController
         RoomManager.Instance.UserCountChanged += SetConnectedUsers;
         RoomManager.Instance.RoomCreated += SetRoomId;
 
+        VisibilityChanged += HandleVisibilityChanged;
     }
 
     void OnDisable()
@@ -31,6 +32,8 @@ public class WaitroomScreenController : ScreenController
             RoomManager.Instance.UserCountChanged -= SetConnectedUsers;
             RoomManager.Instance.RoomCreated -= SetRoomId;
         }
+        
+        VisibilityChanged -= HandleVisibilityChanged;
     }
 
     private async void OnStartGameButtonClicked()
@@ -47,5 +50,16 @@ public class WaitroomScreenController : ScreenController
     private void SetRoomId()
     {
         _roomID = RoomManager.Instance.RoomID;
+    }
+
+    private void HandleVisibilityChanged(bool visible)
+    {
+        var audioListener = GameObject.FindGameObjectWithTag("UICamera").GetComponent<AudioListener>();
+        audioListener.enabled = visible;
+
+        if (visible)
+            AudioManager.Instance.PlayWaitingRoomBackgroundSound();
+        else
+            AudioManager.Instance.StopBackgroundSound();
     }
 }

@@ -34,7 +34,7 @@ public class QuestionState : IGameState
         RoomManager.Instance.QuestionReceived -= HandleQuestionReceived;
         RoomManager.Instance.questionPhaseEnded -= Exit;
 
-        AudioManager.Instance.StopQuestionStateSound();
+        AudioManager.Instance.StopBackgroundSound();
 
         _timer = _questionTime;
     }

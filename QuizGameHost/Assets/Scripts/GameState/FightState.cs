@@ -10,6 +10,8 @@ public class FightState : IGameState
     {
         BattleManager.Instance.OnBattleFinished += HandleBattleFinished;
         BattleManager.Instance.OnBattleEarlyFinished += HandleBattleEarlyFinished;
+        BattleManager.Instance.OnFightFinished += HandleBattleFightFinished;
+
         RaycastManager.Instance.DisableRaycast(); //To prevent changing current village!
         BlurManager.Instance.DeactivateBlurEffect();
         InputManager.Instance.EnableInputControl();
@@ -22,8 +24,11 @@ public class FightState : IGameState
     {
         BattleManager.Instance.OnBattleFinished -= HandleBattleFinished;
         BattleManager.Instance.OnBattleEarlyFinished -= HandleBattleEarlyFinished;
+        BattleManager.Instance.OnFightFinished -= HandleBattleFightFinished;
+
         GameScreenPresenter.Instance.HideBattleEndPanel();
         RaycastManager.Instance.EnableRaycast(); 
+        AudioManager.Instance.StopBackgroundSound();
     }
 
     public void Update()
@@ -38,7 +43,7 @@ public class FightState : IGameState
         BattleManager.Instance.StartBattle(RaycastManager.Instance.CurrentSelectedVillage.GetComponent<VillageController>(), victory);
     }
 
-    public void HandleBattleFinished(BattleResult result)
+    private void HandleBattleFinished(BattleResult result)
     {
         if (result.attackerWon)
             VillageManager.Instance.VillageConquered(RaycastManager.Instance.CurrentSelectedVillage.GetComponent<VillageController>());
@@ -46,7 +51,7 @@ public class FightState : IGameState
         GameStateManager.Instance.ChangeState(GameStateType.Statistics);
     }
 
-    public void HandleBattleEarlyFinished(BattleResult result)
+    private void HandleBattleEarlyFinished(BattleResult result)
     {
         var villagePos = RaycastManager.Instance.CurrentSelectedVillage.transform.position + new Vector3(0.0f, 5.0f, 0.0f);
 
@@ -62,6 +67,17 @@ public class FightState : IGameState
         }
 
         GameScreenPresenter.Instance.ShowBattleEndPanel(result.attackerWon);
+    }
 
+    private void HandleBattleFightFinished(bool attackerWin)
+    { 
+        if (attackerWin)
+        {
+            AudioManager.Instance.PlayVictoryBackgroundSound();
+        }
+        else
+        {
+            AudioManager.Instance.PlayDefeatBackgroundSound();
+        }
     }
 }
