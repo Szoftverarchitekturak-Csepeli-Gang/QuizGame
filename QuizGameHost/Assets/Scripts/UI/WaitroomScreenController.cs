@@ -35,7 +35,6 @@ public class WaitroomScreenController : ScreenController
 
     private async void OnStartGameButtonClicked()
     {
-        // TODO: Notify server to start the game
         await RoomManager.Instance.StartGame();
         ScreenManagerBase.Instance.CurrentScreen = AppScreen.GAME;
     }

@@ -98,7 +98,7 @@ namespace Assets.SharedAssets.Networking.Websocket
                 }
                 catch (Exception e)
                 {
-                    Debug.LogError($"[WebSocket] Failed to process '{msg.Type}': {e.Message}");
+                    Debug.Log($"[WebSocket] Failed to process '{msg.Type}': {e.Message}");
                 }
             }
             else

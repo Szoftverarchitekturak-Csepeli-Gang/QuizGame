@@ -25,6 +25,7 @@ async function createRoomHandler(questionBankId, hostSocket)
     try{
         await room_DAO.createRoom(roomID, hostSocket.id, questionBankId);
         hostSocket.join(roomID);
+        hostSocket.data.roomId = roomID;
         console.log("Room created: ", roomID);
         hostSocket.emit("roomCreated", roomID);
     }

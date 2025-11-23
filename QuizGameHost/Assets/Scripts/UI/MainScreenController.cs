@@ -1,7 +1,13 @@
+using Assets.SharedAssets.Networking.Validators;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.UIElements;
+using System.Threading.Tasks;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 
 public class MainScreenController : ScreenController
 {
@@ -65,20 +71,43 @@ public class MainScreenController : ScreenController
         _sendButton.clicked -= OnSendButtonClicked;
     }
 
-    private void OnSendButtonClicked()
+    private async void OnSendButtonClicked()
     {
+
         if (ValidateInputs())
         {
-            // TODO: send data to backend
+            var response = CurrentLayout == ScreenLayout.LOGIN ?
+                await NetworkManager.Instance.Login(_username, _password) :
+                await NetworkManager.Instance.RegisterUser(_username, _password);
+
+            if (response.IsSuccess)
+            {
+                ScreenManagerBase.Instance.CurrentScreen = AppScreen.DASHBOARD;
+            }
+            else
+            {
+                // TODO: Proper user feedback
+                Debug.Log(response.ErrorMessage);
+            }
         }
 
-        ScreenManagerBase.Instance.CurrentScreen = AppScreen.DASHBOARD;
     }
 
     private bool ValidateInputs()
     {
-        // TODO: validate fields
-        return true;
+        string confPassword = CurrentLayout == ScreenLayout.REGISTER ? _confirmPassword : _password;
+        List<string> Errors = UserValidator.Validate(_username, _password, confPassword);
+
+        if(Errors.Any())
+        {
+            // TODO: replace log with proper user feedback
+            Debug.Log(Errors[0]);
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     private void SwitchAccountOperation()
@@ -110,11 +139,5 @@ public class MainScreenController : ScreenController
         CurrentLayout = ScreenLayout.LOGIN;
         _username = _password = _confirmPassword = "";
     }
-
-    // private void BindLabel(TextElement element, LocalizedString localized)
-    // {
-    //     localized.StringChanged += s => element.text = s;
-    //     localized.RefreshString();
-    // }
 
 }

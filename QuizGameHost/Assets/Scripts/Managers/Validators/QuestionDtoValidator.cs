@@ -9,52 +9,52 @@ namespace Assets.SharedAssets.Networking.Validators
         {
             var errors = new List<string>();
 
-            if (string.IsNullOrWhiteSpace(questionDto.Text))
+            if (string.IsNullOrWhiteSpace(questionDto.text))
             {
                 errors.Add("Text is required!");
             }
-            else if (questionDto.Text.Length < 5)
+            else if (questionDto.text.Length < 5)
             {
                 errors.Add("Text must be at least 5 characters long!");
             }
 
-            if (string.IsNullOrWhiteSpace(questionDto.OptionA))
+            if (string.IsNullOrWhiteSpace(questionDto.optionA))
             {
                 errors.Add("OptionA is required!");
             }
-            else if (questionDto.OptionA.Length < 1) 
+            else if (questionDto.optionA.Length < 1) 
             {
                 errors.Add("OptionA must be at least 1 character long!");
             }
 
-            if (string.IsNullOrWhiteSpace(questionDto.OptionB))
+            if (string.IsNullOrWhiteSpace(questionDto.optionB))
             {
                 errors.Add("OptionB is required!");
             }
-            else if (questionDto.OptionB.Length < 1)
+            else if (questionDto.optionB.Length < 1)
             {
                 errors.Add("OptionB must be at least 1 character long!");
             }
 
-            if (string.IsNullOrWhiteSpace(questionDto.OptionC))
+            if (string.IsNullOrWhiteSpace(questionDto.optionC))
             {
                 errors.Add("OptionC is required!");
             }
-            else if (questionDto.OptionC.Length < 1)
+            else if (questionDto.optionC.Length < 1)
             {
                 errors.Add("OptionC must be at least 1 character long!");
             }
 
-            if (string.IsNullOrWhiteSpace(questionDto.OptionD))
+            if (string.IsNullOrWhiteSpace(questionDto.optionD))
             {
                 errors.Add("OptionD is required!");
             }
-            else if (questionDto.OptionD.Length < 1)
+            else if (questionDto.optionD.Length < 1)
             {
                 errors.Add("OptionD must be at least 1 character long!");
             }
 
-            if (questionDto.CorrectAnswer < 1 || questionDto.CorrectAnswer > 4)
+            if (questionDto.correctAnswer < 1 || questionDto.correctAnswer > 4)
             {
                 errors.Add("CorrectAnswer is between 1-4!");
             }

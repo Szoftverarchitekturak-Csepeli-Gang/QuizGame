@@ -10,6 +10,10 @@ const createUpdateSchema = Joi.object({
         .integer()
         .min(0)
         .optional(),
+    questionBankId: Joi.number()
+        .integer()
+        .min(0)
+        .optional(),
     text: Joi.string()
         .trim()
         .min(5)

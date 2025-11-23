@@ -44,10 +44,16 @@ public class DashboardScreenController : ScreenController
     void OnEnable()
     {
         _ui.Q<LangButtonElement>("LangButton").LoadAssetReference("Host Asset Table");
+        NetworkManager.Instance.OnLoggedIn += LoadBanksOfUser;
 
         SetupCreateRoomTab();
         SetupQuestionBankTab();
         SetupTabs();
+    }
+
+    void OnDisable()
+    {
+        NetworkManager.Instance.OnLoggedIn -= LoadBanksOfUser;
     }
 
     private void SetupCreateRoomTab()
@@ -145,9 +151,9 @@ public class DashboardScreenController : ScreenController
         ShowPage(DashboardTab.QUESTION_BANKS, true);
     }
 
-    private void OnLogoutClicked()
+    private async void OnLogoutClicked()
     {
-        // TODO: handle logout logic
+        await NetworkManager.Instance.Logout();
         ScreenManagerBase.Instance.CurrentScreen = AppScreen.MAIN;
     }
 
@@ -241,7 +247,7 @@ public class DashboardScreenController : ScreenController
         if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
         {
             QuestionBank selected = _questionBanksOfUser[selectedIndex];
-            var response = await NetworkManager.Instance.UpdateQuestionBank(selected.Id, 1,selected.Name, questions.Select(q => q.GetQuestion()).ToList(), true);
+            var response = await NetworkManager.Instance.UpdateQuestionBank(selected.Id, NetworkManager.Instance.UserID,selected.Name, questions.Select(q => q.GetQuestion()).ToList(), true);
             if(!response.IsSuccess)
             {
                 return;
@@ -249,7 +255,8 @@ public class DashboardScreenController : ScreenController
         }
         else
         {
-            var response = await NetworkManager.Instance.CreateQuestionBank(1, "tesztbank", questions.Select(q => q.GetQuestion()).ToList(), true);
+            //TODO: replace "tesztbank" with UI field value
+            var response = await NetworkManager.Instance.CreateQuestionBank(NetworkManager.Instance.UserID, "tesztbank", questions.Select(q => q.GetQuestion()).ToList(), true);
             if(!response.IsSuccess)
             {
                 return;
@@ -283,14 +290,14 @@ public class DashboardScreenController : ScreenController
 
     private async Task<List<QuestionBank>> FetchQuestionBanks(string search = "", int userID = -1)
     {
-        //TODO: show error message on UI (response.ErrorMessage is !response.isSuccess)
+        //TODO: show error message on UI (response.ErrorMessage if !response.isSuccess)
         var response = await NetworkManager.Instance.GetQuestionBanks(search, userID);
         return response.IsSuccess ? response.Data : new List<QuestionBank>();
     }
 
     private async void LoadBanksOfUser()
     {
-        _questionBanksOfUser = await FetchQuestionBanks(userID: 1);
+        _questionBanksOfUser = await FetchQuestionBanks(userID: NetworkManager.Instance.UserID);
 
         var dropdownList = _questionBanksOfUser.Select(r => r.Name).ToList();
         _questionBanksOfUserDropdown.choices = dropdownList;
