@@ -526,7 +526,7 @@ MonoBehaviour:
     volume: 1
   _gameBackgroundSound:
     clip: {fileID: 8300000, guid: 91a246538d1c97142aeafe5f1a1da026, type: 3}
-    volume: 0.05
+    volume: 0.25
   _victoryBackgroundSound:
     clip: {fileID: 8300000, guid: 66de741c16aaf5a4399d1cbbe1d45857, type: 3}
     volume: 0.25
