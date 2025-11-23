@@ -54,7 +54,7 @@
                         <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(751859615182848)" />
                     </Bindings>
                 </ui:Label>
-                <ui:VisualElement name="QuestionBankSettings" style="flex-grow: 1;">
+                <ui:VisualElement name="QuestionBankSettings" class="hide" style="flex-grow: 1;">
                     <ui:VisualElement style="flex-grow: 0; flex-direction: row; align-items: flex-end; justify-content: space-around;">
                         <ui:TextField label="Question Bank Name" name="BankNameField" style="width: 50%; flex-direction: column;">
                             <Bindings>
@@ -85,7 +85,7 @@
                                 <ui:DataBinding property="value" data-source-path="_searchInput" data-source-type="DashboardScreenController, Assembly-CSharp" binding-mode="TwoWay" />
                             </Bindings>
                         </ui:TextField>
-                        <ui:ListView name="QuestionBankSearchList" />
+                        <ui:ListView name="QuestionBankSearchList" style="margin-top: 20px;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 0.5; align-items: center; justify-content: center; flex-direction: row; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;">

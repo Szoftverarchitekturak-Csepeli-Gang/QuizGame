@@ -36,6 +36,7 @@ public class DashboardScreenController : ScreenController
     [SerializeField, HideInInspector] private string _searchInput;
     private List<QuestionBank> _searchedQuestionBanks = new();
     private ListView _bankSearchList;
+    private QuestionBank _selectedBank;
 
     // fetched data
     [SerializeField, HideInInspector] private string _bankName;
@@ -67,10 +68,10 @@ public class DashboardScreenController : ScreenController
             int selectedIndex = _questionBanksOfUserDropdownCreateRoom.index;
             if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
             {
-                QuestionBank selected = _questionBanksOfUser[selectedIndex];
-                _bankName = selected.Name;
+                _selectedBank = _questionBanksOfUser[selectedIndex];
+                _bankName = _selectedBank.Name;
                 _bankSearchList.selectedIndex = -1;
-                Debug.Log($"Selected '{selected.Name}' with ID = {selected.Id}");
+                Debug.Log($"Selected '{_selectedBank.Name}' with ID = {_selectedBank.Id}");
             }
         });
 
@@ -118,19 +119,19 @@ public class DashboardScreenController : ScreenController
         int selectedIndex = _bankSearchList.selectedIndex;
         if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
         {
-            QuestionBank selected = _searchedQuestionBanks[selectedIndex];
-            _bankName = selected.Name;
+            _selectedBank = _searchedQuestionBanks[selectedIndex];
+            _bankName = _selectedBank.Name;
             _questionBanksOfUserDropdownCreateRoom.index = -1;
         }
     }
 
     private async void OnCreateRoomClicked()
     {
-        int selectedIndex = _questionBanksOfUserDropdownCreateRoom.index;
-        if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
+        // int selectedIndex = _questionBanksOfUserDropdownCreateRoom.index;
+        if (_selectedBank != null)
         {
-            var selectedQuestionBank = _questionBanksOfUser[selectedIndex];
-            await RoomManager.Instance.CreateRoom(selectedQuestionBank.Id);
+            // var selectedQuestionBank = _questionBanksOfUser[selectedIndex];
+            await RoomManager.Instance.CreateRoom(_selectedBank.Id);
         }
     }
 
@@ -233,6 +234,7 @@ public class DashboardScreenController : ScreenController
                 ScreenManagerBase.Instance.DisplayErrorMessage(response.ErrorMessage);
 
             _questionBanksOfUserDropdown.index = -1;
+            _questionBankSettings.AddToClassList("hide");
             ResetQuestionScrollView();
             LoadBanksOfUser();
         }
@@ -270,6 +272,7 @@ public class DashboardScreenController : ScreenController
         }
 
         _questionBanksOfUserDropdown.index = -1;
+        _questionBankSettings.AddToClassList("hide");
         ResetQuestionScrollView();
         LoadBanksOfUser();
     }
@@ -316,12 +319,12 @@ public class DashboardScreenController : ScreenController
 
         if (_questionBanksOfUser.Count > 0)
         {
-            _questionBankSettings.RemoveFromClassList("hide");
+            // _questionBankSettings.RemoveFromClassList("hide");
             _noQuestionBanksText.AddToClassList("hide");
         }
         else
         {
-            _questionBankSettings.AddToClassList("hide");
+            // _questionBankSettings.AddToClassList("hide");
             _noQuestionBanksText.RemoveFromClassList("hide");
         }
 
@@ -336,6 +339,7 @@ public class DashboardScreenController : ScreenController
         {
             CreateNewQuestion(question);
         }
+        _questionBankSettings.RemoveFromClassList("hide");
     }
 
     private async Task<List<Question>> FetchQuestions(int id)
@@ -354,6 +358,7 @@ public class DashboardScreenController : ScreenController
     public override void ResetUIState()
     {
         _searchInput = _bankName = "";
+        _selectedBank = null;
 
         if (_bankSearchList != null)
         {
@@ -364,6 +369,8 @@ public class DashboardScreenController : ScreenController
         {
             _questionBanksOfUserDropdown.index = -1;
         }
+
+        _questionBankSettings.AddToClassList("hide");
 
         ResetQuestionScrollView();
     }
