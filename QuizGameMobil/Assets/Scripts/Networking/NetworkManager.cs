@@ -45,6 +45,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         }
         catch (Exception ex)
         {
+            ScreenManagerBase.Instance.DisplayErrorMessage("Failed to join room");
             Debug.LogError($"[Network] Failed join room: {ex}");
         }
     }
@@ -57,6 +58,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         }
         catch (Exception ex)
         {
+            ScreenManagerBase.Instance.DisplayErrorMessage("Failed to leave room");
             Debug.LogError($"[Network] Failed to leave room: {ex}");
         }
     }
@@ -69,6 +71,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         }
         catch (Exception ex)
         {
+            ScreenManagerBase.Instance.DisplayErrorMessage("Failed to submit answer");
             Debug.LogError($"[Network] Failed to leave room: {ex}");
         }
     }

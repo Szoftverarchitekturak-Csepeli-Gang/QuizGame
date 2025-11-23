@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -79,5 +80,13 @@ public abstract class ScreenManagerBase : SingletonBase<ScreenManagerBase>
     protected ScreenController LoadPrefab(GameObject prefab)
     {
         return Instantiate(prefab, ScreenParent).GetComponent<ScreenController>();
+    }
+
+    public void DisplayErrorMessage(string message)
+    {
+        if (_screens.TryGetValue(CurrentScreen, out ScreenController screen))
+        {
+            screen.DisplayErrorMessage(message);
+        }
     }
 }
