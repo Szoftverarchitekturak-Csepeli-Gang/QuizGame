@@ -10,7 +10,7 @@
                 </Bindings>
             </ui:ProgressBar>
         </ui:VisualElement>
-        <ui:VisualElement class="main-container background-image" style="flex-grow: 1; padding-right: 40px; padding-left: 40px; padding-bottom: 40px; -unity-background-image-tint-color: rgb(214, 214, 214); -unity-background-scale-mode: scale-and-crop; background-size: contain; background-repeat: round round;">
+        <ui:VisualElement class="main-container background-image" style="flex-grow: 1; padding-right: 40px; padding-left: 40px; padding-bottom: 40px;">
             <ui:Label text="Question" name="Question" data-source-type="QuizScreenController, Assembly-CSharp" style="-unity-text-align: middle-center; height: 300px; white-space: normal;">
                 <Bindings>
                     <ui:DataBinding property="text" data-source-path="_question" binding-mode="ToTarget" />

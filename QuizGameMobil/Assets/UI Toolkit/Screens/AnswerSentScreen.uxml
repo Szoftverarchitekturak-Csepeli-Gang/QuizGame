@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/QuizgameStylesheet.uss?fileID=7433441132597879392&amp;guid=b3fc00a12efea744bad7708d177617e2&amp;type=3#QuizgameStylesheet" />
-    <ui:VisualElement data-source-type="AnswerSentScreenController, Assembly-CSharp" class="main-container background-image" style="flex-grow: 1; background-repeat: round round; background-size: contain; background-color: rgb(243, 243, 243);">
+    <ui:VisualElement data-source-type="AnswerSentScreenController, Assembly-CSharp" class="main-container background-image" style="flex-grow: 1;">
         <ui:VisualElement name="ScreenData" class="screen-data-init" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; transition-property: opacity, flex-grow; transition-duration: 1s, 0.5s;">
             <ui:Label text="Question" name="Label" style="-unity-text-align: lower-center; white-space: normal; flex-grow: 1; font-size: 60px;">
                 <Bindings>
@@ -12,7 +12,7 @@
                     <UnityEngine.Localization.LocalizedString property="text" table="GUID:ca5fcf7e0d0f0d349acb0419a1deb995" entry="Id(9424645626499072)" />
                 </Bindings>
             </ui:Label>
-            <ui:Label text="Label" class="red-text" style="flex-grow: 1; -unity-text-align: upper-center; -unity-font-style: bold; font-size: 60px;">
+            <ui:Label text="Label" class="red-text" style="flex-grow: 1; -unity-text-align: upper-center; -unity-font-style: bold; font-size: 60px; white-space: normal;">
                 <Bindings>
                     <ui:DataBinding property="text" data-source-path="_answer" binding-mode="TwoWay" />
                 </Bindings>
