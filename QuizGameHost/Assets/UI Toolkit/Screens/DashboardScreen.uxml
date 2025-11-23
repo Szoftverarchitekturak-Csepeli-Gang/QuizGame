@@ -9,7 +9,11 @@
                         <UnityEngine.Localization.LocalizedString property="text" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(749078640635904)" />
                     </Bindings>
                 </ui:Label>
-                <ui:Label text="User" name="Username" style="font-size: 48px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                <ui:Label text="User" name="Username" style="font-size: 48px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="_username" data-source-type="DashboardScreenController, Assembly-CSharp" binding-mode="ToTarget" />
+                    </Bindings>
+                </ui:Label>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 0.5;" />
             <ui:Button text="Question banks" name="QuestionBankBtn" icon-image="project://database/Assets/Resources/Icons/question.png?fileID=2800000&amp;guid=bde0125006b6b794097d966aab180938&amp;type=3#question" focusable="false" double-click-selects-word="false" triple-click-selects-line="false" class="active-tab blue-button">

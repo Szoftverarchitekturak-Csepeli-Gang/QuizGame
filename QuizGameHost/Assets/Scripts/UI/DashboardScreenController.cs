@@ -20,6 +20,7 @@ public class DashboardScreenController : ScreenController
     private VisualElement _createRoomPage;
     private Button _questionBankButton;
     private Button _createRoomButton;
+    [SerializeField, HideInInspector] string _username;
 
     // question banks tab
     VisualElement _questionBankSettings;
@@ -127,10 +128,8 @@ public class DashboardScreenController : ScreenController
 
     private async void OnCreateRoomClicked()
     {
-        // int selectedIndex = _questionBanksOfUserDropdownCreateRoom.index;
         if (_selectedBank != null)
         {
-            // var selectedQuestionBank = _questionBanksOfUser[selectedIndex];
             await RoomManager.Instance.CreateRoom(_selectedBank.Id);
         }
     }
@@ -308,6 +307,7 @@ public class DashboardScreenController : ScreenController
 
     private async void LoadBanksOfUser()
     {
+        _username = NetworkManager.Instance.Username;
         _questionBanksOfUser = await FetchQuestionBanks(userID: NetworkManager.Instance.UserID);
 
         var dropdownList = _questionBanksOfUser.Select(r => r.Name).ToList();
@@ -319,12 +319,10 @@ public class DashboardScreenController : ScreenController
 
         if (_questionBanksOfUser.Count > 0)
         {
-            // _questionBankSettings.RemoveFromClassList("hide");
             _noQuestionBanksText.AddToClassList("hide");
         }
         else
         {
-            // _questionBankSettings.AddToClassList("hide");
             _noQuestionBanksText.RemoveFromClassList("hide");
         }
 
@@ -359,6 +357,7 @@ public class DashboardScreenController : ScreenController
     {
         _searchInput = _bankName = "";
         _selectedBank = null;
+        _username = "";
 
         if (_bankSearchList != null)
         {
