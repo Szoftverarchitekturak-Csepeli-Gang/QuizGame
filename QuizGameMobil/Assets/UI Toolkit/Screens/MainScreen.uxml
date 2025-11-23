@@ -11,7 +11,7 @@
                 <UnityEngine.Localization.LocalizedString property="label" table="GUID:ca5fcf7e0d0f0d349acb0419a1deb995" entry="Id(1467428155392)" />
             </Bindings>
         </ui:IntegerField>
-        <ui:TextField label="Password" password="true" hide-placeholder-on-focus="true" name="RoomPassword" class="blue-text" style="flex-direction: column;">
+        <ui:TextField label="Password" password="true" hide-placeholder-on-focus="true" name="RoomPassword" class="blue-text" style="flex-direction: column; display: none;">
             <Bindings>
                 <ui:DataBinding property="value" data-source-path="_roomPassword" data-source-type="MainScreenController, Assembly-CSharp" binding-mode="TwoWay" />
                 <UnityEngine.Localization.LocalizedString property="label" table="GUID:ca5fcf7e0d0f0d349acb0419a1deb995" entry="Id(1854008766464)" />
