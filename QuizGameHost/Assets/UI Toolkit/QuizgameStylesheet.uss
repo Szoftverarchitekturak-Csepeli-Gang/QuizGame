@@ -8,6 +8,7 @@
     transition-property: border-color;
     transition-duration: 0.2s;
     --blue-light: rgb(49, 119, 168);
+    --background: rgb(247, 247, 250);
 }
 
 .main-container {
@@ -17,7 +18,6 @@
     padding-right: 120px;
     padding-bottom: 60px;
     padding-left: 120px;
-    background-color: rgb(255, 255, 255);
 }
 
 .main-container > * {
@@ -162,7 +162,9 @@ Button:focus {
 .background-image {
     background-image: resource('background');
     -unity-background-image-tint-color: var(--white);
-    background-size: 100% 100%;
+    background-color: var(--background);
+    background-repeat: round round;
+    background-size: contain;
     -unity-background-scale-mode: stretch-to-fill;
 }
 

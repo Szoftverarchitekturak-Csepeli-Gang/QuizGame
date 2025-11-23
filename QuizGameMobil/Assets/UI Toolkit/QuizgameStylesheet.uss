@@ -8,6 +8,7 @@
     transition-property: border-color;
     transition-duration: 0.2s;
     --blue-light: rgb(49, 119, 168);
+    --background: rgb(247, 247, 250);
 }
 
 .main-container {
@@ -18,7 +19,6 @@
     padding-right: 160px;
     padding-bottom: 160px;
     padding-left: 160px;
-    background-color: rgb(238, 238, 238);
 }
 
 .main-container > * {
@@ -128,13 +128,16 @@ Button:focus {
     color: var(--red);
     -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Examples%20&%20Extras/Fonts/Electronic%20Highway%20Sign.TTF?fileID=12800000&guid=8a2b9e2a607dd2143b58c44bc32410b4&type=3#Electronic Highway Sign");
     font-size: 64px;
+    -unity-font-style: bold;
 }
 
 .background-image {
     background-image: resource('background');
     -unity-background-image-tint-color: var(--white);
-    background-size: 100% 100%;
-    -unity-background-scale-mode: stretch-to-fill;
+    background-color: var(--background);
+    background-repeat: space space;
+    background-size: cover;
+    -unity-background-scale-mode: scale-and-crop;
 }
 
 .blue-button {
