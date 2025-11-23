@@ -86,7 +86,7 @@ public class MainScreenController : ScreenController
             }
             else
             {
-                // TODO: Proper user feedback
+                ScreenManagerBase.Instance.DisplayErrorMessage(response.ErrorMessage);
                 Debug.Log(response.ErrorMessage);
             }
         }
@@ -98,9 +98,9 @@ public class MainScreenController : ScreenController
         string confPassword = CurrentLayout == ScreenLayout.REGISTER ? _confirmPassword : _password;
         List<string> Errors = UserValidator.Validate(_username, _password, confPassword);
 
-        if(Errors.Any())
+        if (Errors.Any())
         {
-            // TODO: replace log with proper user feedback
+            ScreenManagerBase.Instance.DisplayErrorMessage(Errors[0]);
             Debug.Log(Errors[0]);
             return false;
         }

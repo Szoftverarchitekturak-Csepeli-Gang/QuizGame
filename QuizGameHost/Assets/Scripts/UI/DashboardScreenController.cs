@@ -20,6 +20,7 @@ public class DashboardScreenController : ScreenController
     private VisualElement _createRoomPage;
     private Button _questionBankButton;
     private Button _createRoomButton;
+    [SerializeField, HideInInspector] string _username;
 
     // question banks tab
     VisualElement _questionBankSettings;
@@ -36,6 +37,7 @@ public class DashboardScreenController : ScreenController
     [SerializeField, HideInInspector] private string _searchInput;
     private List<QuestionBank> _searchedQuestionBanks = new();
     private ListView _bankSearchList;
+    private QuestionBank _selectedBank;
 
     // fetched data
     [SerializeField, HideInInspector] private string _bankName;
@@ -67,10 +69,10 @@ public class DashboardScreenController : ScreenController
             int selectedIndex = _questionBanksOfUserDropdownCreateRoom.index;
             if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
             {
-                QuestionBank selected = _questionBanksOfUser[selectedIndex];
-                _bankName = selected.Name;
+                _selectedBank = _questionBanksOfUser[selectedIndex];
+                _bankName = _selectedBank.Name;
                 _bankSearchList.selectedIndex = -1;
-                Debug.Log($"Selected '{selected.Name}' with ID = {selected.Id}");
+                Debug.Log($"Selected '{_selectedBank.Name}' with ID = {_selectedBank.Id}");
             }
         });
 
@@ -118,19 +120,17 @@ public class DashboardScreenController : ScreenController
         int selectedIndex = _bankSearchList.selectedIndex;
         if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
         {
-            QuestionBank selected = _searchedQuestionBanks[selectedIndex];
-            _bankName = selected.Name;
+            _selectedBank = _searchedQuestionBanks[selectedIndex];
+            _bankName = _selectedBank.Name;
             _questionBanksOfUserDropdownCreateRoom.index = -1;
         }
     }
 
     private async void OnCreateRoomClicked()
     {
-        int selectedIndex = _questionBanksOfUserDropdownCreateRoom.index;
-        if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
+        if (_selectedBank != null)
         {
-            var selectedQuestionBank = _questionBanksOfUser[selectedIndex];
-            await RoomManager.Instance.CreateRoom(selectedQuestionBank.Id);
+            await RoomManager.Instance.CreateRoom(_selectedBank.Id);
         }
     }
 
@@ -228,8 +228,14 @@ public class DashboardScreenController : ScreenController
         {
             QuestionBank selected = _questionBanksOfUser[selectedIndex];
             var response = await NetworkManager.Instance.DeleteQuestionBank(selected.Id);
+
+            if (!response.IsSuccess)
+                ScreenManagerBase.Instance.DisplayErrorMessage(response.ErrorMessage);
+
             _questionBanksOfUserDropdown.index = -1;
-            SetupQuestionBankTab();
+            _questionBankSettings.AddToClassList("hide");
+            ResetQuestionScrollView();
+            LoadBanksOfUser();
         }
     }
 
@@ -247,24 +253,27 @@ public class DashboardScreenController : ScreenController
         if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
         {
             QuestionBank selected = _questionBanksOfUser[selectedIndex];
-            var response = await NetworkManager.Instance.UpdateQuestionBank(selected.Id, NetworkManager.Instance.UserID,selected.Name, questions.Select(q => q.GetQuestion()).ToList(), true);
-            if(!response.IsSuccess)
+            var response = await NetworkManager.Instance.UpdateQuestionBank(selected.Id, NetworkManager.Instance.UserID, selected.Name, questions.Select(q => q.GetQuestion()).ToList(), true);
+            if (!response.IsSuccess)
             {
+                ScreenManagerBase.Instance.DisplayErrorMessage(response.ErrorMessage);
                 return;
             }
         }
         else
         {
-            //TODO: replace "tesztbank" with UI field value
-            var response = await NetworkManager.Instance.CreateQuestionBank(NetworkManager.Instance.UserID, "tesztbank", questions.Select(q => q.GetQuestion()).ToList(), true);
-            if(!response.IsSuccess)
+            var response = await NetworkManager.Instance.CreateQuestionBank(NetworkManager.Instance.UserID, _bankName, questions.Select(q => q.GetQuestion()).ToList(), true);
+            if (!response.IsSuccess)
             {
+                ScreenManagerBase.Instance.DisplayErrorMessage(response.ErrorMessage);
                 return;
             }
         }
 
         _questionBanksOfUserDropdown.index = -1;
-        SetupQuestionBankTab();
+        _questionBankSettings.AddToClassList("hide");
+        ResetQuestionScrollView();
+        LoadBanksOfUser();
     }
 
     private void DeleteQuestion(QuestionEditElement element)
@@ -290,13 +299,15 @@ public class DashboardScreenController : ScreenController
 
     private async Task<List<QuestionBank>> FetchQuestionBanks(string search = "", int userID = -1)
     {
-        //TODO: show error message on UI (response.ErrorMessage if !response.isSuccess)
         var response = await NetworkManager.Instance.GetQuestionBanks(search, userID);
+        if (IsVisible && !response.IsSuccess)
+            ScreenManagerBase.Instance.DisplayErrorMessage(response.ErrorMessage);
         return response.IsSuccess ? response.Data : new List<QuestionBank>();
     }
 
     private async void LoadBanksOfUser()
     {
+        _username = NetworkManager.Instance.Username;
         _questionBanksOfUser = await FetchQuestionBanks(userID: NetworkManager.Instance.UserID);
 
         var dropdownList = _questionBanksOfUser.Select(r => r.Name).ToList();
@@ -308,12 +319,10 @@ public class DashboardScreenController : ScreenController
 
         if (_questionBanksOfUser.Count > 0)
         {
-            _questionBankSettings.RemoveFromClassList("hide");
             _noQuestionBanksText.AddToClassList("hide");
         }
         else
         {
-            _questionBankSettings.AddToClassList("hide");
             _noQuestionBanksText.RemoveFromClassList("hide");
         }
 
@@ -328,11 +337,14 @@ public class DashboardScreenController : ScreenController
         {
             CreateNewQuestion(question);
         }
+        _questionBankSettings.RemoveFromClassList("hide");
     }
 
     private async Task<List<Question>> FetchQuestions(int id)
     {
         var response = await NetworkManager.Instance.GetQuestionsFromBank(id);
+        if (IsVisible && !response.IsSuccess)
+            ScreenManagerBase.Instance.DisplayErrorMessage(response.ErrorMessage);
         return response.IsSuccess ? response.Data : new List<Question>();
     }
 
@@ -344,6 +356,8 @@ public class DashboardScreenController : ScreenController
     public override void ResetUIState()
     {
         _searchInput = _bankName = "";
+        _selectedBank = null;
+        _username = "";
 
         if (_bankSearchList != null)
         {
@@ -354,6 +368,8 @@ public class DashboardScreenController : ScreenController
         {
             _questionBanksOfUserDropdown.index = -1;
         }
+
+        _questionBankSettings.AddToClassList("hide");
 
         ResetQuestionScrollView();
     }

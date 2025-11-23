@@ -21,10 +21,11 @@ public class NetworkManager : SingletonBase<NetworkManager>
 
     public int UserID { get; private set; }
     public string JWT { get; private set; }
+    public string Username { get; private set; }
 
     public IUnitySocketIOClient socketIOClient { get; private set; }
     public IUnityHttpClient HttpClient { get; private set; }
-    
+
     [SerializeField] private string _apiBaseUrl = "http://localhost:8080";
 
     private async void Awake()
@@ -60,7 +61,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         {
             await socketIOClient.SendAsync<int>("createRoom", questionBankId);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Debug.Log($"[Network] Failed to create room: {ex}");
         }
@@ -120,7 +121,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
 
             return Response<List<QuestionBank>>.Success(questionBanks);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return Response<List<QuestionBank>>.Failure(ex.Message);
         }
@@ -159,7 +160,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
 
         var errors = ValidateQuestionBankDto(questionBankDto);
 
-        if(errors.Count > 0)
+        if (errors.Count > 0)
         {
             return Response<QuestionBankDto>.Failure(errors[0]);
         }
@@ -189,7 +190,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
 
         var errors = ValidateQuestionBankDto(questionBankDto);
 
-        if(errors.Count > 0)
+        if (errors.Count > 0)
         {
             return Response<QuestionBankDto>.Failure(errors[0]);
         }
@@ -232,6 +233,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         {
             var response = await HttpClient.PostAsync<AuthRequest, AuthResponse>($"/register", request);
             UserID = response.User.Id;
+            Username = username;
             JWT = response.Token;
             StartSocket();
             OnLoggedIn?.Invoke();
@@ -256,6 +258,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         {
             var response = await HttpClient.PostAsync<AuthRequest, AuthResponse>($"/login", request);
             UserID = response.User.Id;
+            Username = username;
             JWT = response.Token;
             StartSocket();
             OnLoggedIn?.Invoke();
@@ -281,16 +284,16 @@ public class NetworkManager : SingletonBase<NetworkManager>
     {
         var errors = QuestionBankDtoValidator.Validate(questionBankDto);
 
-        if(errors.Count > 0)
+        if (errors.Count > 0)
         {
             Debug.Log(string.Join("\n", errors));
         }
-        
-        foreach(var question in questionBankDto.Questions)
+
+        foreach (var question in questionBankDto.Questions)
         {
             errors = QuestionDtoValidator.Validate(question);
 
-            if(errors.Count > 0)
+            if (errors.Count > 0)
             {
                 Debug.Log(string.Join("\n", errors));
             }

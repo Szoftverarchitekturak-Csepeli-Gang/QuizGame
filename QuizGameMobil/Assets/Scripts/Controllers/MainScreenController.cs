@@ -27,7 +27,7 @@ public class MainScreenController : ScreenController
     void OnDisable()
     {
         _joinButton.clicked -= OnJoinButtonClick;
-        if(NetworkManager.Instance != null)
+        if (NetworkManager.Instance != null)
         {
             NetworkManager.Instance.RoomJoinedEvent -= HandleRoomJoined;
             NetworkManager.Instance.SocketErrorEvent -= HandleSocketError;
