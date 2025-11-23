@@ -19,8 +19,10 @@ public abstract class ScreenController : MonoBehaviour
         _ui.Add(_errorPopup);
     }
 
+    private bool _isVisible;
     public bool IsVisible
     {
+        get => _isVisible;
         set
         {
             if (value)
@@ -29,6 +31,7 @@ public abstract class ScreenController : MonoBehaviour
                 _ui.AddToClassList("hide");
 
             VisibilityChanged?.Invoke(value);
+            _isVisible = value;
         }
     }
 

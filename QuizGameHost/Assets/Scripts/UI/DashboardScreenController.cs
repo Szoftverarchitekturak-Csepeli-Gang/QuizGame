@@ -298,7 +298,7 @@ public class DashboardScreenController : ScreenController
     private async Task<List<QuestionBank>> FetchQuestionBanks(string search = "", int userID = -1)
     {
         var response = await NetworkManager.Instance.GetQuestionBanks(search, userID);
-        if (!response.IsSuccess)
+        if (IsVisible && !response.IsSuccess)
             ScreenManagerBase.Instance.DisplayErrorMessage(response.ErrorMessage);
         return response.IsSuccess ? response.Data : new List<QuestionBank>();
     }
@@ -341,7 +341,7 @@ public class DashboardScreenController : ScreenController
     private async Task<List<Question>> FetchQuestions(int id)
     {
         var response = await NetworkManager.Instance.GetQuestionsFromBank(id);
-        if (!response.IsSuccess)
+        if (IsVisible && !response.IsSuccess)
             ScreenManagerBase.Instance.DisplayErrorMessage(response.ErrorMessage);
         return response.IsSuccess ? response.Data : new List<Question>();
     }
