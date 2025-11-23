@@ -228,8 +228,13 @@ public class DashboardScreenController : ScreenController
         {
             QuestionBank selected = _questionBanksOfUser[selectedIndex];
             var response = await NetworkManager.Instance.DeleteQuestionBank(selected.Id);
+
+            if (!response.IsSuccess)
+                ScreenManagerBase.Instance.DisplayErrorMessage(response.ErrorMessage);
+
             _questionBanksOfUserDropdown.index = -1;
-            SetupQuestionBankTab();
+            ResetQuestionScrollView();
+            LoadBanksOfUser();
         }
     }
 
@@ -247,24 +252,26 @@ public class DashboardScreenController : ScreenController
         if (selectedIndex >= 0 && selectedIndex < _questionBanksOfUser.Count)
         {
             QuestionBank selected = _questionBanksOfUser[selectedIndex];
-            var response = await NetworkManager.Instance.UpdateQuestionBank(selected.Id, NetworkManager.Instance.UserID,selected.Name, questions.Select(q => q.GetQuestion()).ToList(), true);
-            if(!response.IsSuccess)
+            var response = await NetworkManager.Instance.UpdateQuestionBank(selected.Id, NetworkManager.Instance.UserID, selected.Name, questions.Select(q => q.GetQuestion()).ToList(), true);
+            if (!response.IsSuccess)
             {
+                ScreenManagerBase.Instance.DisplayErrorMessage(response.ErrorMessage);
                 return;
             }
         }
         else
         {
-            //TODO: replace "tesztbank" with UI field value
-            var response = await NetworkManager.Instance.CreateQuestionBank(NetworkManager.Instance.UserID, "tesztbank", questions.Select(q => q.GetQuestion()).ToList(), true);
-            if(!response.IsSuccess)
+            var response = await NetworkManager.Instance.CreateQuestionBank(NetworkManager.Instance.UserID, _bankName, questions.Select(q => q.GetQuestion()).ToList(), true);
+            if (!response.IsSuccess)
             {
+                ScreenManagerBase.Instance.DisplayErrorMessage(response.ErrorMessage);
                 return;
             }
         }
 
         _questionBanksOfUserDropdown.index = -1;
-        SetupQuestionBankTab();
+        ResetQuestionScrollView();
+        LoadBanksOfUser();
     }
 
     private void DeleteQuestion(QuestionEditElement element)
@@ -290,8 +297,9 @@ public class DashboardScreenController : ScreenController
 
     private async Task<List<QuestionBank>> FetchQuestionBanks(string search = "", int userID = -1)
     {
-        //TODO: show error message on UI (response.ErrorMessage if !response.isSuccess)
         var response = await NetworkManager.Instance.GetQuestionBanks(search, userID);
+        if (!response.IsSuccess)
+            ScreenManagerBase.Instance.DisplayErrorMessage(response.ErrorMessage);
         return response.IsSuccess ? response.Data : new List<QuestionBank>();
     }
 
@@ -333,6 +341,8 @@ public class DashboardScreenController : ScreenController
     private async Task<List<Question>> FetchQuestions(int id)
     {
         var response = await NetworkManager.Instance.GetQuestionsFromBank(id);
+        if (!response.IsSuccess)
+            ScreenManagerBase.Instance.DisplayErrorMessage(response.ErrorMessage);
         return response.IsSuccess ? response.Data : new List<Question>();
     }
 

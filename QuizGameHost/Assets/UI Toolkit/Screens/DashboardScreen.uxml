@@ -59,6 +59,7 @@
                         <ui:TextField label="Question Bank Name" name="BankNameField" style="width: 50%; flex-direction: column;">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="label" table="GUID:f0a78c96488a0b74ebad8fcd8b85143c" entry="Id(751631268884480)" />
+                                <ui:DataBinding property="value" data-source-path="_bankName" data-source-type="DashboardScreenController, Assembly-CSharp" binding-mode="TwoWay" />
                             </Bindings>
                         </ui:TextField>
                         <ui:Button text="Save" name="SaveBtn" focusable="false" double-click-selects-word="false" triple-click-selects-line="false" class="blue-button" style="width: 20%;">
