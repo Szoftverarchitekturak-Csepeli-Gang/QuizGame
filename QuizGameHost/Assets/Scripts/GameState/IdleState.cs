@@ -10,11 +10,14 @@ public class IdleState : IGameState
         CameraManager.Instance.UseMainCamera();
         InputManager.Instance.EnableInputControl();
         BlurManager.Instance.DeactivateBlurEffect();
+        AudioManager.Instance.PlayGameBackgroundSound();
+
         RaycastManager.Instance.OnVillageSelectChanged += NextState;
     }
 
     public void Exit()
     {
+        AudioManager.Instance.StopBackgroundSound();
         RaycastManager.Instance.OnVillageSelectChanged -= NextState;
     }
 

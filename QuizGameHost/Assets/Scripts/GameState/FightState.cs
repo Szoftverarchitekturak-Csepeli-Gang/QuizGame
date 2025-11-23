@@ -10,19 +10,25 @@ public class FightState : IGameState
     {
         BattleManager.Instance.OnBattleFinished += HandleBattleFinished;
         BattleManager.Instance.OnBattleEarlyFinished += HandleBattleEarlyFinished;
+        BattleManager.Instance.OnFightFinished += HandleBattleFightFinished;
+
         RaycastManager.Instance.DisableRaycast(); //To prevent changing current village!
         BlurManager.Instance.DeactivateBlurEffect();
         InputManager.Instance.EnableInputControl();
         CameraManager.Instance.UseVillageCamera(RaycastManager.Instance.CurrentSelectedVillage);
         BattleManager.Instance.StartCoroutine(StartBattleDelayed());
+        AudioManager.Instance.PlayFightStartSound();
     }
 
     public void Exit()
     {
         BattleManager.Instance.OnBattleFinished -= HandleBattleFinished;
         BattleManager.Instance.OnBattleEarlyFinished -= HandleBattleEarlyFinished;
+        BattleManager.Instance.OnFightFinished -= HandleBattleFightFinished;
+
         GameScreenPresenter.Instance.HideBattleEndPanel();
         RaycastManager.Instance.EnableRaycast(); 
+        AudioManager.Instance.StopBackgroundSound();
     }
 
     public void Update()
@@ -37,7 +43,7 @@ public class FightState : IGameState
         BattleManager.Instance.StartBattle(RaycastManager.Instance.CurrentSelectedVillage.GetComponent<VillageController>(), victory);
     }
 
-    public void HandleBattleFinished(BattleResult result)
+    private void HandleBattleFinished(BattleResult result)
     {
         if (result.attackerWon)
             VillageManager.Instance.VillageConquered(RaycastManager.Instance.CurrentSelectedVillage.GetComponent<VillageController>());
@@ -45,15 +51,33 @@ public class FightState : IGameState
         GameStateManager.Instance.ChangeState(GameStateType.Statistics);
     }
 
-    public void HandleBattleEarlyFinished(BattleResult result)
+    private void HandleBattleEarlyFinished(BattleResult result)
     {
         var villagePos = RaycastManager.Instance.CurrentSelectedVillage.transform.position + new Vector3(0.0f, 5.0f, 0.0f);
 
         if (result.attackerWon)
+        {
             ParticleManager.Instance.PlayVictoryParticleSystem(villagePos);
+            AudioManager.Instance.PlayVictorySound();
+        }
         else
+        {
             ParticleManager.Instance.PlayDefeatParticleSystem(villagePos);
+            AudioManager.Instance.PlayDefeatSound();
+        }
 
         GameScreenPresenter.Instance.ShowBattleEndPanel(result.attackerWon);
+    }
+
+    private void HandleBattleFightFinished(bool attackerWin)
+    { 
+        if (attackerWin)
+        {
+            AudioManager.Instance.PlayVictoryBackgroundSound();
+        }
+        else
+        {
+            AudioManager.Instance.PlayDefeatBackgroundSound();
+        }
     }
 }

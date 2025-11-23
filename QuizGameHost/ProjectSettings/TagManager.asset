@@ -9,6 +9,7 @@ TagManager:
   - Village
   - VillageCamera
   - DragCamera
+  - UICamera
   layers:
   - Default
   - TransparentFX

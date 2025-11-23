@@ -12,6 +12,7 @@ public class VillageConquerState : IGameState
         BlurManager.Instance.DeactivateBlurEffect();
         InputManager.Instance.DisableInputControl();
         CameraManager.Instance.UseVillageCamera(RaycastManager.Instance.CurrentSelectedVillage);
+        AudioManager.Instance.PlayCameraFlySound();
     }
 
     public void Exit()

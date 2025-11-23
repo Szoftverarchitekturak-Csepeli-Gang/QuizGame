@@ -15,6 +15,7 @@ public class StatisticsState : IGameState
     public void Exit()
     {
         GameScreenPresenter.Instance.HideQuestionPanel();
+        AudioManager.Instance.PlayCameraFlySound();
     }
 
     public void Update()

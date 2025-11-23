@@ -1,10 +1,12 @@
 using System.Linq;
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(UIDocument))]
 public abstract class ScreenController : MonoBehaviour
 {
+    public Action<bool> VisibilityChanged;
     protected VisualElement _ui;
     protected ErrorPopupElement _errorPopup;
     protected virtual void Awake()
@@ -25,6 +27,8 @@ public abstract class ScreenController : MonoBehaviour
                 _ui.RemoveFromClassList("hide");
             else
                 _ui.AddToClassList("hide");
+
+            VisibilityChanged?.Invoke(value);
         }
     }
 

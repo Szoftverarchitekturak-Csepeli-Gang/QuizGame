@@ -8,6 +8,7 @@ using UnityEngine.AI;
 
 public class BattleManager : SingletonBase<BattleManager>
 {
+    public event Action<bool> OnFightFinished;
     public event Action<BattleResult> OnBattleFinished;
     public event Action<BattleResult> OnBattleEarlyFinished;
     private readonly List<SoldierController> _attackers = new();
@@ -143,9 +144,18 @@ public class BattleManager : SingletonBase<BattleManager>
 
         _battleFinished = true;
 
+        OnFightFinished?.Invoke(AttackerWin());
+
         //Start timer, soldiers "might" get stuck, and BattleEnd will never be called
         //Tested soldiers seems like they never get stuck, but just in case
         EnableBattleEndTimer();
+    }
+
+    private bool AttackerWin()
+    {
+        int attackersAlive = _attackers.Count(a => a != null && !a.IsDead);
+        int defendersAlive = _defenders.Count(d => d != null && !d.IsDead);
+        return attackersAlive >= defendersAlive;
     }
 
     private void CheckBattleEnd(bool timerFinished)
@@ -158,7 +168,7 @@ public class BattleManager : SingletonBase<BattleManager>
         int defendersArrived = _defenders.Count(a => a != null && !a.IsDead && a.ArrivedAtSpawn);
         bool allDefenderArrived = defendersArrived == defendersAlive;
 
-        bool attackerWin = attackersAlive >= defendersAlive;
+        bool attackerWin = AttackerWin();
 
         if (timerFinished || ((attackerWin && allAttackerArrived) || (!attackerWin && allDefenderArrived)))
         {
