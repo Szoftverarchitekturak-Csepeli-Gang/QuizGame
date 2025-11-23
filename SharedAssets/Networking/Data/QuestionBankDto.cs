@@ -1,15 +1,22 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
-
-namespace Assets.Scripts.Networking.Data
+namespace Assets.SharedAssets.Networking.Data
 {
     [Serializable]
     public class QuestionBankDto
     {
-        public int id { get; set; }
-        public int ownerId { get; set; }
-        public string title { get; set; }
-        public bool @public { get; set; } // @ escapes C# keyword
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("ownerId")]
+        public int OwnerId { get; set; }
+        [JsonProperty("title")]
+        public string Title { get; set; }
+        [JsonProperty("questions")]
+        public List<QuestionDto> Questions { get; set; }
+        [JsonProperty("public")]
+        public bool IsPublic { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 const { generateRoomId } = require("../utils/room-id-generator.js");
 const { getIO } = require("./socket.js");
-const room_DAO  = require("../db/room_DAO.js");
-const question_DAO  = require("../db/question_DAO.js");
+const room_DAO  = require("../db/room.dao.js");
+const question_DAO  = require("../db/question.dao.js");
 
 module.exports = {
     createRoomHandler,
@@ -25,6 +25,7 @@ async function createRoomHandler(questionBankId, hostSocket)
     try{
         await room_DAO.createRoom(roomID, hostSocket.id, questionBankId);
         hostSocket.join(roomID);
+        hostSocket.data.roomId = roomID;
         console.log("Room created: ", roomID);
         hostSocket.emit("roomCreated", roomID);
     }

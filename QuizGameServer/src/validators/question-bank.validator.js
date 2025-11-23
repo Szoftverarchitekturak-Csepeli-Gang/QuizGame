@@ -2,6 +2,10 @@ const Joi = require('joi');
 const { validator } = require('../utils/validation.js');
 
 const createSchema = Joi.object({
+    id: Joi.number()
+        .integer()
+        .min(0)
+        .optional(),
     ownerId: Joi.number()
         .integer()
         .min(0)
@@ -12,9 +16,15 @@ const createSchema = Joi.object({
         .required(),
     public: Joi.boolean()
         .optional(),
+    questions: Joi.array()
+        .optional()
 });
 
 const updateSchema = Joi.object({
+    id: Joi.number()
+        .integer()
+        .min(0)
+        .optional(),
     ownerId: Joi.number()
         .integer()
         .min(0)
@@ -25,6 +35,8 @@ const updateSchema = Joi.object({
         .required(),
     public: Joi.boolean()
         .required(),
+    questions: Joi.array()
+        .optional()
 });
 
 const getQuerySchema = Joi.object({

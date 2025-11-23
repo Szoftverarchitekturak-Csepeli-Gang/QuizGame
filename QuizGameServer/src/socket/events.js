@@ -34,6 +34,7 @@ module.exports = (io) => {
     });
 
     socket.on("disconnect", async () => {
+      console.log("Socket disconnected: ", socket.id);
       await leaveRoomHandler(socket)
     });
   });

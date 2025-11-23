@@ -1,17 +1,13 @@
-using Assets.Scripts.Networking.Data;
-using Assets.Scripts.Networking.Http;
-using Assets.Scripts.Networking.Websocket;
-using Assets.SharedAssets.Networking.Http;
 using UnityEngine.Networking;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 using UnityEngine;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
-using UnityEditor.Searcher;
-using SocketIOClient;
+using Assets.SharedAssets.Networking.Http;
+using Assets.SharedAssets.Networking.Data;
 using Assets.SharedAssets.Networking.Websocket;
-using PimDeWitte.UnityMainThreadDispatcher;
+using Assets.SharedAssets.Networking.Mappers;
+using Assets.SharedAssets.Networking.Validators;
 
 public class NetworkManager : SingletonBase<NetworkManager>
 {
@@ -21,16 +17,28 @@ public class NetworkManager : SingletonBase<NetworkManager>
     public event Action<QuestionDto> OnQuestionArrived;
     public event Action OnPlayerJoined;
     public event Action OnPlayerDisconnected;
+    public event Action OnLoggedIn;
+
+    public int UserID { get; private set; }
+    public string JWT { get; private set; }
+
     public IUnitySocketIOClient socketIOClient { get; private set; }
     public IUnityHttpClient HttpClient { get; private set; }
-
+    
     [SerializeField] private string _apiBaseUrl = "http://localhost:8080";
 
     private async void Awake()
     {
         base.Awake();
 
+        UserID = -1;
+        JWT = "";
+
         HttpClient = new UnityHttpClient(_apiBaseUrl);
+    }
+
+    private async void StartSocket()
+    {
         socketIOClient = new UnitySocketIOClient();
         await socketIOClient.ConnectAsync(_apiBaseUrl);
 
@@ -39,7 +47,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         socketIOClient.On<object>("clientDisconnected", _ => OnPlayerDisconnected?.Invoke());
         socketIOClient.On<QuestionDto>("newQuestion", (question) => OnQuestionArrived?.Invoke(question));
         socketIOClient.On<string>("error", message => SocketErrorHandler(message));
-        socketIOClient.On<int>("answerReceived", answer => OnAnswerReceived?.Invoke(answer-1));
+        socketIOClient.On<int>("answerReceived", answer => OnAnswerReceived?.Invoke(answer - 1));
     }
     private async void OnDestroy()
     {
@@ -54,7 +62,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         }
         catch(Exception ex)
         {
-            Debug.LogError($"[Network] Failed to create room: {ex}");
+            Debug.Log($"[Network] Failed to create room: {ex}");
         }
     }
 
@@ -66,7 +74,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         }
         catch (Exception ex)
         {
-            Debug.LogError($"[Network] Failed to leave room: {ex}");
+            Debug.Log($"[Network] Failed to leave room: {ex}");
         }
     }
 
@@ -78,7 +86,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         }
         catch (Exception ex)
         {
-            Debug.LogError($"[Network] Failed to start game: {ex}");
+            Debug.Log($"[Network] Failed to start game: {ex}");
         }
     }
 
@@ -90,11 +98,11 @@ public class NetworkManager : SingletonBase<NetworkManager>
         }
         catch (Exception ex)
         {
-            Debug.LogError($"[Network] Failed to start game: {ex}");
+            Debug.Log($"[Network] Failed to start game: {ex}");
         }
     }
 
-    public async Task<Response<List<QuestionBankDto>>> GetQuestionBanks(string search, int ownerId)
+    public async Task<Response<List<QuestionBank>>> GetQuestionBanks(string search, int ownerId)
     {
         try
         {
@@ -107,13 +115,14 @@ public class NetworkManager : SingletonBase<NetworkManager>
             var endpoint = "/questionbanks";
             endpoint += $"?{query}";
 
-            var questionBanks = await HttpClient.GetAsync<List<QuestionBankDto>>(endpoint);
+            var questionBankDtos = await HttpClient.GetAsync<List<QuestionBankDto>>(endpoint, JWT);
+            var questionBanks = QuestionBankMapper.ToModelList(questionBankDtos);
 
-            return Response<List<QuestionBankDto>>.Success(questionBanks);
+            return Response<List<QuestionBank>>.Success(questionBanks);
         }
         catch(Exception ex)
         {
-            return Response<List<QuestionBankDto>>.Failure(ex.Message);
+            return Response<List<QuestionBank>>.Failure(ex.Message);
         }
     }
 
@@ -121,12 +130,12 @@ public class NetworkManager : SingletonBase<NetworkManager>
     {
         try
         {
-            await HttpClient.DeleteAsync($"/questionbanks/{questionBankId}");
+            await HttpClient.DeleteAsync($"/questionbanks/{questionBankId}", JWT);
             return Response<bool>.Success(true);
         }
         catch (Exception ex)
         {
-            Debug.LogError($"[Network] Delete failed: {ex.Message}");
+            Debug.Log($"[Network] Delete failed: {ex.Message}");
             return Response<bool>.Failure(ex.Message);
         }
 
@@ -134,86 +143,160 @@ public class NetworkManager : SingletonBase<NetworkManager>
 
     public async Task<QuestionBankDto> GetQuestionBankWithId(int id)
     {
-        var questionBank = await HttpClient.GetAsync<QuestionBankDto>($"/questionbanks/{id}");
+        var questionBank = await HttpClient.GetAsync<QuestionBankDto>($"/questionbanks/{id}", JWT);
         return questionBank;
     }
 
-    public async Task<QuestionBankDto> CreateQuestionBank(int owner_id, string title, bool isPublic)
+    public async Task<Response<QuestionBankDto>> CreateQuestionBank(int owner_id, string title, List<Question> questions, bool isPublic = false)
     {
-        if(owner_id < 0)
+        var questionBankDto = new QuestionBankDto
         {
-            Debug.LogError($"Invalid data: owner id cannot be negative!");
-            return null;
-        }
-        else if(title.Length < 1)
-        {
-            Debug.LogError($"Invalid data: title cannot be empty!");
-            return null;
-        }
+            OwnerId = owner_id,
+            Title = title,
+            Questions = QuestionMapper.ToDtoList(questions),
+            IsPublic = isPublic
+        };
 
-            var questionBank = new QuestionBankDto
-            {
-                ownerId = owner_id,
-                title = title,
-                @public = isPublic
-            };
+        var errors = ValidateQuestionBankDto(questionBankDto);
+
+        if(errors.Count > 0)
+        {
+            return Response<QuestionBankDto>.Failure(errors[0]);
+        }
 
         try
         {
-            var response = await HttpClient.PostAsync<QuestionBankDto, QuestionBankDto>($"/questionbanks", questionBank);
-            return response;
+            var response = await HttpClient.PostAsync<QuestionBankDto, QuestionBankDto>($"/questionbanks", questionBankDto, JWT);
+            return Response<QuestionBankDto>.Success(response);
         }
         catch (Exception ex)
         {
-            Debug.LogError($"[Network] Create failed: {ex.Message}");
-            return null;
+            Debug.Log($"[Network] Create failed: {ex.Message}");
+            return Response<QuestionBankDto>.Failure(ex.Message);
         }
     }
 
-    public async Task<QuestionBankDto> UpdateQuestionBank(int id, int owner_id, string title, bool isPublic)
+    public async Task<Response<QuestionBankDto>> UpdateQuestionBank(int id, int owner_id, string title, List<Question> questions, bool isPublic)
     {
-        if (owner_id < 0)
+        var questionBankDto = new QuestionBankDto
         {
-            Debug.LogError($"Invalid data: owner id cannot be negative!");
-            return null;
-        }
-        else if (title.Length < 1)
+            Id = id,
+            OwnerId = owner_id,
+            Title = title,
+            Questions = QuestionMapper.ToDtoList(questions),
+            IsPublic = isPublic
+        };
+
+        var errors = ValidateQuestionBankDto(questionBankDto);
+
+        if(errors.Count > 0)
         {
-            Debug.LogError($"Invalid data: title cannot be empty!");
-            return null;
+            return Response<QuestionBankDto>.Failure(errors[0]);
         }
 
-        var questionBank = new QuestionBankDto
+        try
         {
-            id = id,
-            ownerId = owner_id,
-            title = title,
-            @public = isPublic
+            var response = await HttpClient.PutAsync<QuestionBankDto, QuestionBankDto>($"/questionbanks/{id}", questionBankDto, JWT);
+            return Response<QuestionBankDto>.Success(response);
+        }
+        catch (Exception ex)
+        {
+            Debug.Log($"[Network] Update failed: {ex.Message}");
+            return Response<QuestionBankDto>.Failure(ex.Message);
+        }
+    }
+
+    public async Task<Response<List<Question>>> GetQuestionsFromBank(int bankId)
+    {
+        try
+        {
+            var questionDtos = await HttpClient.GetAsync<List<QuestionDto>>($"/questionbanks/{bankId}/questions", JWT);
+            var questions = QuestionMapper.ToModelList(questionDtos);
+            return Response<List<Question>>.Success(questions);
+        }
+        catch (Exception ex)
+        {
+            return Response<List<Question>>.Failure(ex.Message);
+        }
+    }
+
+    public async Task<Response<AuthResponse>> RegisterUser(string username, string password)
+    {
+        var request = new AuthRequest
+        {
+            Username = username,
+            Password = password,
         };
 
         try
         {
-            var response = await HttpClient.PutAsync<QuestionBankDto, QuestionBankDto>($"/questionbanks/{id}", questionBank);
-            return response;
+            var response = await HttpClient.PostAsync<AuthRequest, AuthResponse>($"/register", request);
+            UserID = response.User.Id;
+            JWT = response.Token;
+            StartSocket();
+            OnLoggedIn?.Invoke();
+            return Response<AuthResponse>.Success(response);
         }
         catch (Exception ex)
         {
-            Debug.LogError($"[Network] Update failed: {ex.Message}");
-            return null;
+            Debug.Log($"[Network] Create failed: {ex.Message}");
+            return Response<AuthResponse>.Failure(ex.Message);
         }
     }
 
-    public async Task<Response<List<QuestionDto>>> GetQuestionsFromBank(int bankId)
+    public async Task<Response<AuthResponse>> Login(string username, string password)
     {
+        var request = new AuthRequest
+        {
+            Username = username,
+            Password = password,
+        };
+
         try
         {
-            var questions = await HttpClient.GetAsync<List<QuestionDto>>($"/questionbanks/{bankId}/questions");
-            return Response<List<QuestionDto>>.Success(questions);
+            var response = await HttpClient.PostAsync<AuthRequest, AuthResponse>($"/login", request);
+            UserID = response.User.Id;
+            JWT = response.Token;
+            StartSocket();
+            OnLoggedIn?.Invoke();
+            return Response<AuthResponse>.Success(response);
         }
         catch (Exception ex)
         {
-            return Response<List<QuestionDto>>.Failure(ex.Message);
+            Debug.Log($"[Network] Login failed: {ex.Message}");
+            return Response<AuthResponse>.Failure(ex.Message);
         }
+
+
+    }
+
+    public async Task Logout()
+    {
+        UserID = -1;
+        JWT = "";
+        await socketIOClient.DisconnectAsync();
+    }
+
+    private List<string> ValidateQuestionBankDto(QuestionBankDto questionBankDto)
+    {
+        var errors = QuestionBankDtoValidator.Validate(questionBankDto);
+
+        if(errors.Count > 0)
+        {
+            Debug.Log(string.Join("\n", errors));
+        }
+        
+        foreach(var question in questionBankDto.Questions)
+        {
+            errors = QuestionDtoValidator.Validate(question);
+
+            if(errors.Count > 0)
+            {
+                Debug.Log(string.Join("\n", errors));
+            }
+        }
+
+        return errors;
     }
 
     private void SocketErrorHandler(string errorMessage)

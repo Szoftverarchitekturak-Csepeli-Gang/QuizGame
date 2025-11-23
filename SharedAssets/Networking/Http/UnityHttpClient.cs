@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace Assets.Scripts.Networking.Http
+namespace Assets.SharedAssets.Networking.Http
 {
     public class UnityHttpClient : IUnityHttpClient
     {
@@ -54,7 +54,7 @@ namespace Assets.Scripts.Networking.Http
             if (request.result == UnityWebRequest.Result.ConnectionError ||
                 request.result == UnityWebRequest.Result.ProtocolError)
             {
-                Debug.LogError($"HTTP Error: {request.method} {request.url} -> {request.responseCode} {request.error}");
+                Debug.Log($"HTTP Error: {request.method} {request.url} -> {request.responseCode} {request.error}");
                 throw new Exception($"HTTP Error {request.responseCode}: {request.error}");
             }
 
@@ -69,7 +69,7 @@ namespace Assets.Scripts.Networking.Http
             }
             catch (Exception e)
             {
-                Debug.LogError($"JSON Deserialize error: {e.Message}\n{responseContent}");
+                Debug.Log($"JSON Deserialize error: {e.Message}\n{responseContent}");
                 throw;
             }
         }

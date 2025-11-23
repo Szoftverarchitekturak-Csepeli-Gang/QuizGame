@@ -1,16 +1,28 @@
 const { PrismaClient } = require('../generated/prisma')
+const bcrypt = require('bcrypt')
 
 const prisma = new PrismaClient()
 
 module.exports = {
     prisma,
-    InitDatabase,
+    initDatabase,
 }
 
 // Filling up the Question_Bank and Question tables if empty with initial data.
-async function InitDatabase() {
-
-    const questionBankCount = await prisma.Question_Bank.count();
+async function initDatabase() {
+    const userCount = await prisma.user.count();
+    let user;
+    if(userCount == 0){
+      const hashedPassword = await bcrypt.hash('admin', 10);
+      user = await prisma.user.create({
+        data: {
+          username: 'admin',
+          password: hashedPassword,
+        },
+      });
+    }
+    
+    const questionBankCount = await prisma.question_Bank.count();
     if (questionBankCount > 0) {
       console.log('Database already initialized.');
       return;
@@ -20,7 +32,7 @@ async function InitDatabase() {
 
     const friedCheeseBank = await prisma.question_Bank.create({
       data: {
-        ownerId: 1,
+        ownerId: user.id,
         title: 'Fried cheese basics',
         public: true,
       },
@@ -28,7 +40,7 @@ async function InitDatabase() {
 
     const formula1Bank = await prisma.question_Bank.create({
       data: {
-        ownerId: 1,
+        ownerId: user.id,
         title: 'Formula1 basics',
         public: true,
       },
@@ -56,7 +68,7 @@ async function InitDatabase() {
         },
         {
           questionBankId: formula1Bank.id,
-          text: 'Who is going to win the 2025 formula 1 driver championship?',
+          text: 'Who is goind to win the 2025 formula 1 driver championship?',
           optionA: 'Max Verstappen',
           optionB: 'Lando Norris',
           optionC: 'Oscar Piastri',

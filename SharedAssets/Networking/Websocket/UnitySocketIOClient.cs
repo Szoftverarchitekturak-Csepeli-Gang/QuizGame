@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Networking.Websocket;
+﻿using Assets.SharedAssets.Networking.Websocket;
 using Newtonsoft.Json;
 using SocketIOClient;
 using System;
@@ -40,7 +40,7 @@ namespace Assets.SharedAssets.Networking.Websocket
 
             _socket.OnError += (sender, error) =>
             {
-                Debug.LogError($"[Socket.IO] Error: {error}");
+                Debug.Log($"[Socket.IO] Error: {error}");
                 OnError?.Invoke(error);
             };
 
@@ -80,7 +80,7 @@ namespace Assets.SharedAssets.Networking.Websocket
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogError($"[Socket.IO] Type exception '{eventName}' → {typeof(T).Name}: {ex.Message}");
+                    Debug.Log($"[Socket.IO] Type exception '{eventName}' → {typeof(T).Name}: {ex.Message}");
                 }
             });
         }
