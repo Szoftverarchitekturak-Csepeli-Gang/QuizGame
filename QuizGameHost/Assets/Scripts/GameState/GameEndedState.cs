@@ -12,6 +12,7 @@ public class GameEndedState : IGameState
     {
         BlurManager.Instance.ActivateBlurEffect();
         InputManager.Instance.DisableInputControl();
+        RoomManager.Instance.FinishGame();
 
         GameEndScreenPresenter.Instance.ShowGameEndScreen(
             GameDataManager.Instance.RightAnswers,

@@ -55,7 +55,7 @@ public partial class HeaderElement : VisualElement
 
     private async void OnBackButtonClicked(ClickEvent evt)
     {
-        await NetworkManager.Instance.LeaveRoom();
+        await NetworkManager.Instance.Logout();
         ScreenManagerBase.Instance.CurrentScreen = AppScreen.MAIN;
     }
 }

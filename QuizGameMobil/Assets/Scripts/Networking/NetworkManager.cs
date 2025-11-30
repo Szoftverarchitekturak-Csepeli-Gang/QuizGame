@@ -6,6 +6,7 @@ using System.Net.Http;
 using UnityEngine;
 using System.Threading.Tasks;
 using PimDeWitte.UnityMainThreadDispatcher;
+using SocketIOClient;
 
 public class NetworkManager : SingletonBase<NetworkManager>
 {
@@ -14,6 +15,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
     public event Action<QuestionDto> NewQuestionEvent;
     public event Action<string, string> AnswerSentEvent;
     public event Action GameStartedEvent;
+    public event Action GameEndedEvent;
     public event Action HostDisconnectedEvent;
     public IUnitySocketIOClient socketIOClient { get; private set; }
 
@@ -30,6 +32,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         socketIOClient.On<int>("joinedRoom", roomId => OnRoomJoined(roomId));
         socketIOClient.On<object>("gameStarted", _ => OnGameStarted());
         socketIOClient.On<object>("hostDisconnected", _ => OnHostDisconnected());
+        socketIOClient.On<object>("gameEnded", _ => OnGameEnded());
         socketIOClient.On<QuestionDto>("newQuestion", (newQuestion) => OnQuestionReceived(newQuestion));
     }
     private async void OnDestroy()
@@ -63,6 +66,11 @@ public class NetworkManager : SingletonBase<NetworkManager>
         }
     }
 
+    public async Task Logout()
+    {
+        await LeaveRoom();
+    }
+
     public async Task SendAnswer(int answer)
     {
         try
@@ -90,6 +98,11 @@ public class NetworkManager : SingletonBase<NetworkManager>
     private void OnGameStarted()
     {
         UnityMainThreadDispatcher.Instance().Enqueue(() => GameStartedEvent?.Invoke());
+    }
+
+    private void OnGameEnded()
+    {
+        UnityMainThreadDispatcher.Instance().Enqueue(() => GameEndedEvent?.Invoke());
     }
 
     private void OnHostDisconnected()

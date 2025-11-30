@@ -3,7 +3,8 @@ const { createRoomHandler,
         leaveRoomHandler,
         startGameHandler,
         startRoundHandler,
-        answerReceivedHandler  } = require('./event-handlers.js')
+        answerReceivedHandler,  
+        GameFinishedHandler} = require('./event-handlers.js')
 
 module.exports = (io) => {
   io.on("connection", (socket) => {
@@ -23,6 +24,10 @@ module.exports = (io) => {
     
     socket.on("gameStarted", async () => {
       await startGameHandler(socket)
+    });
+
+    socket.on("gameFinished", async () => {
+      await GameFinishedHandler(socket)
     });
 
     socket.on("submitAnswer", async (answer) => {

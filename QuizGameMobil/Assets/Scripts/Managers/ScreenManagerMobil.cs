@@ -18,6 +18,7 @@ public class ScreenManagerMobil : ScreenManagerBase
         CurrentScreen = AppScreen.MAIN;
 
         NetworkManager.Instance.HostDisconnectedEvent += HandleHostDisconnected;
+        NetworkManager.Instance.GameEndedEvent += HandleGameEnded;
     }
 
     protected override void LoadScreens()
@@ -31,7 +32,11 @@ public class ScreenManagerMobil : ScreenManagerBase
 
     protected void HandleHostDisconnected()
     {
-        //TODO: Show some error message about the disconnected host
         CurrentScreen = AppScreen.MAIN;
+    }
+
+    protected void HandleGameEnded()
+    {
+        CurrentScreen = AppScreen.FINISH;
     }
 }

@@ -10,6 +10,7 @@ module.exports = {
     startGameHandler,
     startRoundHandler,
     answerReceivedHandler,
+    GameFinishedHandler,
 }
 
 async function createRoomHandler(questionBankId, hostSocket)
@@ -144,5 +145,16 @@ async function leaveRoomHandler(socket)
             socket.leave(roomId);
             socket.data.roomId = null;
         }
+    }
+}
+
+async function GameFinishedHandler(socket)
+{
+    const existingRoom = await room_DAO.getRoomWithHostId(socket.id);
+    const wasHost = existingRoom != null;
+
+    if(wasHost){
+        const roomId = existingRoom.id;
+        socket.to(roomId).emit("gameEnded");
     }
 }

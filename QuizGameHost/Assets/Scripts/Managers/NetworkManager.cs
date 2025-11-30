@@ -91,6 +91,18 @@ public class NetworkManager : SingletonBase<NetworkManager>
         }
     }
 
+    public async Task FinishGame()
+    {
+        try
+        {
+            await socketIOClient.SendAsync<object>("gameFinished", null);
+        }
+        catch (Exception ex)
+        {
+            Debug.Log($"[Network] Failed to finish game: {ex}");
+        }
+    }
+
     public async Task StartNextRound(int questionIndex)
     {
         try
@@ -123,7 +135,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         }
         catch (Exception ex)
         {
-            return Response<List<QuestionBank>>.Failure(ex.Message);
+            return Response<List<QuestionBank>>.Failure(ex.Message.Split(":")[1]);
         }
     }
 
@@ -137,7 +149,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         catch (Exception ex)
         {
             Debug.Log($"[Network] Delete failed: {ex.Message}");
-            return Response<bool>.Failure(ex.Message);
+            return Response<bool>.Failure(ex.Message.Split(":")[1]);
         }
 
     }
@@ -173,7 +185,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         catch (Exception ex)
         {
             Debug.Log($"[Network] Create failed: {ex.Message}");
-            return Response<QuestionBankDto>.Failure(ex.Message);
+            return Response<QuestionBankDto>.Failure(ex.Message.Split(":")[1]);
         }
     }
 
@@ -203,7 +215,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         catch (Exception ex)
         {
             Debug.Log($"[Network] Update failed: {ex.Message}");
-            return Response<QuestionBankDto>.Failure(ex.Message);
+            return Response<QuestionBankDto>.Failure(ex.Message.Split(":")[1]);
         }
     }
 
@@ -217,7 +229,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         }
         catch (Exception ex)
         {
-            return Response<List<Question>>.Failure(ex.Message);
+            return Response<List<Question>>.Failure(ex.Message.Split(":")[1]);
         }
     }
 
@@ -242,7 +254,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         catch (Exception ex)
         {
             Debug.Log($"[Network] Create failed: {ex.Message}");
-            return Response<AuthResponse>.Failure(ex.Message);
+            return Response<AuthResponse>.Failure(ex.Message.Split(":")[1]);
         }
     }
 
@@ -267,7 +279,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         catch (Exception ex)
         {
             Debug.Log($"[Network] Login failed: {ex.Message}");
-            return Response<AuthResponse>.Failure(ex.Message);
+            return Response<AuthResponse>.Failure(ex.Message.Split(":")[1]);
         }
 
 

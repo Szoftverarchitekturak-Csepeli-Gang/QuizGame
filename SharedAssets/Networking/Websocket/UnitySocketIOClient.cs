@@ -24,7 +24,13 @@ namespace Assets.SharedAssets.Networking.Websocket
         public async Task ConnectAsync(string url)
         {
             _url = url;
-            _socket = new SocketIOUnity(_url);
+            _socket = new SocketIOUnity(_url, new SocketIOOptions
+            {
+                ConnectionTimeout = TimeSpan.FromHours(1),
+                Reconnection = true,
+                ReconnectionAttempts = int.MaxValue,
+                ReconnectionDelay = TimeSpan.FromSeconds(2).Seconds,
+            });
 
             _socket.OnConnected +=  (sender, e) =>
             {

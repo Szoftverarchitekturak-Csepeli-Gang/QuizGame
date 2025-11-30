@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEditor.Networking.PlayerConnection;
 using UnityEngine;
 
 public class RoomManager : SingletonBase<RoomManager>
@@ -56,6 +57,8 @@ public class RoomManager : SingletonBase<RoomManager>
     public async Task CreateRoom(int questionBankID)
     {
         RoundCounter = 0;
+        ConnectedPlayers = 0;
+        UserCountChanged?.Invoke();
         await NetworkManager.Instance.CreateRoom(questionBankID);
         var response = await NetworkManager.Instance.GetQuestionsFromBank(questionBankID);
         if (response.IsSuccess) QuestionCount = response.Data.Count;
@@ -64,6 +67,11 @@ public class RoomManager : SingletonBase<RoomManager>
     public async Task StartGame()
     {
         await NetworkManager.Instance.StartGame();
+    }
+
+    public async void FinishGame()
+    {
+        await NetworkManager.Instance.FinishGame();
     }
 
     public async Task StartNextRound()
