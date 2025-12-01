@@ -6,8 +6,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.UIElements;
-using System.Threading.Tasks;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 
 public class MainScreenController : ScreenController
 {

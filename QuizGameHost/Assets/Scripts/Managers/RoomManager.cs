@@ -7,10 +7,7 @@ using PimDeWitte.UnityMainThreadDispatcher;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using UnityEditor.Networking.PlayerConnection;
 using UnityEngine;
 
 public class RoomManager : SingletonBase<RoomManager>
