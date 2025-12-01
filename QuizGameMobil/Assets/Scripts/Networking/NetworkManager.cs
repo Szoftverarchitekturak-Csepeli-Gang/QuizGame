@@ -17,6 +17,8 @@ public class NetworkManager : SingletonBase<NetworkManager>
     public event Action GameStartedEvent;
     public event Action GameEndedEvent;
     public event Action HostDisconnectedEvent;
+
+    public string JWT { get; private set; }
     public IUnitySocketIOClient socketIOClient { get; private set; }
 
     [SerializeField] private string _serverUrl = "http://localhost:3000";
@@ -24,6 +26,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
     private async void Awake()
     {
         base.Awake();
+        JWT = "";
         socketIOClient = new UnitySocketIOClient();
 
         await socketIOClient.ConnectAsync(_serverUrl);

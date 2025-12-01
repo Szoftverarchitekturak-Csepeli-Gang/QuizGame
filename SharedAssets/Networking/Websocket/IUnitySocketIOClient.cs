@@ -14,7 +14,7 @@ namespace Assets.SharedAssets.Networking.Websocket
         bool IsConnected { get; }
         Task ConnectAsync(string url);
         Task DisconnectAsync();
-        Task SendAsync<T>(string eventName, T data);
+        Task SendAsync<T>(string eventName, T data, bool useAuth = false);
 
         void On<T>(string eventName, Action<T> handler);
     }

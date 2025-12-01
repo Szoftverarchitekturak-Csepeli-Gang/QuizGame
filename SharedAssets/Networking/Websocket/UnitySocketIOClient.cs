@@ -58,12 +58,26 @@ namespace Assets.SharedAssets.Networking.Websocket
             if (IsConnected) await _socket.DisconnectAsync();
         }
 
-        public async Task SendAsync<T>(string eventName, T data)
+        public async Task SendAsync<T>(string eventName, T data, bool useAuth = false)
         {
             if (!IsConnected)
                 return;
 
-            await _socket.EmitAsync(eventName, data);
+            if(useAuth)
+            {
+                var payload = new
+                {
+                    data,
+                    token = NetworkManager.Instance.JWT
+                };
+
+
+                await _socket.EmitAsync(eventName, payload);
+            }
+            else
+            {
+                await _socket.EmitAsync(eventName, data);
+            }
         }
 
         public void On<T>(string eventName, Action<T> handler)

@@ -59,7 +59,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
     {
         try
         {
-            await socketIOClient.SendAsync<int>("createRoom", questionBankId);
+            await socketIOClient.SendAsync<int>("createRoom", questionBankId, useAuth: true);
         }
         catch (Exception ex)
         {
@@ -83,7 +83,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
     {
         try
         {
-            await socketIOClient.SendAsync<object>("gameStarted", null);
+            await socketIOClient.SendAsync<object>("gameStarted", null, useAuth: true);
         }
         catch (Exception ex)
         {
@@ -95,7 +95,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
     {
         try
         {
-            await socketIOClient.SendAsync<object>("gameFinished", null);
+            await socketIOClient.SendAsync<object>("gameFinished", null, useAuth: true);
         }
         catch (Exception ex)
         {
@@ -107,7 +107,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
     {
         try
         {
-            await socketIOClient.SendAsync<int>("nextRoundStarted", questionIndex);
+            await socketIOClient.SendAsync<int>("nextRoundStarted", questionIndex, useAuth: true);
         }
         catch (Exception ex)
         {

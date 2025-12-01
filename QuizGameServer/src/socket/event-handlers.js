@@ -2,6 +2,7 @@ const { generateRoomId } = require("../utils/room-id-generator.js");
 const { getIO } = require("./socket.js");
 const room_DAO  = require("../db/room.dao.js");
 const question_DAO  = require("../db/question.dao.js");
+const { validateSocketEvent } = require("../utils/validate-socket-event.js")
 
 module.exports = {
     createRoomHandler,
@@ -13,9 +14,18 @@ module.exports = {
     GameFinishedHandler,
 }
 
-async function createRoomHandler(questionBankId, hostSocket)
+async function createRoomHandler(payload, hostSocket)
 {
+    if(!validateSocketEvent(payload))
+    {
+        hostSocket.emit("error", "Unauthorized!");
+        return;
+    } 
+
+    const questionBankId = typeof payload === "object" ? payload.data : payload;
+
     const existingRoom = await room_DAO.getRoomWithHostId(hostSocket.id);
+
     if(existingRoom)
     {
         hostSocket.emit("error", "Already has an active room!");
@@ -36,8 +46,14 @@ async function createRoomHandler(questionBankId, hostSocket)
     }
 }
 
-async function startGameHandler(hostSocket)
+async function startGameHandler(payload, hostSocket)
 {
+    if(!validateSocketEvent(payload))
+    {
+        hostSocket.emit("error", "Unauthorized!");
+        return;
+    } 
+
     const existingRoom = await room_DAO.getRoomWithHostId(hostSocket.id);
     if(!existingRoom)
     {
@@ -80,8 +96,16 @@ async function joinRoomHandler(roomId, clientSocket)
     clientSocket.to(existingRoom.hostId).emit("clientConnected");
 }
 
-async function startRoundHandler(roundIdx, socket)
+async function startRoundHandler(payload, socket)
 {
+    if(!validateSocketEvent(payload))
+    {
+        hostSocket.emit("error", "Unauthorized!");
+        return;
+    } 
+
+    const roundIdx = typeof payload === "object" ? payload.data : payload;
+
     const existingRoom = await room_DAO.getRoomWithHostId(socket.id);
     if(existingRoom == null){
         socket.emit("error", "No room associated with this socket");
@@ -148,8 +172,14 @@ async function leaveRoomHandler(socket)
     }
 }
 
-async function GameFinishedHandler(socket)
+async function GameFinishedHandler(payload, socket)
 {
+    if(!validateSocketEvent(payload))
+    {
+        hostSocket.emit("error", "Unauthorized!");
+        return;
+    } 
+
     const existingRoom = await room_DAO.getRoomWithHostId(socket.id);
     const wasHost = existingRoom != null;
 
