@@ -50,7 +50,7 @@ public class QuizScreenController : ScreenController
 
         _answerSubmitted = false;
 
-        StartTimer(10);
+        StartTimer(25);
     }
 
     public async void OnAnswerClicked(int answerIdx)

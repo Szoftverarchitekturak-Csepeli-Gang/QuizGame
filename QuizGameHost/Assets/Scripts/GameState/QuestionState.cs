@@ -5,7 +5,7 @@ public class QuestionState : IGameState
     public GameStateType Type => GameStateType.Question;
 
     private float _timer;
-    private float _questionTime = 10.0f;
+    private float _questionTime = 25.0f;
 
     private bool _questionArrived;
 
