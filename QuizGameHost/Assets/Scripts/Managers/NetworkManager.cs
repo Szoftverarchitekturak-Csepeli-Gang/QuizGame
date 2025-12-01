@@ -160,7 +160,7 @@ public class NetworkManager : SingletonBase<NetworkManager>
         return questionBank;
     }
 
-    public async Task<Response<QuestionBankDto>> CreateQuestionBank(int owner_id, string title, List<Question> questions, bool isPublic = false)
+    public async Task<Response<QuestionBankDto>> CreateQuestionBank(int owner_id, string title, List<Question> questions, bool isPublic = true)
     {
         var questionBankDto = new QuestionBankDto
         {
